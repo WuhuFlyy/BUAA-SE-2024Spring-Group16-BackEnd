@@ -1,0 +1,11 @@
+sid,username,password,salt,shopname,fans_number,phone,email,address,is_authenticated,created_user,created_time,modified_user,modified_time
+1,shop_user0,xuiqa4l1tqvhdmi7tpj1tsy9352zfzve,ghvqz1h1yz2j1knkl4sqa3chh113g0kls0xy,shop0,7014,13290359754,shop0@example.com,Address 0,1,creator1,2021-04-28 06:23:38,modifier0,2021-05-11 05:04:40
+2,shop_user1,e4nc1w0ct8fbit0ucryeeqr6iqg30awb,4qdez4mdm902d6bg3xux960ooxs7d7b7z6py,shop1,2441,13369103757,shop1@example.com,Address 1,0,creator2,2021-11-28 14:08:22,modifier4,2022-11-11 12:15:08
+3,shop_user2,b75eucg2jsr37ixhetmbefobk1gvoy44,0u5axh890qreah12udgd5kumj9xhqe781f2x,shop2,2608,13812795475,shop2@example.com,Address 2,0,creator0,2022-10-30 16:06:13,modifier2,2022-07-12 16:54:49
+4,shop_user3,f75c2u3n1drzm49dr9z0y3e2kcuycm0c,8djsxrvss9uulawg0bbswti7pklfmbiwf63t,shop3,7805,13909114753,shop3@example.com,Address 3,0,creator4,2023-03-01 03:46:42,modifier1,2022-04-21 17:43:31
+5,shop_user4,aed5fffiffk16oxwi012kkgqdokof0rm,ho2vxu9yjngqtsokw4ssaqf5qx97zn2o5nvr,shop4,9482,13099904471,shop4@example.com,Address 4,1,creator2,2022-12-31 20:27:43,modifier0,2021-10-11 15:28:58
+6,shop_user5,ppulxcexjkcrhd3nn3bb0372nd9frir4,7v71to20so1xsg65qepleziprzj47a1p58na,shop5,9644,13945435110,shop5@example.com,Address 5,0,creator0,2021-12-13 00:29:50,modifier2,2023-05-09 05:44:47
+7,shop_user6,0mln99jsut1rxpz0sybvt0oej8fu8ay9,uf2pv9jkdgjfnnmz1cd86ctaf9bfz9hdm22r,shop6,1039,13691301187,shop6@example.com,Address 6,0,creator1,2023-02-03 04:50:12,modifier1,2021-01-25 11:47:34
+8,shop_user7,aty5fcj3sdrg5bsdkxjj9dtf8rcwyws2,7d5slexbbr78y2ef13bfjfho0z8rkg8buuvo,shop7,3895,13230140813,shop7@example.com,Address 7,0,creator1,2023-07-08 23:50:33,modifier3,2021-05-23 23:15:53
+9,shop_user8,2y23dhbburmt0gn0qfjhck3n5wnru3ih,ehu3zdeq28iv0at6da523c8zsqm4p7hlo6da,shop8,4235,13026683641,shop8@example.com,Address 8,0,creator2,2022-04-26 17:40:17,modifier1,2022-03-09 15:44:01
+10,shop_user9,igacz3wqoh30ugywi35nsqg6gb68ryqr,8s7ber3w9gikp8ajff04euiecscciizejtm4,shop9,937,13148187978,shop9@example.com,Address 9,0,creator0,2021-05-04 04:08:50,modifier2,2023-02-03 20:00:50
