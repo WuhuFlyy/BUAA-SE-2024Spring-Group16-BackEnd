@@ -62,6 +62,13 @@
     where uid = #{uid,jdbcType=INTEGER}
   </select>
 
+  <select id="selectByUsername" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select uid, username, type, password, salt, phone, email, gender, avatar, is_delete,
+    created_user, created_time, modified_user, modified_time
+    from t_user
+    where username = #{username,jdbcType=VARCHAR}
+  </select>
+
   <select id="selectAll" resultMap="BaseResultMap">
     select uid, username, type, password, salt, phone, email, gender, avatar, is_delete, 
     created_user, created_time, modified_user, modified_time

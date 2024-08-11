@@ -42,6 +42,12 @@ public class BaseController
         else if(e instanceof FavoriteNotFoundException){
             result.setStateCode(4008);
         }
+        else if(e instanceof UserTypeNotMatchException){
+            result.setStateCode(4009);
+        }
+        else if(e instanceof ProductNoMatchingShopException){
+            result.setStateCode(40010);
+        }
         else if(e instanceof InsertException){
             result.setStateCode(5000);
         }

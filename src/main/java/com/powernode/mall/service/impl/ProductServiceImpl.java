@@ -5,6 +5,7 @@ import com.powernode.mall.entity.Product;
 import com.powernode.mall.mapper.*;
 import com.powernode.mall.po.*;
 import com.powernode.mall.service.IProductService;
+import com.powernode.mall.service.ex.ProductNoMatchingShopException;
 import com.powernode.mall.service.ex.ProductNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,7 +36,7 @@ public class ProductServiceImpl implements IProductService {
     @Override
     public TProduct selectByPrimaryKey(Integer id) {
         TProduct tProduct = productMapper.selectByPrimaryKey(id);
-        if(tProduct == null){
+        if (tProduct == null) {
             throw new ProductNotFoundException("查询商品不存在");
         }
 
@@ -48,30 +49,41 @@ public class ProductServiceImpl implements IProductService {
     }
 
     @Override
-    public Product getProductDetailByProductId(Integer id){
+    public Product getProductDetailByProductId(Integer id) {
         TProduct tProduct = productMapper.selectByPrimaryKey(id);
+        if (tProduct == null) {
+            throw new ProductNotFoundException("查询商品不存在");
+        }
+
         ArrayList<TComment> tComments = commentMapper.selectByPid(id);
         ArrayList<TVersion> tVersions = versionMapper.selectByPid(id);
         ArrayList<TImage> tImages = imageMapper.selectByPid(id);
         TShop tShop = shopMapper.selectByPrimaryKey(tProduct.getSid());
+        if (tShop == null) {
+            throw new ProductNoMatchingShopException("商品无对应商店");
+        }
+
         Product product = new Product();
         ArrayList<Comment> comments = new ArrayList<>();
         ArrayList<String> images = new ArrayList<>();
         ArrayList<String> versions = new ArrayList<>();
 
-        for(TComment tComment : tComments){
-            comments.add(new Comment(
-                    userMapper.selectByPrimaryKey(tComment.getUid()).getUsername(),
-                    tComment.getContent(),
-                    tComment.getRate())
-            );
+        if (tComments != null) {
+            for (TComment tComment : tComments) {
+                comments.add(new Comment(
+                        userMapper.selectByPrimaryKey(tComment.getUid()).getUsername(),
+                        tComment.getContent(),
+                        tComment.getRate())
+                );
+            }
         }
 
-        for(TVersion tVersion : tVersions){
+
+        for (TVersion tVersion : tVersions) {
             versions.add(tVersion.getVersion());
         }
 
-        for(TImage tImage : tImages){
+        for (TImage tImage : tImages) {
             images.add(tImage.getImageSrc());
         }
 
