@@ -9,7 +9,7 @@ import java.util.ArrayList;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Product {
+public class ProductDetails {
     private String name;
     private Integer storage;
     private ArrayList<String> version;

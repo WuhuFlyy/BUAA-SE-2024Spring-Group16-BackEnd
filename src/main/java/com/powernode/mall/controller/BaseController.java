@@ -46,13 +46,38 @@ public class BaseController
             result.setStateCode(4009);
         }
         else if(e instanceof ProductNoMatchingShopException){
-            result.setStateCode(40010);
+            result.setStateCode(4010);
         }
+
+        else if(e instanceof ShopNotFoundException){
+            result.setStateCode(4011);
+        }
+
+        else if(e instanceof ShopDuplicateException){
+            result.setStateCode(4012);
+        }
+
+        else if(e instanceof ShopInfoNotCompleteException){
+            result.setStateCode(4013);
+        }
+
+        else if(e instanceof InsufficientStorageException){
+            result.setStateCode(4014);
+        }
+
+        else if(e instanceof VersionNotFoundException){
+            result.setStateCode(4015);
+        }
+
         else if(e instanceof InsertException){
             result.setStateCode(5000);
         }
         else if(e instanceof UpdateException){
             result.setStateCode(5001);
+        }
+
+        else if(e instanceof DeleteException){
+            result.setStateCode(5002);
         }
         return result;
     }

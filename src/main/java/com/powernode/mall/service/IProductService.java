@@ -1,10 +1,8 @@
 package com.powernode.mall.service;
 
 
-import com.powernode.mall.entity.Product;
+import com.powernode.mall.entity.ProductDetails;
 import com.powernode.mall.po.TProduct;
-
-import java.util.List;
 
 public interface IProductService {
     /**
@@ -19,5 +17,5 @@ public interface IProductService {
      * @param id 商品id
      * @return 匹配的商品概况，无匹配则返回null
      */
-    Product getProductDetailByProductId(Integer id);
+    ProductDetails getProductDetailByProductId(Integer id);
 }

@@ -5,6 +5,7 @@
     <id column="oiid" jdbcType="INTEGER" property="oiid" />
     <result column="oid" jdbcType="INTEGER" property="oid" />
     <result column="pid" jdbcType="INTEGER" property="pid" />
+    <result column="version" jdbcType="VARCHAR" property="version" />
     <result column="created_user" jdbcType="VARCHAR" property="createdUser" />
     <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
     <result column="modified_user" jdbcType="VARCHAR" property="modifiedUser" />
@@ -15,10 +16,10 @@
     where oiid = #{oiid,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.powernode.mall.po.TOrderItem">
-    insert into t_order_item (oiid, oid, pid, 
+    insert into t_order_item (oiid, oid, pid, version,
       created_user, created_time, modified_user, 
       modified_time)
-    values (#{oiid,jdbcType=INTEGER}, #{oid,jdbcType=INTEGER}, #{pid,jdbcType=INTEGER}, 
+    values (#{oiid,jdbcType=INTEGER}, #{oid,jdbcType=INTEGER}, #{pid,jdbcType=INTEGER}, #{version,jdbcType=VARCHAR},
       #{createdUser,jdbcType=VARCHAR}, #{createdTime,jdbcType=TIMESTAMP}, #{modifiedUser,jdbcType=VARCHAR}, 
       #{modifiedTime,jdbcType=TIMESTAMP})
   </insert>
@@ -26,6 +27,7 @@
     update t_order_item
     set oid = #{oid,jdbcType=INTEGER},
       pid = #{pid,jdbcType=INTEGER},
+      version = #{version,jdbcType=VARCHAR},
       created_user = #{createdUser,jdbcType=VARCHAR},
       created_time = #{createdTime,jdbcType=TIMESTAMP},
       modified_user = #{modifiedUser,jdbcType=VARCHAR},
@@ -33,12 +35,12 @@
     where oiid = #{oiid,jdbcType=INTEGER}
   </update>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select oiid, oid, pid, created_user, created_time, modified_user, modified_time
+    select oiid, oid, pid, version, created_user, created_time, modified_user, modified_time
     from t_order_item
     where oiid = #{oiid,jdbcType=INTEGER}
   </select>
   <select id="selectAll" resultMap="BaseResultMap">
-    select oiid, oid, pid, created_user, created_time, modified_user, modified_time
+    select oiid, oid, pid, version, created_user, created_time, modified_user, modified_time
     from t_order_item
   </select>
 </mapper>

@@ -60,6 +60,14 @@
     where pid = #{pid,jdbcType=INTEGER}
   </select>
 
+  <select id="selectBySid" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select pid, sid, product_name, price, details, storage, image, status, priority,
+    created_time, modified_time, created_user, modified_user
+    from t_product
+    where sid = #{sid,jdbcType=INTEGER}
+  </select>
+
+
   <select id="selectAll" resultMap="BaseResultMap">
     select pid, sid, product_name, price, details, storage, image, status, priority, 
     created_time, modified_time, created_user, modified_user

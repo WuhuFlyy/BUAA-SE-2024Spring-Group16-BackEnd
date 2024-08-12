@@ -6,7 +6,8 @@
     <id column="cid" jdbcType="INTEGER" property="cid" />
     <result column="uid" jdbcType="INTEGER" property="uid" />
     <result column="pid" jdbcType="INTEGER" property="pid" />
-    <result column="num" jdbcType="INTEGER" property="num" />
+    <result column="quantity" jdbcType="INTEGER" property="quantity" />
+    <result column="version" jdbcType="VARCHAR" property="version" />
     <result column="created_user" jdbcType="VARCHAR" property="createdUser" />
     <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
     <result column="modified_user" jdbcType="VARCHAR" property="modifiedUser" />
@@ -20,10 +21,10 @@
 
   <insert id="insert" parameterType="com.powernode.mall.po.TCart">
     insert into t_cart (cid, uid, pid, 
-      num, created_user, created_time, 
+      quantity, version, created_user, created_time,
       modified_user, modified_time)
     values (#{cid,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, #{pid,jdbcType=INTEGER}, 
-      #{num,jdbcType=INTEGER}, #{createdUser,jdbcType=VARCHAR}, #{createdTime,jdbcType=TIMESTAMP}, 
+      #{quantity,jdbcType=INTEGER}, #{version,jdbcType=VARCHAR}, #{createdUser,jdbcType=VARCHAR}, #{createdTime,jdbcType=TIMESTAMP},
       #{modifiedUser,jdbcType=VARCHAR}, #{modifiedTime,jdbcType=TIMESTAMP})
   </insert>
 
@@ -31,7 +32,8 @@
     update t_cart
     set uid = #{uid,jdbcType=INTEGER},
       pid = #{pid,jdbcType=INTEGER},
-      num = #{num,jdbcType=INTEGER},
+      quantity = #{quantity,jdbcType=INTEGER},
+      version = #{version,jdbcType=VARCHAR},
       created_user = #{createdUser,jdbcType=VARCHAR},
       created_time = #{createdTime,jdbcType=TIMESTAMP},
       modified_user = #{modifiedUser,jdbcType=VARCHAR},
@@ -40,13 +42,13 @@
   </update>
 
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select cid, uid, pid, num, created_user, created_time, modified_user, modified_time
+    select cid, uid, pid, quantity, version, created_user, created_time, modified_user, modified_time
     from t_cart
     where cid = #{cid,jdbcType=INTEGER}
   </select>
 
   <select id="selectAll" resultMap="BaseResultMap">
-    select cid, uid, pid, num, created_user, created_time, modified_user, modified_time
+    select cid, uid, pid, quantity, version, created_user, created_time, modified_user, modified_time
     from t_cart
   </select>
 

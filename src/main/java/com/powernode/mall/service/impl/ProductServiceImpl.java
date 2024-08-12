@@ -1,7 +1,7 @@
 package com.powernode.mall.service.impl;
 
 import com.powernode.mall.entity.Comment;
-import com.powernode.mall.entity.Product;
+import com.powernode.mall.entity.ProductDetails;
 import com.powernode.mall.mapper.*;
 import com.powernode.mall.po.*;
 import com.powernode.mall.service.IProductService;
@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.List;
 
 @Service
 public class ProductServiceImpl implements IProductService {
@@ -49,7 +48,7 @@ public class ProductServiceImpl implements IProductService {
     }
 
     @Override
-    public Product getProductDetailByProductId(Integer id) {
+    public ProductDetails getProductDetailByProductId(Integer id) {
         TProduct tProduct = productMapper.selectByPrimaryKey(id);
         if (tProduct == null) {
             throw new ProductNotFoundException("查询商品不存在");
@@ -63,7 +62,7 @@ public class ProductServiceImpl implements IProductService {
             throw new ProductNoMatchingShopException("商品无对应商店");
         }
 
-        Product product = new Product();
+        ProductDetails productDetails = new ProductDetails();
         ArrayList<Comment> comments = new ArrayList<>();
         ArrayList<String> images = new ArrayList<>();
         ArrayList<String> versions = new ArrayList<>();
@@ -87,16 +86,16 @@ public class ProductServiceImpl implements IProductService {
             images.add(tImage.getImageSrc());
         }
 
-        product.setName(tProduct.getProductName());
-        product.setPrice(tProduct.getPrice());
-        product.setDetails(tProduct.getDetails());
-        product.setStorage(tProduct.getStorage());
-        product.setShopId(tProduct.getSid());
-        product.setShopName(tShop.getShopname());
-        product.setComments(comments);
-        product.setVersion(versions);
-        product.setImageSrc(images);
+        productDetails.setName(tProduct.getProductName());
+        productDetails.setPrice(tProduct.getPrice());
+        productDetails.setDetails(tProduct.getDetails());
+        productDetails.setStorage(tProduct.getStorage());
+        productDetails.setShopId(tProduct.getSid());
+        productDetails.setShopName(tShop.getShopname());
+        productDetails.setComments(comments);
+        productDetails.setVersion(versions);
+        productDetails.setImageSrc(images);
 
-        return product;
+        return productDetails;
     }
 }
