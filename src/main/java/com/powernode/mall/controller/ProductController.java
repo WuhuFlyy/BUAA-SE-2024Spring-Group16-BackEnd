@@ -1,5 +1,7 @@
 package com.powernode.mall.controller;
 
+import com.powernode.mall.entity.ProductDetails;
+import com.powernode.mall.entity.ShopItem;
 import com.powernode.mall.dto.ProductDetails;
 import com.powernode.mall.dto.ProductNoDetails;
 import com.powernode.mall.service.IProductService;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.ArrayList;
 
 @RestController
 @RequestMapping("products")
@@ -17,8 +20,8 @@ public class ProductController extends BaseController {
     @Autowired
     private IProductService productService;
 
-    @RequestMapping("{id}/details")
-    public JsonResult<ProductDetails> getById(@PathVariable("id") Integer id){
+    @RequestMapping("details")
+    public JsonResult<ProductDetails> getById(Integer id){
         ProductDetails productDetails = productService.getProductDetailByProductId(id);
         return new JsonResult<ProductDetails>(OK, productDetails);
     }
@@ -29,4 +32,10 @@ public class ProductController extends BaseController {
         return new JsonResult<>(OK, products);
     }
 
+
+    @RequestMapping("search")
+    public JsonResult<?> search(String keywords){
+        ArrayList<ShopItem> shopItems = productService.getProductByKeywords(keywords);
+        return new JsonResult<>(OK, shopItems);
+    }
 }

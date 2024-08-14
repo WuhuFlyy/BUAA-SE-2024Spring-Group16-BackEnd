@@ -3,6 +3,10 @@ package com.powernode.mall.service.impl;
 import com.powernode.mall.dto.Comment;
 import com.powernode.mall.dto.ProductDetails;
 import com.powernode.mall.dto.ProductNoDetails;
+import com.powernode.mall.entity.Comment;
+import com.powernode.mall.entity.Product;
+import com.powernode.mall.entity.ProductDetails;
+import com.powernode.mall.entity.ShopItem;
 import com.powernode.mall.mapper.*;
 import com.powernode.mall.po.*;
 import com.powernode.mall.service.IProductService;
@@ -116,4 +120,22 @@ public class ProductServiceImpl implements IProductService {
         return productNoDetails;
     }
 
+
+    @Override
+    public ArrayList<ShopItem> getProductByKeywords(String keywords) {
+        ArrayList<ShopItem> shopItems = new ArrayList<>();
+
+        System.out.println(keywords);
+        ArrayList<TProduct> tProducts = productMapper.selectByKeywords(keywords);
+
+        for (TProduct tProduct : tProducts) {
+            shopItems.add(new ShopItem(
+                    tProduct.getPid(),
+                    tProduct.getProductName(),
+                    tProduct.getPrice(),
+                    imageMapper.selectByPid(tProduct.getPid()).get(0).getImageSrc()
+            ));
+        }
+        return shopItems;
+    }
 }

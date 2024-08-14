@@ -3,9 +3,14 @@ package com.powernode.mall.service;
 
 import com.powernode.mall.dto.ProductDetails;
 import com.powernode.mall.dto.ProductNoDetails;
+import com.powernode.mall.entity.ProductDetails;
+import com.powernode.mall.entity.Product;
+import com.powernode.mall.entity.ShopItem;
 import com.powernode.mall.po.TProduct;
 
 import java.util.List;
+
+import java.util.ArrayList;
 
 public interface IProductService {
     /**
@@ -28,4 +33,11 @@ public interface IProductService {
      * @return 一个List储存当前商城中所有商品
      */
     List<ProductNoDetails> getAllProducts();
+
+    /**
+     * 根据关键词搜素商品
+     * @param keywords 关键词
+     * @return 和关键词匹配的商品
+     */
+    ArrayList<ShopItem> getProductByKeywords(String keywords);
 }

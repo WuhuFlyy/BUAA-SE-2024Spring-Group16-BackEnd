@@ -1,5 +1,6 @@
 package com.powernode.mall.controller;
 
+import com.powernode.mall.entity.Product;
 import com.powernode.mall.dto.ShopItem;
 import com.powernode.mall.service.IShopService;
 import com.powernode.mall.util.JsonResult;
@@ -18,7 +19,7 @@ public class ShopController extends BaseController {
 
     @RequestMapping("get_products")
     public JsonResult<?> getProducts(Integer sid) {
-        ArrayList<ShopItem> shopItems = shopService .getAllProducts(sid);
-        return new JsonResult<>(OK, shopItems);
+        ArrayList<Product> products = shopService .getAllProducts(sid);
+        return new JsonResult<>(OK, products);
     }
 }
