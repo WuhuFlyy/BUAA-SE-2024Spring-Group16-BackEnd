@@ -3,9 +3,9 @@ package com.powernode.mall.service;
 
 import com.powernode.mall.dto.ProductDetails;
 import com.powernode.mall.dto.ProductNoDetails;
-import com.powernode.mall.entity.ProductDetails;
-import com.powernode.mall.entity.Product;
-import com.powernode.mall.entity.ShopItem;
+import com.powernode.mall.dto.ProductDetails;
+import com.powernode.mall.dto.Product;
+import com.powernode.mall.dto.ShopItem;
 import com.powernode.mall.po.TProduct;
 
 import java.util.List;

@@ -1,9 +1,9 @@
 package com.powernode.mall.controller;
 
-import com.powernode.mall.entity.Product;
-import com.powernode.mall.dto.ShopItem;
+import com.powernode.mall.dto.Product;
 import com.powernode.mall.service.IShopService;
 import com.powernode.mall.util.JsonResult;
+import com.powernode.mall.dto.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

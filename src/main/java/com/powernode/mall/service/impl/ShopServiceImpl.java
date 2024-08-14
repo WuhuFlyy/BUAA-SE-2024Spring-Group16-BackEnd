@@ -1,11 +1,12 @@
 package com.powernode.mall.service.impl;
 
 import com.powernode.mall.dto.ShopItem;
-import com.powernode.mall.entity.Product;
+import com.powernode.mall.dto.Product;
 import com.powernode.mall.mapper.TImageMapper;
 import com.powernode.mall.mapper.TProductMapper;
 import com.powernode.mall.mapper.TShopMapper;
 import com.powernode.mall.po.TProduct;
+import com.powernode.mall.po.TShop;
 import com.powernode.mall.service.IShopService;
 import com.powernode.mall.service.ex.ShopNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
