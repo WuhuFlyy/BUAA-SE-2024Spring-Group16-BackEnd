@@ -1,4 +1,4 @@
-package com.powernode.mall.entity;
+package com.powernode.mall.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

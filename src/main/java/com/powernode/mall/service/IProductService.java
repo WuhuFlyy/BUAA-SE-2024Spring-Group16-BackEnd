@@ -1,8 +1,11 @@
 package com.powernode.mall.service;
 
 
-import com.powernode.mall.entity.ProductDetails;
+import com.powernode.mall.dto.ProductDetails;
+import com.powernode.mall.dto.ProductNoDetails;
 import com.powernode.mall.po.TProduct;
+
+import java.util.List;
 
 public interface IProductService {
     /**
@@ -18,4 +21,11 @@ public interface IProductService {
      * @return 匹配的商品概况，无匹配则返回null
      */
     ProductDetails getProductDetailByProductId(Integer id);
+
+    /**
+     * 获取当前商城中所有商品
+     *
+     * @return 一个List储存当前商城中所有商品
+     */
+    List<ProductNoDetails> getAllProducts();
 }

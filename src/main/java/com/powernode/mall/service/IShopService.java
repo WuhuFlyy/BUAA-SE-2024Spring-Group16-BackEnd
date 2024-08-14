@@ -1,6 +1,6 @@
 package com.powernode.mall.service;
 
-import com.powernode.mall.entity.ShopItem;
+import com.powernode.mall.dto.ShopItem;
 
 import java.util.ArrayList;
 

@@ -19,4 +19,5 @@ public interface TProductMapper {
     List<TProduct> selectAll();
 
     int updateByPrimaryKey(TProduct row);
+
 }

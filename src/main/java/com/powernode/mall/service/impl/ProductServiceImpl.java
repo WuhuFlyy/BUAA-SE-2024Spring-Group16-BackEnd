@@ -1,7 +1,8 @@
 package com.powernode.mall.service.impl;
 
-import com.powernode.mall.entity.Comment;
-import com.powernode.mall.entity.ProductDetails;
+import com.powernode.mall.dto.Comment;
+import com.powernode.mall.dto.ProductDetails;
+import com.powernode.mall.dto.ProductNoDetails;
 import com.powernode.mall.mapper.*;
 import com.powernode.mall.po.*;
 import com.powernode.mall.service.IProductService;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class ProductServiceImpl implements IProductService {
@@ -98,4 +100,20 @@ public class ProductServiceImpl implements IProductService {
 
         return productDetails;
     }
+
+    @Override
+    public List<ProductNoDetails> getAllProducts() {
+        List<TProduct> tProducts = productMapper.selectAll();
+        List<ProductNoDetails> productNoDetails = new ArrayList<>();
+        for (TProduct tProduct : tProducts) {
+            productNoDetails.add(new ProductNoDetails(
+                    tProduct.getPid(),
+                    tProduct.getProductName(),
+                    tProduct.getImage(),
+                    tProduct.getPrice()
+            ));
+        }
+        return productNoDetails;
+    }
+
 }
