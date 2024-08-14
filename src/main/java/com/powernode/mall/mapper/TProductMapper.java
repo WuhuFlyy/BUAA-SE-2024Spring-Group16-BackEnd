@@ -16,6 +16,8 @@ public interface TProductMapper {
 
     ArrayList<TProduct> selectBySid(Integer sid);
 
+    ArrayList<TProduct> selectByKeywords(String keywords);
+
     List<TProduct> selectAll();
 
     int updateByPrimaryKey(TProduct row);

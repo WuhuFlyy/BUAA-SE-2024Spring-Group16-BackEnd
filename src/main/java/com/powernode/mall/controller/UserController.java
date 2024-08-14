@@ -53,6 +53,7 @@ public class UserController extends BaseController
     public JsonResult<TUser> login(String username, String password, String type, HttpSession session){
         TUser user = userService.login(username, password, type);
 
+
         session.setAttribute("uid", user.getUid());
         session.setAttribute("username", user.getUsername());
 

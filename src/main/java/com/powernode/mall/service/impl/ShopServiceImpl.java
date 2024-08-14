@@ -1,13 +1,13 @@
 package com.powernode.mall.service.impl;
 
-import com.powernode.mall.entity.ShopItem;
+import com.powernode.mall.entity.Product;
 import com.powernode.mall.mapper.TImageMapper;
 import com.powernode.mall.mapper.TProductMapper;
 import com.powernode.mall.mapper.TShopMapper;
-import com.powernode.mall.po.TImage;
 import com.powernode.mall.po.TProduct;
 import com.powernode.mall.po.TShop;
 import com.powernode.mall.service.IShopService;
+import com.powernode.mall.service.ex.ShopNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,22 +26,30 @@ public class ShopServiceImpl implements IShopService {
     private TImageMapper imageMapper;
 
     @Override
-    public ArrayList<ShopItem> getAllProducts(Integer sid) {
-        ArrayList<ShopItem> shopItems = new ArrayList<>();
+    public ArrayList<Product> getAllProducts(Integer sid) {
+
+        TShop shop = shopMapper.selectByPrimaryKey(sid);
+        if(shop == null){
+            throw new ShopNotFoundException("商店不存在");
+        }
+
+        ArrayList<Product> shopItem1s = new ArrayList<>();
         ArrayList<TProduct> products = productMapper.selectBySid(sid);
 
         for(TProduct product : products){
-            ShopItem shopItem = new ShopItem();
-            shopItem.setPid(product.getPid());
-            shopItem.setPrice(product.getPrice());
-            shopItem.setName(product.getProductName());
-            shopItem.setImageSrc(
+            Product shopItem1 = new Product();
+            shopItem1.setPid(product.getPid());
+            shopItem1.setPrice(product.getPrice());
+            shopItem1.setName(product.getProductName());
+            shopItem1.setIsHot(false);
+            if(product.getIsHot() == 1) shopItem1.setIsHot(true);
+            shopItem1.setImageSrc(
                     imageMapper.selectByPid(product.getPid()).get(0).getImageSrc()
             );
 
-            shopItems.add(shopItem);
+            shopItem1s.add(shopItem1);
         }
 
-        return shopItems;
+        return shopItem1s;
     }
 }

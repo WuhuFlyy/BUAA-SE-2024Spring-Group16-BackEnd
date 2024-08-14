@@ -10,7 +10,7 @@
     <result column="salt" jdbcType="CHAR" property="salt" />
     <result column="phone" jdbcType="VARCHAR" property="phone" />
     <result column="email" jdbcType="VARCHAR" property="email" />
-    <result column="gender" jdbcType="INTEGER" property="gender" />
+    <result column="gender" jdbcType="VARCHAR" property="gender" />
     <result column="avatar" jdbcType="VARCHAR" property="avatar" />
     <result column="is_delete" jdbcType="INTEGER" property="isDelete" />
     <result column="created_user" jdbcType="VARCHAR" property="createdUser" />

@@ -1,6 +1,6 @@
 package com.powernode.mall.service;
 
-import com.powernode.mall.entity.ShopItem;
+import com.powernode.mall.entity.Product;
 
 import java.util.ArrayList;
 
@@ -10,5 +10,5 @@ public interface IShopService {
      * @param sid 商店id
      * @return 所有商品条目
      */
-    ArrayList<ShopItem> getAllProducts(Integer sid);
+    ArrayList<Product> getAllProducts(Integer sid);
 }
