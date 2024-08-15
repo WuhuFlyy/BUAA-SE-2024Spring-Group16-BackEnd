@@ -69,6 +69,7 @@ CREATE TABLE t_product
     details       VARCHAR(1000) NOT NULL COMMENT '商品描述',
     is_hot        INTEGER      DEFAULT '0' COMMENT '是否热门: 0-不热门, 1-热门',
     storage       INT(10)      DEFAULT NULL COMMENT '库存数量',
+    sale_volume   INTEGER      DEFAULT '0' COMMENT '销量',
     image         VARCHAR(500) DEFAULT NULL COMMENT '图片路径',
     status        INT(1)       DEFAULT '1' COMMENT '商品状态  1：上架   2：下架   3：删除',
     priority      INT(10)      DEFAULT NULL COMMENT '显示优先级',

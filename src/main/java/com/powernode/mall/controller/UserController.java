@@ -1,5 +1,6 @@
 package com.powernode.mall.controller;
 
+import com.powernode.mall.dto.UserComment;
 import com.powernode.mall.po.TUser;
 import com.powernode.mall.service.IUserService;
 import com.powernode.mall.service.ex.InsertException;
@@ -81,5 +82,11 @@ public class UserController extends BaseController
         String username = getUsernameFromSession(session);
         userService.changeInfo(uid, username, user);
         return new JsonResult<Void>(OK);
+    }
+
+    @RequestMapping("comment")
+    public JsonResult<Void> comment(@RequestBody UserComment userComment){
+        userService.comment(userComment);
+        return new JsonResult<>(OK);
     }
 }

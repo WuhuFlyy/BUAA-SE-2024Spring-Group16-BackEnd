@@ -62,10 +62,23 @@
     where sid = #{sid,jdbcType=INTEGER}
   </select>
 
+  <select id="selectByKeywords" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select sid, username, password, salt, shopname, fans_number, phone, email, address,
+    is_authenticated, created_user, created_time, modified_user, modified_time
+    from t_shop
+    where shopname like concat('%',#{keywords,jdbcType=VARCHAR},'%')
+  </select>
+
   <select id="selectAll" resultMap="BaseResultMap">
     select sid, username, password, salt, shopname, fans_number, phone, email, address, 
     is_authenticated, created_user, created_time, modified_user, modified_time
     from t_shop
+  </select>
+
+  <select id="getSaleCountBySid" parameterType="java.lang.Integer" resultType="integer">
+    select ifnull(sum(tp.sale_volume), 0)
+    from t_shop join mall.t_product tp on t_shop.sid = tp.sid
+    where t_shop.sid = #{sid,jdbcType=INTEGER}
   </select>
 
 </mapper>

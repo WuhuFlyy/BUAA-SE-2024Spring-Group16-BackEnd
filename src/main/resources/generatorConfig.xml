@@ -17,7 +17,7 @@
         <!-- 数据库连接 -->
         <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
                         connectionURL="jdbc:mysql://localhost:3306/mall?useUnicode=true&amp;characterEncoding=utf8&amp;tinyInt1isBit=true&amp;serverTimezone=UTC"
-                        userId="root" password="2857709015yzhzs">
+                        userId="root" password="root">
             <!-- 设置为true就只读取mall下的表, 否则会优先读取到mysql的user表  -->
             <property name="nullCatalogMeansCurrent" value="true"/>
         </jdbcConnection>
@@ -32,7 +32,7 @@
         <javaClientGenerator type="XMLMAPPER" targetPackage="com.powernode.mall.mapper" targetProject="src/main/java"/>
 
         <!-- 要生成对应表配置 -->
-        <table tableName="t_order">
+        <table tableName="t_comment_image">
 
         </table>
     </context>

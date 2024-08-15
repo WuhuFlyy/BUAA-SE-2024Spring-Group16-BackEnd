@@ -44,4 +44,13 @@
     where pid = #{pid,jdbcType=INTEGER}
   </select>
 
+  <select id="selectBySidLimit4" parameterType="java.lang.Integer" resultType="string">
+    select image_src
+    from t_image, t_product, (select * from t_shop where sid = #{sid, jdbcType=INTEGER}) as s
+    where s.sid=t_product.sid and t_image.pid=t_product.pid
+    limit 4
+  </select>
+
+
+
 </mapper>

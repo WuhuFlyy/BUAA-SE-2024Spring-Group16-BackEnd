@@ -1,8 +1,12 @@
 package com.powernode.mall.service.impl;
 
 
+import com.powernode.mall.dto.UserComment;
+import com.powernode.mall.mapper.TCommentImageMapper;
+import com.powernode.mall.mapper.TCommentMapper;
+import com.powernode.mall.mapper.TProductMapper;
 import com.powernode.mall.mapper.TUserMapper;
-import com.powernode.mall.po.TUser;
+import com.powernode.mall.po.*;
 import com.powernode.mall.service.IUserService;
 import com.powernode.mall.service.ex.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +14,7 @@ import org.springframework.boot.task.ThreadPoolTaskSchedulerBuilder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.UUID;
 
@@ -21,6 +26,15 @@ public class UserServiceImpl implements IUserService
 
     @Autowired
     private ThreadPoolTaskSchedulerBuilder threadPoolTaskSchedulerBuilder;
+
+    @Autowired
+    private TCommentMapper commentMapper;
+
+    @Autowired
+    private TCommentImageMapper commentImageMapper;
+
+    @Autowired
+    private TProductMapper productMapper;
 
     @Override
     public void reg(TUser user){
@@ -158,6 +172,47 @@ public class UserServiceImpl implements IUserService
         Integer rows = userMapper.updateByPrimaryKey(user);
         if(rows != 1){
             throw new UpdateException("更新数据时出现未知错误");
+        }
+    }
+
+    @Override
+    public void comment(UserComment userComment) {
+
+        TUser user = userMapper.selectByPrimaryKey(userComment.getId());
+        if(user == null || user.getIsDelete() == 1){
+            throw new UserNotFoundException("用户不存在");
+        }
+
+        TProduct product = productMapper.selectByPrimaryKey(userComment.getProductId());
+        if(product == null){
+            throw new ProductNotFoundException("商品不存在");
+        }
+
+        TComment comment = new TComment();
+        comment.setUid(userComment.getId());
+        comment.setContent(userComment.getContent());
+        comment.setPid(userComment.getProductId());
+        comment.setRate(userComment.getRate());
+
+        int rows = commentMapper.insert(comment);
+        int cid = comment.getCid();
+        if(rows != 1){
+            throw new InsertException("插入评论数据时发生数据库错误");
+        }
+
+
+        System.out.println(cid);
+
+        ArrayList<String> images = userComment.getImages();
+        for(String image : images){
+            TCommentImage commentImage = new TCommentImage();
+            commentImage.setUid(userComment.getId());
+            commentImage.setCid(cid);
+            commentImage.setImageSrc(image);
+            int r = commentImageMapper.insert(commentImage);
+            if(r != 1){
+                throw new InsertException("插入评论图片数据时发生数据库错误");
+            }
         }
     }
 }

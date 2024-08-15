@@ -18,5 +18,7 @@ public interface TImageMapper {
 
     ArrayList<TImage> selectByPid(Integer pid);
 
+    ArrayList<String> selectBySidLimit4(Integer sid);
+
     int updateByPrimaryKey(TImage row);
 }

@@ -10,6 +10,7 @@
     <result column="details" jdbcType="VARCHAR" property="details" />
     <result column="is_hot" jdbcType="INTEGER" property="isHot" />
     <result column="storage" jdbcType="INTEGER" property="storage" />
+    <result column="sale_volume" jdbcType="INTEGER" property="saleVolume" />
     <result column="image" jdbcType="VARCHAR" property="image" />
     <result column="status" jdbcType="INTEGER" property="status" />
     <result column="priority" jdbcType="INTEGER" property="priority" />
@@ -26,13 +27,13 @@
 
   <insert id="insert" parameterType="com.powernode.mall.po.TProduct">
     insert into t_product (pid, sid, product_name, 
-      price, details, storage, is_hot,
+      price, details, storage, sale_volume, is_hot,
       image, status, priority, 
       created_time, modified_time, created_user, 
       modified_user)
     values (#{pid,jdbcType=INTEGER}, #{sid,jdbcType=INTEGER}, #{productName,jdbcType=VARCHAR}, 
-      #{price,jdbcType=DOUBLE}, #{details,jdbcType=VARCHAR}, #{storage,jdbcType=INTEGER}, #{isHot,jdbcType=INTEGER},
-      #{image,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{priority,jdbcType=INTEGER}, 
+      #{price,jdbcType=DOUBLE}, #{details,jdbcType=VARCHAR}, #{storage,jdbcType=INTEGER}, #{saleVolume,jdbcType=INTEGER},
+      #{isHot,jdbcType=INTEGER}, #{image,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{priority,jdbcType=INTEGER},
       #{createdTime,jdbcType=TIMESTAMP}, #{modifiedTime,jdbcType=TIMESTAMP}, #{createdUser,jdbcType=VARCHAR}, 
       #{modifiedUser,jdbcType=VARCHAR})
   </insert>
@@ -44,6 +45,7 @@
       price = #{price,jdbcType=DOUBLE},
       details = #{details,jdbcType=VARCHAR},
       storage = #{storage,jdbcType=INTEGER},
+      sale_volume = #{saleVolume,jdbcType=INTEGER},
       is_hot = #{isHot,jdbcType=INTEGER},
       image = #{image,jdbcType=VARCHAR},
       status = #{status,jdbcType=INTEGER},
@@ -56,7 +58,8 @@
   </update>
 
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select pid, sid, product_name, price, details, storage, is_hot, image, status, priority,
+    select pid, sid, product_name, price, details, storage, sale_volume,
+    is_hot, image, status, priority,
     created_time, modified_time, created_user, modified_user
     from t_product
     where pid = #{pid,jdbcType=INTEGER}
@@ -64,21 +67,21 @@
 
 
   <select id="selectBySid" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select pid, sid, product_name, price, details, storage, is_hot, image, status, priority,
+    select pid, sid, product_name, price, details, storage, sale_volume, is_hot, image, status, priority,
     created_time, modified_time, created_user, modified_user
     from t_product
     where sid = #{sid,jdbcType=INTEGER}
   </select>
 
   <select id="selectByKeywords" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select pid, sid, product_name, price, details, storage, is_hot, image, status, priority,
+    select pid, sid, product_name, price, details, storage, sale_volume, is_hot, image, status, priority,
            created_time, modified_time, created_user, modified_user
     from t_product
     where concat(product_name, t_product.details) like concat('%',#{keywords,jdbcType=VARCHAR},'%')
   </select>
 
   <select id="selectAll" resultMap="BaseResultMap">
-    select pid, sid, product_name, price, details, storage, is_hot, image, status, priority,
+    select pid, sid, product_name, price, details, storage, sale_volume, is_hot, image, status, priority,
     created_time, modified_time, created_user, modified_user
     from t_product
   </select>

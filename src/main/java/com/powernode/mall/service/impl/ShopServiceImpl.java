@@ -1,5 +1,7 @@
 package com.powernode.mall.service.impl;
 
+import com.powernode.mall.dto.Shop;
+import com.powernode.mall.dto.ShopInfo;
 import com.powernode.mall.dto.ShopItem;
 import com.powernode.mall.dto.Product;
 import com.powernode.mall.mapper.TImageMapper;
@@ -52,5 +54,40 @@ public class ShopServiceImpl implements IShopService {
         }
 
         return shopItem1s;
+    }
+
+    @Override
+    public ArrayList<Shop> getShopByKeywords(String keywords) {
+        ArrayList<TShop> tShops = shopMapper.selectByKeywords(keywords);
+        ArrayList<Shop> shops = new ArrayList<>();
+
+        for(TShop tshop : tShops){
+            shops.add(
+                    new Shop(
+                        tshop.getSid(),
+                        tshop.getShopname(),
+                        imageMapper.selectBySidLimit4(tshop.getSid()),
+                        tshop.getFansNumber(),
+                        shopMapper.getSaleCountBySid(tshop.getSid())
+                    )
+            );
+        }
+
+        return shops;
+    }
+
+    @Override
+    public ShopInfo getShopInfoBySid(Integer sid) {
+        TShop tShop = shopMapper.selectByPrimaryKey(sid);
+
+        if(tShop == null){
+            throw new ShopNotFoundException("商店不存在");
+        }
+
+        return new ShopInfo(
+                tShop.getShopname(),
+                tShop.getFansNumber(),
+                shopMapper.getSaleCountBySid(tShop.getSid())
+        );
     }
 }

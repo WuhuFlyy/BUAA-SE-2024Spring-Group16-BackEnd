@@ -1,5 +1,6 @@
 package com.powernode.mall.service;
 
+import com.powernode.mall.dto.UserComment;
 import com.powernode.mall.po.TUser;
 
 public interface IUserService
@@ -41,4 +42,10 @@ public interface IUserService
      * @param user 修改的用户数据
      */
     void changeInfo(Integer uid, String username, TUser user);
+
+    /**
+     * 用户发表评价
+     * @param userComment 评价内容
+     */
+    void comment(UserComment userComment);
 }

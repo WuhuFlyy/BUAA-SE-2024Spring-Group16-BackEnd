@@ -20,6 +20,8 @@ public class TProduct {
 
     private Integer storage;
 
+    private Integer saleVolume;
+
     private String image;
 
     private Integer status;
