@@ -183,3 +183,12 @@ CREATE TABLE t_image
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8;
 
+CREATE TABLE t_comment_image
+(
+    ciid      INTEGER AUTO_INCREMENT COMMENT '评论图片id',
+    uid       INTEGER       NOT NULL COMMENT '评论用户id',
+    cid       INTEGER       NOT NULL COMMENT '对应评论id',
+    image_src VARCHAR(1000) NOT NULL COMMENT '图片路径',
+    PRIMARY KEY (ciid)
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8;
