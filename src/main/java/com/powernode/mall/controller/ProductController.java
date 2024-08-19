@@ -7,8 +7,10 @@ import com.powernode.mall.service.IProductService;
 import com.powernode.mall.util.JsonResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -36,5 +38,17 @@ public class ProductController extends BaseController {
     public JsonResult<?> search(String keywords){
         ArrayList<ShopItem> shopItems = productService.getProductByKeywords(keywords);
         return new JsonResult<>(OK, shopItems);
+    }
+
+    @RequestMapping("upload")
+    public JsonResult<Void> upload(@RequestBody ProductDetails productDetails){
+        productService.insertProduct(productDetails);
+        return new JsonResult<>(OK);
+    }
+
+    @RequestMapping("update")
+    public JsonResult<Void> update(@RequestBody ProductDetails productDetails){
+        productService.updateProduct(productDetails);
+        return new JsonResult<>(OK);
     }
 }

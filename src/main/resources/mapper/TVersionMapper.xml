@@ -13,6 +13,11 @@
     where vid = #{vid,jdbcType=INTEGER}
   </delete>
 
+  <delete id="deleteByPid" parameterType="java.lang.Integer">
+    delete from t_version
+    where pid = #{pid,jdbcType=INTEGER}
+  </delete>
+
   <insert id="insert" parameterType="com.powernode.mall.po.TVersion">
     insert into t_version (vid, version, pid
       )

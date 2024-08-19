@@ -10,9 +10,12 @@ import java.util.List;
 public interface TVersionMapper {
     int deleteByPrimaryKey(Integer vid);
 
+    int deleteByPid(Integer pid);
+
     int insert(TVersion row);
 
     TVersion selectByPrimaryKey(Integer vid);
+
     ArrayList<TVersion> selectByPid(Integer pid);
 
     List<TVersion> selectAll();

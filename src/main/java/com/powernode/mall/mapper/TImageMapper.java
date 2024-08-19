@@ -10,6 +10,8 @@ import java.util.List;
 public interface TImageMapper {
     int deleteByPrimaryKey(Integer iid);
 
+    int deleteByPid(Integer pid);
+
     int insert(TImage row);
 
     TImage selectByPrimaryKey(Integer iid);

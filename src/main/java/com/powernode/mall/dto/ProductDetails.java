@@ -10,6 +10,7 @@ import java.util.ArrayList;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ProductDetails {
+    private Integer productId;
     private String name;
     private Integer storage;
     private ArrayList<String> version;

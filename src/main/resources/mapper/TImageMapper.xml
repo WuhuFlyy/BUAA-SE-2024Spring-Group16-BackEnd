@@ -13,6 +13,11 @@
     where iid = #{iid,jdbcType=INTEGER}
   </delete>
 
+  <delete id="deleteByPid" parameterType="java.lang.Integer">
+    delete from t_image
+    where pid = #{pid,jdbcType=INTEGER}
+  </delete>
+
   <insert id="insert" parameterType="com.powernode.mall.po.TImage">
     insert into t_image (iid, pid, image_src
       )

@@ -40,4 +40,13 @@ public interface IProductService {
      * @return 和关键词匹配的商品
      */
     ArrayList<ShopItem> getProductByKeywords(String keywords);
+
+    /**
+     * 插入一条商品信息
+     * @param product 商品信息
+     */
+    void insertProduct(ProductDetails product);
+
+
+    void updateProduct(ProductDetails product);
 }

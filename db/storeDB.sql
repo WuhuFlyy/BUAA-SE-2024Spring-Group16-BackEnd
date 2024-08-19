@@ -29,7 +29,7 @@ CREATE TABLE t_shop
     password         CHAR(32)    NOT NULL COMMENT '商户的密码',
     salt             CHAR(36) COMMENT '商户的盐值',
     shopname         VARCHAR(20) NOT NULL COMMENT '商店名',
-    fans_number      INT(20) DEFAULT '0' COMMENT '商店粉丝数量',
+    fans_number      INT(20) DEFAULT 0 COMMENT '商店粉丝数量',
     phone            VARCHAR(20) COMMENT '电话号码',
     email            VARCHAR(30) COMMENT '电子邮箱',
     address          VARCHAR(50) COMMENT '商店地址',

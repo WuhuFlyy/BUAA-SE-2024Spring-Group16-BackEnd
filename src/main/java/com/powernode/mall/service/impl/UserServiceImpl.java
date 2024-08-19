@@ -2,10 +2,7 @@ package com.powernode.mall.service.impl;
 
 
 import com.powernode.mall.dto.UserComment;
-import com.powernode.mall.mapper.TCommentImageMapper;
-import com.powernode.mall.mapper.TCommentMapper;
-import com.powernode.mall.mapper.TProductMapper;
-import com.powernode.mall.mapper.TUserMapper;
+import com.powernode.mall.mapper.*;
 import com.powernode.mall.po.*;
 import com.powernode.mall.service.IUserService;
 import com.powernode.mall.service.ex.*;
@@ -23,6 +20,9 @@ public class UserServiceImpl implements IUserService
 {
     @Autowired
     private TUserMapper userMapper;
+
+    @Autowired
+    private TShopMapper shopMapper;
 
     @Autowired
     private ThreadPoolTaskSchedulerBuilder threadPoolTaskSchedulerBuilder;
@@ -61,11 +61,25 @@ public class UserServiceImpl implements IUserService
         user.setModifiedTime(date);
 
         // 执行注册业务(row==1)
-        Integer rows = userMapper.insert(user);
+        int rows = userMapper.insert(user);
         if (rows != 1){
             throw new InsertException("用户注册过程中产生未知异常！");
         }
 
+        if(user.getType().equals("seller")){
+            TShop shop = new TShop();
+            shop.setUsername(user.getUsername());
+            shop.setPassword(user.getPassword());
+            shop.setSalt(user.getSalt());
+            shop.setShopname(user.getUsername());
+            shop.setIsAuthenticated(1);
+            shop.setFansNumber(0);
+            shop.setCreatedUser(user.getUsername());
+            shop.setModifiedUser(user.getUsername());
+            shop.setCreatedTime(date);
+            shop.setModifiedTime(date);
+            shopMapper.insert(shop);
+        }
 
     }
 
@@ -169,7 +183,7 @@ public class UserServiceImpl implements IUserService
         user.setGender(newUser.getGender());
         user.setModifiedUser(newUser.getUsername());
 
-        Integer rows = userMapper.updateByPrimaryKey(user);
+        int rows = userMapper.updateByPrimaryKey(user);
         if(rows != 1){
             throw new UpdateException("更新数据时出现未知错误");
         }

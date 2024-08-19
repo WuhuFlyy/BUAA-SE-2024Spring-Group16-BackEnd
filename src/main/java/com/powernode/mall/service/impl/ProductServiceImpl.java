@@ -1,18 +1,18 @@
 package com.powernode.mall.service.impl;
 
-import com.powernode.mall.dto.Comment;
-import com.powernode.mall.dto.ProductDetails;
-import com.powernode.mall.dto.ProductNoDetails;
-import com.powernode.mall.dto.ShopItem;
+import com.powernode.mall.dto.*;
 import com.powernode.mall.mapper.*;
 import com.powernode.mall.po.*;
 import com.powernode.mall.service.IProductService;
+import com.powernode.mall.service.ex.InsertException;
 import com.powernode.mall.service.ex.ProductNoMatchingShopException;
 import com.powernode.mall.service.ex.ProductNotFoundException;
+import com.powernode.mall.service.ex.UpdateException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -134,5 +134,95 @@ public class ProductServiceImpl implements IProductService {
             ));
         }
         return shopItems;
+    }
+
+    @Override
+    public void insertProduct(ProductDetails product) {
+        TProduct tProduct = new TProduct();
+        Date date = new Date();
+        String username = shopMapper.selectByPrimaryKey(product.getShopId()).getUsername();
+        ArrayList<String> versions = product.getVersion();
+        ArrayList<String> images = product.getImageSrc();
+
+        tProduct.setCreatedTime(date);
+        tProduct.setModifiedTime(date);
+        tProduct.setCreatedUser(username);
+        tProduct.setModifiedUser(username);
+        tProduct.setPrice(product.getPrice());
+        tProduct.setDetails(product.getDetails());
+        tProduct.setStorage(product.getStorage());
+        tProduct.setSid(product.getShopId());
+        tProduct.setStatus(1);
+        tProduct.setProductName(product.getName());
+
+        int row = productMapper.insert(tProduct);
+        if (row != 1) {
+            throw new InsertException("插入数据时发生数据库错误");
+        }
+
+        int pid = tProduct.getPid();
+        for(String version : versions) {
+            TVersion tVersion = new TVersion();
+            tVersion.setPid(pid);
+            tVersion.setVersion(version);
+            versionMapper.insert(tVersion);
+        }
+
+        for(String image : images) {
+            TImage tImage = new TImage();
+            tImage.setPid(pid);
+            tImage.setImageSrc(image);
+            imageMapper.insert(tImage);
+        }
+
+    }
+
+    @Override
+    public void updateProduct(ProductDetails product) {
+        TProduct oldProduct = productMapper.selectByPrimaryKey(product.getProductId());
+        if(oldProduct == null) {
+            throw new ProductNotFoundException("商品不存在");
+        }
+
+        TProduct tProduct = new TProduct();
+        Date date = new Date();
+        String username = shopMapper.selectByPrimaryKey(product.getShopId()).getUsername();
+        ArrayList<String> versions = product.getVersion();
+        ArrayList<String> images = product.getImageSrc();
+
+        tProduct.setModifiedTime(date);
+        tProduct.setModifiedUser(username);
+        tProduct.setPid(product.getProductId());
+        tProduct.setPrice(product.getPrice());
+        tProduct.setDetails(product.getDetails());
+        tProduct.setStorage(product.getStorage());
+        tProduct.setSid(product.getShopId());
+        tProduct.setStatus(1);
+        tProduct.setProductName(product.getName());
+
+        int row = productMapper.updateByPrimaryKey(tProduct);
+        if (row != 1) {
+            throw new UpdateException("更新时发生数据库错误");
+        }
+
+        int pid = tProduct.getPid();
+
+        versionMapper.deleteByPid(pid);
+        imageMapper.deleteByPid(pid);
+
+        for(String version : versions) {
+            TVersion tVersion = new TVersion();
+            tVersion.setPid(pid);
+            tVersion.setVersion(version);
+            versionMapper.insert(tVersion);
+        }
+
+        for(String image : images) {
+            TImage tImage = new TImage();
+            tImage.setPid(pid);
+            tImage.setImageSrc(image);
+            imageMapper.insert(tImage);
+        }
+
     }
 }
