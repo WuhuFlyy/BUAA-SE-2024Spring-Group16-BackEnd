@@ -52,7 +52,6 @@
     DELETE FROM t_favorite_shop WHERE uid = #{uid} AND sid = #{sid}
   </delete>
 
-
     <select id="selectByUidAndShopId" parameterType="map" resultMap="BaseResultMap">
         SELECT fsid, uid, sid, created_user, created_time, modified_user, modified_time
         FROM t_favorite_shop
