@@ -166,7 +166,7 @@ CREATE TABLE t_favorite_shop
 (
     fsid          INT AUTO_INCREMENT COMMENT '收藏店铺数据id',
     uid           INT NOT NULL COMMENT '用户id',
-    pid           INT NOT NULL COMMENT '商品id',
+    sid           INT NOT NULL COMMENT '商店id',
     created_user  VARCHAR(20) COMMENT '创建人',
     created_time  DATETIME COMMENT '创建时间',
     modified_user VARCHAR(20) COMMENT '修改人',

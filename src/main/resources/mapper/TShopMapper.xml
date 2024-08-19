@@ -81,4 +81,16 @@
     where t_shop.sid = #{sid,jdbcType=INTEGER}
   </select>
 
+  <update id="incrementFansNumber" parameterType="java.lang.Integer">
+    UPDATE t_shop
+    SET fans_number = fans_number + 1
+    WHERE sid = #{shopId,jdbcType=INTEGER}
+  </update>
+
+  <update id="decrementFansNumber" parameterType="java.lang.Integer">
+    UPDATE t_shop
+    SET fans_number = fans_number - 1
+    WHERE sid = #{shopId}
+  </update>
+
 </mapper>

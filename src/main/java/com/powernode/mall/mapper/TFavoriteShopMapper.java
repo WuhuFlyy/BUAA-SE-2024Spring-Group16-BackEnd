@@ -16,4 +16,8 @@ public interface TFavoriteShopMapper {
     List<TFavoriteShop> selectAll();
 
     int updateByPrimaryKey(TFavoriteShop row);
+
+    void deleteByUidAndShopId(Integer uid, Integer sid);
+
+    TFavoriteShop selectByUidAndShopId(Integer uid, Integer sid);
 }

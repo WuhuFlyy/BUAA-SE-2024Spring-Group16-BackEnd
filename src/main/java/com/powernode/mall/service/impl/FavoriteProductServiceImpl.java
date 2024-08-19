@@ -46,4 +46,25 @@ public class FavoriteProductServiceImpl implements IFavoriteProductService {
 
         favoriteProductMapper.insert(favoriteProduct);
     }
+
+    @Override
+    public void removeFavoriteProduct(String username, Integer pid) {
+        TUser user = userMapper.selectByUsername(username);
+        if (user == null) {
+            throw new UserNotFoundException("用户不存在");
+        }
+
+        favoriteProductMapper.deleteByUidAndPid(user.getUid(), pid);
+    }
+
+    @Override
+    public boolean isFavoriteProduct(String username, Integer pid) {
+        TUser user = userMapper.selectByUsername(username);
+        if (user == null) {
+            throw new UserNotFoundException("用户不存在");
+        }
+
+        TFavoriteProduct favoriteProduct = favoriteProductMapper.selectByUidAndPid(user.getUid(), pid);
+        return favoriteProduct != null;
+    }
 }

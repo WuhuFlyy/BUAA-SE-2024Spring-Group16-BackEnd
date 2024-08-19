@@ -18,4 +18,16 @@ public class FavoriteProductController extends BaseController {
         favoriteProductService.addFavoriteProduct(username, pid);
         return new JsonResult<>(OK);
     }
+
+    @RequestMapping("remove")
+    public JsonResult<Void> removeFavoriteProduct(@RequestParam String username, @RequestParam Integer pid) {
+        favoriteProductService.removeFavoriteProduct(username, pid);
+        return new JsonResult<>(OK);
+    }
+
+    @RequestMapping("isFavorite")
+    public JsonResult<Boolean> isFavoriteProduct(@RequestParam String username, @RequestParam Integer pid) {
+        boolean isFavorite = favoriteProductService.isFavoriteProduct(username, pid);
+        return new JsonResult<>(OK, isFavorite);
+    }
 }

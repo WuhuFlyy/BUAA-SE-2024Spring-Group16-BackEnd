@@ -21,4 +21,8 @@ public interface TShopMapper {
     List<TShop> selectAll();
 
     int updateByPrimaryKey(TShop row);
+
+    void incrementFansNumber(Integer shopId);
+
+    void decrementFansNumber(Integer shopId);
 }

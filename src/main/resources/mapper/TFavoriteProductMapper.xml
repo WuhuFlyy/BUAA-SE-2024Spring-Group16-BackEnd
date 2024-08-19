@@ -48,4 +48,14 @@
     from t_favorite_product
   </select>
 
+  <delete id="deleteByUidAndPid" parameterType="map">
+    DELETE FROM t_favorite_product WHERE uid = #{uid} AND pid = #{pid}
+  </delete>
+
+    <select id="selectByUidAndPid" parameterType="map" resultMap="BaseResultMap">
+        SELECT fpid, uid, pid, created_user, created_time, modified_user, modified_time
+        FROM t_favorite_product
+        WHERE uid = #{uid} AND pid = #{pid}
+    </select>
+
 </mapper>

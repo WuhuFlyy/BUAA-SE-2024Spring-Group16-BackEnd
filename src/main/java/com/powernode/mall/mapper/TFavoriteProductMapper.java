@@ -16,4 +16,8 @@ public interface TFavoriteProductMapper {
     List<TFavoriteProduct> selectAll();
 
     int updateByPrimaryKey(TFavoriteProduct row);
+
+    void deleteByUidAndPid(Integer uid, Integer pid);
+
+    TFavoriteProduct selectByUidAndPid(Integer uid, Integer pid);
 }

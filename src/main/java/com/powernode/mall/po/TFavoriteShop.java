@@ -7,7 +7,7 @@ public class TFavoriteShop {
 
     private Integer uid;
 
-    private Integer pid;
+    private Integer sid;
 
     private String createdUser;
 
@@ -33,12 +33,12 @@ public class TFavoriteShop {
         this.uid = uid;
     }
 
-    public Integer getPid() {
-        return pid;
+    public Integer getSid() {
+        return sid;
     }
 
-    public void setPid(Integer pid) {
-        this.pid = pid;
+    public void setSid(Integer sid) {
+        this.sid = sid;
     }
 
     public String getCreatedUser() {
