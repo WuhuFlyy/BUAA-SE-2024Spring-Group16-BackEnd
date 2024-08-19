@@ -1,10 +1,7 @@
 package com.powernode.mall.service.impl;
 
 import com.powernode.mall.mapper.*;
-import com.powernode.mall.po.TCart;
-import com.powernode.mall.po.TProduct;
-import com.powernode.mall.po.TUser;
-import com.powernode.mall.po.TVersion;
+import com.powernode.mall.po.*;
 import com.powernode.mall.service.IOrderService;
 import com.powernode.mall.service.ex.InsufficientStorageException;
 import com.powernode.mall.service.ex.ProductNotFoundException;
@@ -32,11 +29,12 @@ public class OrderServiceImpl implements IOrderService {
     TVersionMapper versionMapper;
 
     @Override
-    public Integer submitOrder(String username, Integer pid, String version, Integer quantity) {
+    public Integer submitOrder(String username, Integer pid, String version, Integer quantity, Integer aid) {
 
         TUser user = userMapper.selectByUsername(username);
-        TCart cart = new TCart();
+
         Date date = new Date();
+        TOrder order = new TOrder();
         TProduct product = productMapper.selectByPrimaryKey(pid);
         ArrayList<TVersion> versions = versionMapper.selectByPid(pid);
         int tag = 0;
@@ -63,7 +61,21 @@ public class OrderServiceImpl implements IOrderService {
         if(tag == 0){
             throw new VersionNotFoundException("所选版本不存在");
         }
-        
-        return null;
+
+        order.setOrderTime(date);
+        order.setAid(aid);
+        order.setCreatedUser(username);
+        order.setCreatedTime(date);
+        order.setModifiedUser(username);
+        order.setModifiedTime(date);
+        order.setUid(userMapper.selectByUsername(username).getUid());
+        order.setPayTime(date);
+        order.setQuantity(quantity);
+        order.setVersion(version);
+        order.setStatus(1);
+        order.setTotalPrice(product.getPrice() * quantity);
+        orderMapper.insert(order);
+
+        return order.getOid();
     }
 }
