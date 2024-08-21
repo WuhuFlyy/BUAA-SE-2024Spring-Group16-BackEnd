@@ -1,0 +1,11 @@
+aid,uid,name,area_name,address,phone,is_default,created_user,created_time,modified_user,modified_time
+1,9,name6,area8,address0,13453969486,1,creator1,2021-10-28 14:39:22,modifier3,2022-12-30 22:30:40
+2,5,name9,area2,address6,13453969486,0,creator2,2022-05-01 07:15:07,modifier2,2023-02-12 10:16:28
+3,5,name3,area6,address0,13453969486,1,creator3,2023-07-03 10:44:53,modifier3,2021-12-07 09:44:52
+4,1,name9,area7,address7,13453969486,0,creator2,2023-03-10 22:48:24,modifier2,2022-03-08 17:49:46
+5,10,name2,area7,address7,13037248261,1,creator0,2022-07-02 08:06:34,modifier1,2023-08-14 11:16:46
+6,2,name3,area7,address5,13037248261,1,creator2,2022-09-30 22:53:38,modifier4,2022-11-07 00:31:40
+7,9,name0,area1,address0,13409641443,1,creator3,2021-09-11 09:57:47,modifier1,2023-02-16 09:45:51
+8,9,name2,area7,address9,13436213702,0,creator2,2022-08-27 00:23:28,modifier1,2021-09-27 10:44:42
+9,1,name3,area5,address3,13973088368,0,creator2,2022-07-18 11:50:48,modifier2,2021-04-25 21:03:13
+10,5,name1,area4,address2,13229388137,1,creator1,2022-12-27 10:31:55,modifier4,2021-08-26 11:32:44
