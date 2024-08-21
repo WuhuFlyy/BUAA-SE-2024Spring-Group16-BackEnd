@@ -22,5 +22,19 @@ pipeline {
                 docker build --build-arg JAR_FILE=mall-0.0.1-SNAPSHOT.jar -t mall:${version} ./docker/'''
             }
         }
+
+        stage('部署到Kubernetes') {
+             steps {
+                   script {
+                            // 替换为你的 Kubernetes 凭据 ID
+                            withKubeConfig([credentialsId: 'ea808fed-b6e4-4741-821d-3bda9ff974ec']) {
+                                sh '''
+                                kubectl set image deployment/mall-deployment mall=mall:${version} --record
+                                kubectl rollout status deployment/mall-deployment
+                                '''
+                            }
+                   }
+             }
+        }
     }
 }
