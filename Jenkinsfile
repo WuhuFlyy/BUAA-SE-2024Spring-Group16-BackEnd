@@ -18,9 +18,8 @@ pipeline {
 
         stage('项目部署') {
             steps {
-                deploy adapters: [tomcat8(credentialsId: '6bb34192-388e-4d16-9a31-d9989e610120',
-                path: '', url: 'http://localhost:8081')], contextPath: null,
-                war: 'target/*.war'
+                sh '''mv ./target/*.jar ./docker/
+                docker build --build-arg JAR_FILE=mall-0.0.1-SNAPSHOT.jar -t mall:${version} ./docker/'''
             }
         }
     }
