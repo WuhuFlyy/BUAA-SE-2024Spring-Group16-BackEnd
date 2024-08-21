@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.powernode</groupId>
-	<artifactId>mall</artifactId>
+	<artifactId>mall-base</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>mall</name>
 	<description>mall</description>
