@@ -30,31 +30,31 @@ pipeline {
             }
         }
 
-//         stage('编译构建') {
-//              steps {
-//                  sh label: '', script: 'mvn clean package'
-//              }
-//         }
-//
-//         stage('构建jar包镜像') {
-//             steps {
-//                 sh '''mv ./target/*.jar ./docker/
-//                 docker build --build-arg JAR_FILE=mall-0.0.1-SNAPSHOT.jar -f ./docker/Dockerfile -t mall:${version} ./docker/'''
-//             }
-//         }
-//
-//         stage('将软件包部署到Kubernetes') {
-//              steps {
-//                    script {
-//                         withKubeConfig([credentialsId: 'ea808fed-b6e4-4741-821d-3bda9ff974ec']) {
-//                             sh '''
-//                             kubectl set image deployment/mall-deployment mall=mall:${version} --record
-//                             kubectl rollout status deployment/mall-deployment
-//                             '''
-//                         }
-//                    }
-//              }
-//         }
+        stage('编译构建') {
+             steps {
+                 sh label: '', script: 'mvn clean package'
+             }
+        }
+
+        stage('构建jar包镜像') {
+            steps {
+                sh '''mv ./target/*.jar ./docker/
+                docker build --build-arg JAR_FILE=mall-0.0.1-SNAPSHOT.jar -f ./docker/Dockerfile -t mall:${version} ./docker/'''
+            }
+        }
+
+        stage('将软件包部署到Kubernetes') {
+             steps {
+                   script {
+                        withKubeConfig([credentialsId: 'ea808fed-b6e4-4741-821d-3bda9ff974ec']) {
+                            sh '''
+                            kubectl set image deployment/mall-deployment mall=mall:${version} --record
+                            kubectl rollout status deployment/mall-deployment
+                            '''
+                        }
+                   }
+             }
+        }
     }
 }
 
