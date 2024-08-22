@@ -13,6 +13,6 @@ public class ProductServiceTest {
 
     @Test
     public void getProductDetailTest() {
-        System.out.println(JSONValue.toJSONString(productService.getProductDetailByProductId(2)));
+        System.out.println(JSONValue.toJSONString(productService.getProductDetailByProductId(1)));
     }
 }
