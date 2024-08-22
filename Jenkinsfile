@@ -14,7 +14,7 @@ pipeline {
             steps {
                 script {
 
-                    sh './mysqldump -h localhost -u root -p 2857709015yzhzs mall > mall.sql'
+                    sh 'mysqldump -h localhost -u root -p 2857709015yzhzs mall > mall.sql'
 
                 }
             }
