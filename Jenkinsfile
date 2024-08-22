@@ -13,7 +13,8 @@ pipeline {
         stage('构建数据库镜像') {
             steps {
                 script {
-                    sh 'docker build -f ./docker/Dockerfile_mysql -t mall-mysql:${version} ./docker/'
+                    sh '''mv ./mall.sql ./docker/
+                    docker build -f ./docker/Dockerfile_mysql -t mall-mysql:${version} ./docker/'''
                 }
             }
         }
