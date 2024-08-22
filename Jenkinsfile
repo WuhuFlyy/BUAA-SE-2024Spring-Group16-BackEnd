@@ -13,7 +13,7 @@ pipeline {
         stage('构建数据库镜像') {
             steps {
                 script {
-                    sh 'docker build -f /docker/Dockerfile_mysql -t mall-mysql:${version} ./docker/'
+                    sh 'docker build -f ./docker/Dockerfile_mysql -t mall-mysql:${version} ./docker/'
                 }
             }
         }
@@ -48,7 +48,7 @@ pipeline {
 //         stage('项目部署') {
 //             steps {
 //                 sh '''mv ./target/*.jar ./docker/
-//                 docker build --build-arg JAR_FILE=mall-0.0.1-SNAPSHOT.jar -f /docker/Dockerfile -t mall:${version} ./docker/'''
+//                 docker build --build-arg JAR_FILE=mall-0.0.1-SNAPSHOT.jar -f ./docker/Dockerfile -t mall:${version} ./docker/'''
 //             }
 //         }
 //
