@@ -1,13 +1,13 @@
 pipeline {
-    agent {
-        docker{
-            image: 'mysql:latest'
-        }
-    }
+    agent any
     stages {
         stage('数据库备份') {
             steps {
-                sh 'mysqldump -h localhost -u root -p 2857709015yzhzs mall > mall.sql'
+                script {
+                    docker.image('mysql:latest').inside {
+                        sh 'mysqldump -h localhost -u root -p 2857709015yzhzs mall > mall.sql'
+                    }
+                }
             }
         }
     }
@@ -44,7 +44,7 @@ pipeline {
 //         stage('部署到Kubernetes') {
 //              steps {
 //                    script {
-//                             // 替换为你的 Kubernetes 凭据 ID
+//
 //                             withKubeConfig([credentialsId: 'ea808fed-b6e4-4741-821d-3bda9ff974ec']) {
 //                                 sh '''
 //                                 kubectl set image deployment/mall-deployment mall=mall:${version} --record
