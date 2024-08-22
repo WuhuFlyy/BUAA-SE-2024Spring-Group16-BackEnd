@@ -10,12 +10,21 @@ pipeline {
                   }
         }
 
-        stage('数据库备份') {
+        stage('构建数据库镜像') {
             steps {
                 script {
+                    sh 'docker build -f Dockerfile_mysql -t mall-mysql:${version} ./docker/'
+                }
+            }
+        }
 
-                    sh 'mysqldump -h localhost -u root -p 2857709015yzhzs mall > mall.sql'
-
+        stage('将数据库部署到k8s'){
+            steps{
+                 withKubeConfig([credentialsId: 'ea808fed-b6e4-4741-821d-3bda9ff974ec']) {
+                    sh '''
+                    kubectl set image deployment/mall-mysql-deployment mysql=mall-mysql:${version} --record
+                    kubectl rollout status deployment/mall-mysql-deployment
+                    '''
                 }
             }
         }
@@ -39,7 +48,7 @@ pipeline {
 //         stage('项目部署') {
 //             steps {
 //                 sh '''mv ./target/*.jar ./docker/
-//                 docker build --build-arg JAR_FILE=mall-0.0.1-SNAPSHOT.jar -t mall:${version} ./docker/'''
+//                 docker build --build-arg JAR_FILE=mall-0.0.1-SNAPSHOT.jar -f Dockerfile -t mall:${version} ./docker/'''
 //             }
 //         }
 //
