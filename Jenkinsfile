@@ -2,13 +2,13 @@ pipeline {
     agent any
     stages {
         stage('拉取代码') {
-              steps {
-                checkout([$class: 'GitSCM', branches: [[name: '*/master']],
-                doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [],
-                userRemoteConfigs: [[credentialsId: 'e82aa310-3ca3-44b6-8493-d820df7c8f6c', url:
-                'https://github.com/WuhuFlyy/BUAA-SE-2024Spring-Group16-BackEnd']]])
-              }
-
+                  steps {
+                    checkout([$class: 'GitSCM', branches: [[name: '*/master']],
+                    doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [],
+                    userRemoteConfigs: [[credentialsId: 'e82aa310-3ca3-44b6-8493-d820df7c8f6c', url:
+                    'https://github.com/WuhuFlyy/BUAA-SE-2024Spring-Group16-BackEnd']]])
+                  }
+        }
 
         stage('数据库备份') {
             steps {
