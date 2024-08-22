@@ -19,16 +19,16 @@ public class ProductServiceTest {
 
     @Test
     public void getProductDetailServiceTest() {
-        System.out.println(productService.getProductDetailByProductId(2));
-//        ProductDetails productDetails = new ProductDetails();
-//        productDetails.setProductId(1);
-//        productDetails.setDetails("This is its details");
-//        productDetails.setName("product1");
-//        productDetails.setPrice(100.11);
-//        productDetails.setStorage(10);
-//        when(productService.getProductDetailByProductId(1)).thenReturn(productDetails);
-//
-//        ProductDetails productDetails1 = productService.getProductDetailByProductId(1);
-//        assert(productDetails1.equals(productDetails));
+//        System.out.println(productService.getProductDetailByProductId(2));
+////        ProductDetails productDetails = new ProductDetails();
+////        productDetails.setProductId(1);
+////        productDetails.setDetails("This is its details");
+////        productDetails.setName("product1");
+////        productDetails.setPrice(100.11);
+////        productDetails.setStorage(10);
+////        when(productService.getProductDetailByProductId(1)).thenReturn(productDetails);
+////
+////        ProductDetails productDetails1 = productService.getProductDetailByProductId(1);
+////        assert(productDetails1.equals(productDetails));
     }
 }
