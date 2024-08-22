@@ -13,9 +13,9 @@ pipeline {
         stage('数据库备份') {
             steps {
                 script {
-                    docker.image('mysql:latest').inside {
-                        sh 'mysqldump -h localhost -u root -p 2857709015yzhzs mall > mall.sql'
-                    }
+
+                    sh 'mysqldump -h localhost -u root -p 2857709015yzhzs mall > mall.sql'
+                    
                 }
             }
         }
