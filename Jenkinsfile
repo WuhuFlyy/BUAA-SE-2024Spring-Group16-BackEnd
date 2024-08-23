@@ -10,25 +10,25 @@ pipeline {
               }
         }
 
-        stage('构建数据库镜像') {
-            steps {
-                script {
-                    sh '''mv ./mall.sql ./docker/
-                    docker build -f ./docker/Dockerfile_mysql -t mall-mysql:${version} ./docker/'''
-                }
-            }
-        }
-
-        stage('将数据库部署到k8s'){
-            steps{
-                 withKubeConfig([credentialsId: 'ea808fed-b6e4-4741-821d-3bda9ff974ec']) {
-                    sh '''
-                    kubectl set image deployment/mall-mysql-deployment mysql=mall-mysql:${version} --record
-                    kubectl rollout status deployment/mall-mysql-deployment
-                    '''
-                }
-            }
-        }
+//         stage('构建数据库镜像') {
+//             steps {
+//                 script {
+//                     sh '''mv ./mall.sql ./docker/
+//                     docker build -f ./docker/Dockerfile_mysql -t mall-mysql:${version} ./docker/'''
+//                 }
+//             }
+//         }
+//
+//         stage('将数据库部署到k8s'){
+//             steps{
+//                  withKubeConfig([credentialsId: 'ea808fed-b6e4-4741-821d-3bda9ff974ec']) {
+//                     sh '''
+//                     kubectl set image deployment/mall-mysql-deployment mysql=mall-mysql:${version} --record
+//                     kubectl rollout status deployment/mall-mysql-deployment
+//                     '''
+//                 }
+//             }
+//         }
 
         stage('编译构建') {
              steps {
@@ -57,4 +57,5 @@ pipeline {
         }
     }
 }
+
 
