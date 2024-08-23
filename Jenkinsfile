@@ -49,10 +49,10 @@ pipeline {
                    script {
                         withKubeConfig([credentialsId: 'ea808fed-b6e4-4741-821d-3bda9ff974ec']) {
                             sh '''
-                            kubectl delete -f deployment.yaml || true
+                            kubectl delete -f ./docker/deployment.yaml || true
                             docker rmi -f mall:${version} || true
                             docker build -t mall:${version} .
-                            kubectl apply -f deployment.yaml ||true
+                            kubectl apply -f ./docker/deployment.yaml ||true
                             '''
                         }
                    }
