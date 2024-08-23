@@ -51,7 +51,7 @@ pipeline {
                             sh '''
                             kubectl set image deployment/mall-deployment mall=mall:${version} --record
                             kubectl rollout restart deployment/mall-deployment
-                            docker rmi `docker images -q -f dangling=true`
+                            docker rmi -f `docker images -q -f dangling=true`
                             '''
                         }
                    }
