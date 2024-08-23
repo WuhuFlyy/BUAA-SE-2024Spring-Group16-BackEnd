@@ -53,6 +53,7 @@ pipeline {
                             docker rmi -f mall:${version} || true
                             docker build -t mall:${version} .
                             kubectl apply -f deployment.yaml ||true
+                            kubectl rollout restart deployment/mall-deployment
                             '''
                         }
                    }
