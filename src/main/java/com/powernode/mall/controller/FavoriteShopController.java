@@ -3,12 +3,14 @@ package com.powernode.mall.controller;
 import com.powernode.mall.service.IFavoriteShopService;
 import com.powernode.mall.util.JsonResult;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("favorite_shop")
+@CrossOrigin(origins="*")
 public class FavoriteShopController extends BaseController {
     @Autowired
     private IFavoriteShopService favoriteShopService;

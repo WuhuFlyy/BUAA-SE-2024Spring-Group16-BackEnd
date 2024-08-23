@@ -5,8 +5,10 @@ import com.powernode.mall.service.ex.*;
 import com.powernode.mall.service.ex.UsernameDuplicateException;
 import com.powernode.mall.util.JsonResult;
 import jakarta.servlet.http.HttpSession;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+@CrossOrigin(origins="*")
 /* 控制层类的基类 */
 public class BaseController
 {

@@ -5,11 +5,13 @@ import com.powernode.mall.service.IOrderService;
 import com.powernode.mall.service.impl.OrderServiceImpl;
 import com.powernode.mall.util.JsonResult;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("order")
+@CrossOrigin(origins="*")
 public class OrderController extends BaseController {
     @Autowired
     private IOrderService orderService;

@@ -7,6 +7,7 @@ import com.powernode.mall.service.IShopService;
 import com.powernode.mall.util.JsonResult;
 import com.powernode.mall.dto.Product;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -14,6 +15,7 @@ import java.util.ArrayList;
 
 @RestController
 @RequestMapping("shop")
+@CrossOrigin(origins="*")
 public class ShopController extends BaseController {
 
     @Autowired
