@@ -40,7 +40,7 @@ pipeline {
             steps {
                 sh '''mv ./target/*.jar ./docker/
                 docker build --build-arg JAR_FILE=mall-0.0.1-SNAPSHOT.jar -f ./docker/Dockerfile -t mall:${version} ./docker/
-                docker build --build-arg JAR_FILE=mall-0.0.1-SNAPSHOT.jar -f ./docker/Dockerfile -t malltest:${version} ./docker/'''
+                '''
             }
         }
 
@@ -49,10 +49,10 @@ pipeline {
                    script {
                         withKubeConfig([credentialsId: 'ea808fed-b6e4-4741-821d-3bda9ff974ec']) {
                             sh '''
-                            kubectl set image deployment/mall-deployment mall=mall:${version} --record
-                            kubectl set image deployment/malltest-deployment malltest=malltest:${version} --record
-                            kubectl rollout restart deployment/mall-deployment
-                            kubectl rollout restart deployment/malltest-deployment
+                            kubectl delete -f deployment.yaml || true
+                            docker rmi -f mall:${version} || true
+                            docker build -t mall:${version} .
+                            kubectl apply -f deployment.yaml ||true
                             '''
                         }
                    }
