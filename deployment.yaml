@@ -1,0 +1,37 @@
+apiVersion: apps/v1  # API 版本
+kind: Deployment     # 资源类型
+metadata:
+  name: mall-deployment  # 部署名称
+  labels:   # 标签，可以用于选择器匹配
+    app: mall
+spec:
+  replicas: 1   # 副本数量，表示会启动1个Pod
+  selector:
+    matchLabels:
+      app: mall  # 选择具有这个标签的Pod
+  template:  # Pod模板
+    metadata:
+      labels:
+        app: mall  # Pod的标签
+    spec:
+      containers:
+      - name: mall  # 容器名称
+        image: mall:${vserion}  # 容器镜像
+        ports:
+        - containerPort: 8888  # 容器暴露的端口
+          name: mall
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mall-service  # 服务的名称
+spec:
+  selector:
+    app: mall      # 选择与标签匹配的 Pod
+  ports:
+  - protocol: TCP
+    port: 80           # 服务暴露的端口
+    targetPort: 8888
+    nodePort: 30001      # 容器暴露的端口
+  type: NodePort    # 服务类型 (可以是 ClusterIP, NodePort, LoadBalancer)
