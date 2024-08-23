@@ -39,7 +39,8 @@ pipeline {
         stage('构建jar包镜像') {
             steps {
                 sh '''mv ./target/*.jar ./docker/
-                docker build --build-arg JAR_FILE=mall-0.0.1-SNAPSHOT.jar -f ./docker/Dockerfile -t mall:${version} ./docker/'''
+                docker build --build-arg JAR_FILE=mall-0.0.1-SNAPSHOT.jar -f ./docker/Dockerfile -t mall:${version} ./docker/
+                docker build --build-arg JAR_FILE=mall-0.0.1-SNAPSHOT.jar -f ./docker/Dockerfile -t malltest:${version} ./docker/'''
             }
         }
 
