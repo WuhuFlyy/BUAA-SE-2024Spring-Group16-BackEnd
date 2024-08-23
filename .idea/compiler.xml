@@ -18,7 +18,9 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="mall (1)" options="-parameters" />
+      <module name="mall-backend" options="" />
       <module name="mall-base" options="-parameters" />
+      <module name="user-service" options="-parameters" />
     </option>
   </component>
 </project>
