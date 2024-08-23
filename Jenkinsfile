@@ -49,7 +49,7 @@ pipeline {
                         withKubeConfig([credentialsId: 'ea808fed-b6e4-4741-821d-3bda9ff974ec']) {
                             sh '''
                             kubectl set image deployment/mall-deployment mall=mall:${version} --record
-                            kubectl rollout status deployment/mall-deployment
+                            kubectl rollout restart deployment/mall-deployment
                             '''
                         }
                    }
