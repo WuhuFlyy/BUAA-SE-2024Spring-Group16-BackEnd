@@ -82,7 +82,8 @@ public class UserServiceImpl implements IUserService
             shop.setCreatedTime(date);
             shop.setModifiedTime(date);
     //        shopMapper.insert(shop);
-            baseClient.insertShop(shop);
+
+            System.out.println(baseClient.getShopInfoBySid(1));
         }
 
     }
