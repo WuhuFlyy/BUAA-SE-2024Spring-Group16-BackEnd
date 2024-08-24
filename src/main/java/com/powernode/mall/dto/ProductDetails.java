@@ -20,4 +20,27 @@ public class ProductDetails {
     private String shopName;
     private Integer shopId;
     private ArrayList<Comment> comments;
+
+    public ProductDetails(String name, Integer storage, ArrayList<String> version, Double price, ArrayList<String> imageSrc, String details, String shopName, Integer shopId) {
+        this.name = name;
+        this.storage = storage;
+        this.version = version;
+        this.price = price;
+        this.imageSrc = imageSrc;
+        this.details = details;
+        this.shopName = shopName;
+        this.shopId = shopId;
+    }
+
+    public ProductDetails(Integer productId, String name, Integer storage, ArrayList<String> version, Double price, ArrayList<String> imageSrc, String details, String shopName, Integer shopId) {
+        this.productId = productId;
+        this.name = name;
+        this.storage = storage;
+        this.version = version;
+        this.price = price;
+        this.imageSrc = imageSrc;
+        this.details = details;
+        this.shopName = shopName;
+        this.shopId = shopId;
+    }
 }

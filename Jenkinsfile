@@ -51,7 +51,7 @@ pipeline {
                             sh '''
                             kubectl set image deployment/mall-deployment mall=mall:${version} --record
                             kubectl rollout restart deployment/mall-deployment
-                           
+
                             '''
                         }
                    }

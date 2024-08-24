@@ -4,10 +4,7 @@ import com.powernode.mall.dto.*;
 import com.powernode.mall.mapper.*;
 import com.powernode.mall.po.*;
 import com.powernode.mall.service.IProductService;
-import com.powernode.mall.service.ex.InsertException;
-import com.powernode.mall.service.ex.ProductNoMatchingShopException;
-import com.powernode.mall.service.ex.ProductNotFoundException;
-import com.powernode.mall.service.ex.UpdateException;
+import com.powernode.mall.service.ex.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -138,6 +135,11 @@ public class ProductServiceImpl implements IProductService {
 
     @Override
     public void insertProduct(ProductDetails product) {
+
+        if(product.getPrice()<0||product.getStorage()<0){
+            throw new ProductDataIllegalException("商品数据不合法");
+        }
+
         TProduct tProduct = new TProduct();
         Date date = new Date();
         String username = shopMapper.selectByPrimaryKey(product.getShopId()).getUsername();
@@ -179,6 +181,11 @@ public class ProductServiceImpl implements IProductService {
 
     @Override
     public void updateProduct(ProductDetails product) {
+
+        if(product.getPrice()<0||product.getStorage()<0){
+            throw new ProductDataIllegalException("商品数据不合法");
+        }
+
         TProduct oldProduct = productMapper.selectByPrimaryKey(product.getProductId());
         if(oldProduct == null) {
             throw new ProductNotFoundException("商品不存在");
