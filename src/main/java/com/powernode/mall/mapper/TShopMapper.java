@@ -14,6 +14,8 @@ public interface TShopMapper {
 
     TShop selectByPrimaryKey(Integer sid);
 
+    TShop selectByUsername(String username);
+
     ArrayList<TShop> selectByKeywords(String keywords);
 
     Integer getSaleCountBySid(Integer sid);

@@ -90,4 +90,14 @@ public class ShopServiceImpl implements IShopService {
                 shopMapper.getSaleCountBySid(tShop.getSid())
         );
     }
+
+    @Override
+    public int getSidByUsername(String username) {
+        TShop shop = shopMapper.selectByUsername(username);
+        if(shop == null){
+            throw new ShopNotFoundException("商店不存在");
+        }
+        return shop.getSid();
+
+    }
 }

@@ -29,4 +29,6 @@ public interface IShopService {
      * @return 商店信息
      */
     ShopInfo getShopInfoBySid(Integer sid);
+
+    int getSidByUsername(String username);
 }

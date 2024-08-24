@@ -62,6 +62,13 @@
     where sid = #{sid,jdbcType=INTEGER}
   </select>
 
+  <select id="selectByUsername" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select sid, username, password, salt, shopname, fans_number, phone, email, address,
+    is_authenticated, created_user, created_time, modified_user, modified_time
+    from t_shop
+    where username = #{username,jdbcType=VARCHAR}
+  </select>
+
   <select id="selectByKeywords" parameterType="java.lang.String" resultMap="BaseResultMap">
     select sid, username, password, salt, shopname, fans_number, phone, email, address,
     is_authenticated, created_user, created_time, modified_user, modified_time
