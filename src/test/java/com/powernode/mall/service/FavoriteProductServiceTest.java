@@ -3,6 +3,7 @@ package com.powernode.mall.service;
 import com.powernode.mall.dto.ProductDetails;
 import com.powernode.mall.service.ex.ProductNotFoundException;
 import com.powernode.mall.service.ex.ShopNotFoundException;
+import com.powernode.mall.service.ex.UserNotFoundException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +34,7 @@ public class FavoriteProductServiceTest {
         boolean thrown = false;
         try{
             favoriteProductService.addFavoriteProduct("user0",30000);
-        }catch (ShopNotFoundException e){
+        }catch (ProductNotFoundException e){
             thrown = true;
         }
         Assertions.assertTrue(thrown);
@@ -55,8 +56,8 @@ public class FavoriteProductServiceTest {
     public void removeFavoriteProductServiceTest0() {
         boolean thrown = false;
         try{
-            favoriteProductService.removeFavoriteProduct("user0",30000);
-        }catch (ShopNotFoundException e){
+            favoriteProductService.removeFavoriteProduct("useajhsr0",3);
+        }catch (UserNotFoundException e){
             thrown = true;
         }
         Assertions.assertTrue(thrown);

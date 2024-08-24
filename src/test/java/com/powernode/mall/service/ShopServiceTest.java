@@ -47,7 +47,7 @@ public class ShopServiceTest {
     @Test
     public void getShopByKeywordsServiceTest0() {
         ArrayList<Shop> shops = shopService.getShopByKeywords("shopsdbnasklfgdvsjhbklfdhgjk");
-        Assertions.assertNull(shops);
+        Assertions.assertEquals(shops.size(), 0);
     }
 
     @Test

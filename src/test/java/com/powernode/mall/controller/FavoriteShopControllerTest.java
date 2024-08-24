@@ -36,7 +36,7 @@ public class FavoriteShopControllerTest {
 
     @Test
     public void removeFavoriteShopTest1() {
-        JsonResult<Void> result = favoriteShopController.removeFavoriteShop("user1", 17);
+        JsonResult<Void> result = favoriteShopController.removeFavoriteShop("user1", 7);
         Assertions.assertEquals(result.getStateCode(),200);
     }
 

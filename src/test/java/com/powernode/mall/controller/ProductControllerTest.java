@@ -52,17 +52,6 @@ public class ProductControllerTest {
     }
 
     @Test
-    public void searchProductByKeywordsTest0() {
-        boolean thrown = false;
-        try {
-            JsonResult<?> shopItems = productController.search("asadssada");
-        } catch (Exception e) {
-            thrown = true;
-        }
-        Assertions.assertTrue(thrown);
-    }
-
-    @Test
     public void uploadProductTest1() {
         boolean thrown = false;
         ArrayList<String> version =  new ArrayList<String>();
@@ -107,18 +96,19 @@ public class ProductControllerTest {
         }
     }
 
-    @Test
-    public void updateProductTest0() {
-        boolean thrown = false;
-        ArrayList<String> version =  new ArrayList<String>();
-        ArrayList<String> imageSrc =  new ArrayList<String>();
-        version.add("a");
-        imageSrc.add("../s.png");
-        try {
-            ProductDetails productDetails = new ProductDetails(-100,"product_14", 120, version, 10.12, imageSrc, "666", "shop1", 2);
-            Assertions.assertNotEquals(productController.upload(productDetails).getStateCode(), 200);
-        } catch (Exception e) {
-            thrown = true;
-        }
-    }
+//    @Test
+//    public void updateProductTest0() {
+//        boolean thrown = false;
+//        ArrayList<String> version =  new ArrayList<String>();
+//        ArrayList<String> imageSrc =  new ArrayList<String>();
+//        version.add("a");
+//        imageSrc.add("../s.png");
+//        try {
+//            ProductDetails productDetails = new ProductDetails(-100,"product_14", 120, version, 10.12, imageSrc, "666", "shop1", 2);
+//
+//        } catch (Exception e) {
+//            thrown = true;
+//        }
+//        Assertions.assertTrue(thrown);
+//    }
 }

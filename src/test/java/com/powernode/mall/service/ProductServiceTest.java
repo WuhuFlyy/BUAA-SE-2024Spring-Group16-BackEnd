@@ -85,7 +85,7 @@ public class ProductServiceTest {
     @Test
     public void getProductByKeywordsTest0() {
         ArrayList<ShopItem> Products = productService.getProductByKeywords("sahjdkopia9s89ufy7guhsbkjaiu9u8dfyuigh");
-        Assertions.assertNull(Products);
+        Assertions.assertEquals(Products.size(),0);
     }
 
     @Test
@@ -138,7 +138,7 @@ public class ProductServiceTest {
         i.add("image1");
         try {
             ProductDetails product = new ProductDetails(
-                    1,"newProduct", 12, v, 99.99, i, "details",
+                    10,"newProduct", 12, v, 99.99, i, "details",
                     "shop1", 2
             );
             productService.updateProduct(product);

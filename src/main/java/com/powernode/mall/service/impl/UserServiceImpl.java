@@ -170,7 +170,7 @@ public class UserServiceImpl implements IUserService
 
         if(!username.equals(newUser.getUsername())){
             if(userMapper.selectByUsername(newUser.getUsername()) != null){
-                throw new UsernameDuplicateException("尝试更改的用户名[" + username + "]已经被占用");
+                throw new UsernameDuplicateException("尝试更改的用户名[" + newUser.getUsername() + "]已经被占用");
             }
 
             if(newUser.getUsername() != null){

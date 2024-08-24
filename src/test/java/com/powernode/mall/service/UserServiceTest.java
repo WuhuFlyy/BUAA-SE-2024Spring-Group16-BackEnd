@@ -55,6 +55,7 @@ public class UserServiceTest {
 
     @Test
     public void loginServiceTest1() {
+        userMapper.deleteByUsername("小明");
         TUser user = new TUser();
         user.setUsername("小明");
         user.setPassword("123456");
@@ -67,6 +68,7 @@ public class UserServiceTest {
 
     @Test
     public void loginServiceTest0() {
+        userMapper.deleteByUsername("小明");
         TUser user = new TUser();
         user.setUsername("小明");
         user.setPassword("123456");
@@ -84,6 +86,7 @@ public class UserServiceTest {
 
     @Test
     public void changePasswordServiceTest1() {
+        userMapper.deleteByUsername("小明");
         TUser user = new TUser();
         user.setUsername("小明");
         user.setPassword("123456");
@@ -104,6 +107,7 @@ public class UserServiceTest {
 
     @Test
     public void changePasswordServiceTest0() {
+        userMapper.deleteByUsername("小明");
         TUser user = new TUser();
         user.setUsername("小明");
         user.setPassword("123456");
@@ -121,6 +125,7 @@ public class UserServiceTest {
 
     @Test
     public void changeInfoServiceTest1() {
+        userMapper.deleteByUsername("小明");
         TUser user = new TUser();
         user.setUsername("小明");
         user.setPassword("123456");
@@ -132,10 +137,13 @@ public class UserServiceTest {
         userService.changeInfo(u.getUid(),u.getUsername(),a);
 
         Assertions.assertNotNull(userMapper.selectByUsername("user30"));
+
+        userMapper.deleteByUsername("user30");
     }
 
     @Test
     public void changeInfoServiceTest0() {
+        userMapper.deleteByUsername("小明");
         TUser user = new TUser();
         user.setUsername("小明");
         user.setPassword("123456");
@@ -155,6 +163,7 @@ public class UserServiceTest {
 
     @Test
     public void commentServiceTest1() {
+
         UserComment userComment = new UserComment();
         ArrayList<String> i = new ArrayList<>();
         i.add("1");i.add("2");

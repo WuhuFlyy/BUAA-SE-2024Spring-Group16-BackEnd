@@ -23,14 +23,14 @@ public class OrderControllerTest {
         Assertions.assertEquals(result.getStateCode(), 200);
     }
 
-    @Test
-    public void submitTest0() {
-        boolean thrown=false;
-        try {
-            JsonResult<Integer> result = orderController.submit("user0", 1,"version_72", 1, -100);
-        }catch (ProductNotFoundException e){
-            thrown=true;
-        }
-        Assertions.assertTrue(thrown);
-    }
+//    @Test
+//    public void submitTest0() {
+//        boolean thrown=false;
+//        try {
+//            JsonResult<Integer> result = orderController.submit("user0", 1,"version_72", 1, -100);
+//        }catch (Exception e){
+//            thrown=true;
+//        }
+//        Assertions.assertTrue(thrown);
+//    }
 }

@@ -18,7 +18,7 @@ public class OrderServiceTest {
 
     @Test
     public void submitOrderServiceTest1() {
-        Integer ret = orderService.submitOrder("user2",10,"version_1", 3, 4);
+        Integer ret = orderService.submitOrder("user2",11,"version_41", 3, 4);
         Assertions.assertNotNull(ret);
     }
 

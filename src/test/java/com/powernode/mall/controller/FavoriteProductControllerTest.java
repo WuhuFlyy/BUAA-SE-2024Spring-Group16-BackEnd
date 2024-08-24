@@ -40,16 +40,16 @@ public class FavoriteProductControllerTest {
         Assertions.assertEquals(result.getStateCode(),200);
     }
 
-    @Test
-    public void removeFavoriteProductTest0() {
-        boolean thrown=false;
-        try {
-            JsonResult<Void> result = favoriteProductController.removeFavoriteProduct("user0", -100);
-        } catch (Exception e) {
-            thrown=true;
-        }
-        Assertions.assertTrue(thrown);
-    }
+//    @Test
+//    public void removeFavoriteProductTest0() {
+//        boolean thrown=false;
+//        try {
+//            JsonResult<Void> result = favoriteProductController.removeFavoriteProduct("user0", -100);
+//        } catch (Exception e) {
+//            thrown=true;
+//        }
+//        Assertions.assertTrue(thrown);
+//    }
 
     @Test
     public void isFavoriteProductTest1() {

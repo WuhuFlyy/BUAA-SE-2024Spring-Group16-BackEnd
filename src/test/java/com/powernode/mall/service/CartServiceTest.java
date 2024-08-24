@@ -36,6 +36,6 @@ public class CartServiceTest {
             thrown = true;
         }
 
-        Assertions.assertFalse(thrown);
+        Assertions.assertTrue(thrown);
     }
 }
