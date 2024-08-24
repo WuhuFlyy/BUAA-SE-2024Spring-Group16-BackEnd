@@ -3,6 +3,7 @@ package com.powernode.mall.controller;
 import com.powernode.mall.dto.ProductDetails;
 import com.powernode.mall.service.IProductService;
 import com.powernode.mall.service.ex.ProductNotFoundException;
+import com.powernode.mall.util.JsonResult;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,22 +15,57 @@ import org.springframework.test.context.TestPropertySource;
 public class FavoriteShopControllerTest {
 
     @Autowired
-    IProductService productService;
+    private FavoriteShopController favoriteShopController;
 
     @Test
-    public void getProductDetailServiceTest1() {
-        ProductDetails productDetails = productService.getProductDetailByProductId(2);
-        Assertions.assertEquals(productDetails.getName(),"product_12");
+    public void addFavoriteShopTest1() {
+        JsonResult<Void> result = favoriteShopController.addFavoriteShop("user1", 2);
+        Assertions.assertEquals(result.getStateCode(),200);
     }
 
     @Test
-    public void getProductDetailServiceTest0() {
+    public void addFavoriteShopTest0() {
         boolean thrown=false;
         try {
-            ProductDetails productDetails = productService.getProductDetailByProductId(200);
-        }catch (ProductNotFoundException e){
+            JsonResult<Void> result = favoriteShopController.addFavoriteShop("user1", -100);
+        }catch (Exception e){
             thrown=true;
         }
         Assertions.assertTrue(thrown);
+    }
+
+    @Test
+    public void removeFavoriteShopTest1() {
+        JsonResult<Void> result = favoriteShopController.removeFavoriteShop("user1", 17);
+        Assertions.assertEquals(result.getStateCode(),200);
+    }
+
+    @Test
+    public void removeFavoriteShopTest0() {
+        boolean thrown=false;
+        try {
+            JsonResult<Void> result = favoriteShopController.removeFavoriteShop("user1", -100);
+        } catch (Exception e) {
+            thrown=true;
+        }
+        Assertions.assertTrue(thrown);
+    }
+
+    @Test
+    public void isFavoriteShopTest1() {
+        JsonResult<Boolean> result = favoriteShopController.isFavoriteShop("user1", 10);
+        Assertions.assertEquals(result.getData(),true);
+    }
+
+    @Test
+    public void isFavoriteShopTest0() {
+        boolean thrown=false;
+        try {
+            JsonResult<Boolean> result = favoriteShopController.isFavoriteShop("userUnknown", 10);
+        } catch(Exception e) {
+            thrown=true;
+        }
+        Assertions.assertTrue(thrown);
+
     }
 }

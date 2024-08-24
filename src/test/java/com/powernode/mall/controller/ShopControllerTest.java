@@ -1,8 +1,10 @@
 package com.powernode.mall.controller;
 
 import com.powernode.mall.dto.ProductDetails;
+import com.powernode.mall.dto.Shop;
 import com.powernode.mall.service.IProductService;
 import com.powernode.mall.service.ex.ProductNotFoundException;
+import com.powernode.mall.util.JsonResult;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,19 +16,53 @@ import org.springframework.test.context.TestPropertySource;
 public class ShopControllerTest {
 
     @Autowired
-    IProductService productService;
+    private ShopController shopController;
 
     @Test
-    public void getProductDetailServiceTest1() {
-        ProductDetails productDetails = productService.getProductDetailByProductId(2);
-        Assertions.assertEquals(productDetails.getName(),"product_12");
+    public void getProductsTest1() {
+        JsonResult<?> result = shopController.getProducts(2);
+        Assertions.assertNotNull(result.getData());
     }
 
     @Test
-    public void getProductDetailServiceTest0() {
+    public void getProductsTest0() {
         boolean thrown=false;
         try {
-            ProductDetails productDetails = productService.getProductDetailByProductId(200);
+            JsonResult<?> result = shopController.getProducts(-100);
+        }catch (ProductNotFoundException e){
+            thrown=true;
+        }
+        Assertions.assertTrue(thrown);
+    }
+
+    @Test
+    public void searchShopByKeywordsTest1() {
+        JsonResult<?> shopItems = shopController.search("2");
+        Assertions.assertNotNull(shopItems.getData());
+    }
+
+    @Test
+    public void searchShopByKeywordsTest0() {
+        boolean thrown = false;
+        try {
+            JsonResult<?> result = shopController.search("asadssada");
+        } catch (Exception e) {
+            thrown = true;
+        }
+        Assertions.assertTrue(thrown);
+    }
+
+    @Test
+    public void getShopInfoTest1() {
+        JsonResult<?> result = shopController.getShopInfo(2);
+        Assertions.assertNotNull(result.getData());
+    }
+
+    @Test
+    public void getShopInfoTest0() {
+        boolean thrown=false;
+        try {
+            JsonResult<?> result = shopController.getShopInfo(-100);
         }catch (ProductNotFoundException e){
             thrown=true;
         }

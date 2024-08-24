@@ -3,6 +3,7 @@ package com.powernode.mall.controller;
 import com.powernode.mall.dto.ProductDetails;
 import com.powernode.mall.service.IProductService;
 import com.powernode.mall.service.ex.ProductNotFoundException;
+import com.powernode.mall.util.JsonResult;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,19 +15,19 @@ import org.springframework.test.context.TestPropertySource;
 public class CartControllerTest {
 
     @Autowired
-    IProductService productService;
+    private CartController cartController;
 
     @Test
-    public void getProductDetailServiceTest1() {
-        ProductDetails productDetails = productService.getProductDetailByProductId(2);
-        Assertions.assertEquals(productDetails.getName(),"product_12");
+    public void addToCartTest1() {
+        JsonResult<Void> result = cartController.add_to_cart("user0", 1,"version_72", 1);
+        Assertions.assertEquals(result.getStateCode(), 200);
     }
 
     @Test
-    public void getProductDetailServiceTest0() {
-        boolean thrown=false;
+    public void addToCartTest0() {
+        boolean thrown = false;
         try {
-            ProductDetails productDetails = productService.getProductDetailByProductId(200);
+            JsonResult<Void> result = cartController.add_to_cart("user0", -100,"version_72", 1);
         }catch (ProductNotFoundException e){
             thrown=true;
         }
