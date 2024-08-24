@@ -3,6 +3,7 @@ package com.powernode.mall.controller;
 import com.powernode.mall.dto.Product;
 import com.powernode.mall.dto.Shop;
 import com.powernode.mall.dto.ShopInfo;
+import com.powernode.mall.po.TShop;
 import com.powernode.mall.service.IShopService;
 import com.powernode.mall.util.JsonResult;
 import com.powernode.mall.dto.Product;
@@ -35,5 +36,11 @@ public class ShopController extends BaseController {
     public JsonResult<?> getShopInfo(Integer sid) {
         ShopInfo shopInfo = shopService.getShopInfoBySid(sid);
         return new JsonResult<>(OK, shopInfo);
+    }
+
+    @RequestMapping("insert_shop")
+    public JsonResult<?> insertShop(TShop shop) {
+        shopService.insertShop(shop);
+        return new JsonResult<>(OK);
     }
 }

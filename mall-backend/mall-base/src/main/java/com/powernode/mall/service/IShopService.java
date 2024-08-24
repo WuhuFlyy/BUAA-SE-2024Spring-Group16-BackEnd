@@ -29,4 +29,10 @@ public interface IShopService {
      * @return 商店信息
      */
     ShopInfo getShopInfoBySid(Integer sid);
+
+    /**
+     * 插入新商店
+     * @param shop 商店信息
+     */
+    void insertShop(TShop shop);
 }

@@ -1,6 +1,7 @@
 package com.powernode.mall.service.impl;
 
 
+import com.powernode.mall.client.BaseClient;
 import com.powernode.mall.dto.UserComment;
 import com.powernode.mall.mapper.TUserMapper;
 import com.powernode.mall.po.*;
@@ -23,6 +24,8 @@ public class UserServiceImpl implements IUserService
 
     @Autowired
     private ThreadPoolTaskSchedulerBuilder threadPoolTaskSchedulerBuilder;
+    @Autowired
+    private BaseClient baseClient;
 
 //    @Autowired
 //    private TShopMapper shopMapper;
@@ -79,6 +82,7 @@ public class UserServiceImpl implements IUserService
             shop.setCreatedTime(date);
             shop.setModifiedTime(date);
     //        shopMapper.insert(shop);
+            baseClient.insertShop(shop);
         }
 
     }
@@ -197,7 +201,7 @@ public class UserServiceImpl implements IUserService
 //            throw new UserNotFoundException("用户不存在");
 //        }
 //
-//        TProduct product = productMapper.selectByPrimaryKey(userComment.getProductId());
+//        TProduct product = IProductService.selectByPrimaryKey(userComment.getProductId());
 //        if(product == null){
 //            throw new ProductNotFoundException("商品不存在");
 //        }

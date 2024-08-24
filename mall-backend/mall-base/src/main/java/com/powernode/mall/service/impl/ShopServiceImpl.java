@@ -90,4 +90,9 @@ public class ShopServiceImpl implements IShopService {
                 shopMapper.getSaleCountBySid(tShop.getSid())
         );
     }
+
+    @Override
+    public void insertShop(TShop shop) {
+        shopMapper.insert(shop);
+    }
 }

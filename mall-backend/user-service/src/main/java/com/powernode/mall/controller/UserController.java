@@ -92,4 +92,10 @@ public class UserController extends BaseController
         userService.comment(userComment);
         return new JsonResult<>(OK);
     }
+
+    @RequestMapping("get_by_uid")
+    public JsonResult<TUser> getByUid(Integer uid){
+        TUser user = userService.getByUid(uid);
+        return new JsonResult<>(OK, user);
+    }
 }
