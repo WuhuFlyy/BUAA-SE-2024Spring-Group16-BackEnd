@@ -13,22 +13,29 @@ import org.springframework.test.context.TestPropertySource;
 public class CartServiceTest {
 
     @Autowired
-    IProductService productService;
+    ICartService cartService;
 
     @Test
-    public void getProductDetailServiceTest1() {
-        ProductDetails productDetails = productService.getProductDetailByProductId(2);
-        Assertions.assertEquals(productDetails.getName(),"product_12");
+    public void addToCartDetailServiceTest1() {
+        boolean thrown = false;
+        try{
+            cartService.addToCart("user0",13,"version_7",20);
+        }catch (Exception e){
+            thrown = true;
+        }
+
+        Assertions.assertFalse(thrown);
     }
 
     @Test
-    public void getProductDetailServiceTest0() {
-        boolean thrown=false;
-        try {
-            ProductDetails productDetails = productService.getProductDetailByProductId(200);
+    public void addToCartDetailServiceTest0() {
+        boolean thrown = false;
+        try{
+            cartService.addToCart("user0",1312,"version_7",20);
         }catch (ProductNotFoundException e){
-            thrown=true;
+            thrown = true;
         }
-        Assertions.assertTrue(thrown);
+
+        Assertions.assertFalse(thrown);
     }
 }

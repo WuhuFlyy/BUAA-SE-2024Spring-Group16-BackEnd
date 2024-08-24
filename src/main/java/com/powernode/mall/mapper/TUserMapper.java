@@ -9,6 +9,8 @@ import java.util.List;
 public interface TUserMapper {
     int deleteByPrimaryKey(Integer uid);
 
+    int deleteByUsername(String username);
+
     int insert(TUser row);
 
     TUser selectByPrimaryKey(Integer uid);

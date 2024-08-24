@@ -24,6 +24,11 @@
     where uid = #{uid,jdbcType=INTEGER}
   </delete>
 
+  <delete id="deleteByUsername" parameterType="java.lang.String">
+    delete from t_user
+    where username = #{username,jdbcType=VARCHAR}
+  </delete>
+
   <insert id="insert" parameterType="com.powernode.mall.po.TUser">
     insert into t_user (uid, username, type, 
       password, salt, phone, email, 
