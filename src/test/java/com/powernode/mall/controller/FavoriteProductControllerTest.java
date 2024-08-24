@@ -16,7 +16,7 @@ public class FavoriteProductControllerTest {
 
     @Autowired
     private FavoriteProductController favoriteProductController;
-
+///
     @Test
     public void addFavoriteProductTest1() {
         JsonResult<Void> result = favoriteProductController.addFavoriteProduct("user0", 2);
