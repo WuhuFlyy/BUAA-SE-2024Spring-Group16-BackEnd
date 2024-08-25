@@ -1,5 +1,9 @@
 package com.powernode.mall.service;
 
+import com.powernode.mall.dto.Cart;
+
+import java.util.ArrayList;
+
 public interface ICartService {
 
     /**
@@ -8,5 +12,13 @@ public interface ICartService {
      * @param pid 商品id
      * @param quantity 数量
      */
-    Void addToCart(String username, Integer pid, String version, Integer quantity);
+    void addToCart(String username, Integer pid, String version, Integer quantity);
+
+    void addNum(int cid);
+
+    void reduceNum(int cid);
+
+    void deleteCart(int cid);
+
+    ArrayList<Cart> getCartByUsername(String username);
 }
