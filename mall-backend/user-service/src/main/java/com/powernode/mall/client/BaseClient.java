@@ -12,7 +12,7 @@ import org.springframework.cloud.openfeign.FeignClient;
 
 import java.util.List;
 
-@FeignClient(name = "mall")
+@FeignClient(name = "shop-service", url = "http://localhost:8081")
 public interface BaseClient {
 
     @RequestMapping("/shop/insert_shop")
@@ -20,4 +20,7 @@ public interface BaseClient {
 
     @RequestMapping("/shop/get_shop_by_sid")
     public JsonResult<?> getShopInfoBySid(@RequestParam("sid") Integer sid);
+
+    @RequestMapping("/users/reg")
+    public JsonResult<?> reg(@RequestParam("username") String username, @RequestParam("password") String password, @RequestParam("type") String type);
 }

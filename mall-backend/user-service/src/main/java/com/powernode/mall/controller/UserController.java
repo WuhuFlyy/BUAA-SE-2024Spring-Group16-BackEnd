@@ -1,6 +1,8 @@
 package com.powernode.mall.controller;
 
+import com.powernode.mall.client.BaseClient;
 import com.powernode.mall.dto.UserComment;
+import com.powernode.mall.po.TShop;
 import com.powernode.mall.po.TUser;
 import com.powernode.mall.service.IUserService;
 import com.powernode.mall.service.ex.InsertException;
@@ -20,6 +22,9 @@ public class UserController extends BaseController
 {
     @Autowired
     private IUserService userService;
+
+    @Autowired
+    private BaseClient baseClient;
 
     @RequestMapping("reg")
     //@ResponseBody // 表示此方法的响应结果以json格式进行数据响应给到前端
@@ -97,5 +102,15 @@ public class UserController extends BaseController
     public JsonResult<TUser> getByUid(Integer uid){
         TUser user = userService.getByUid(uid);
         return new JsonResult<>(OK, user);
+    }
+
+    @RequestMapping("get_shop")
+    public JsonResult<?> getShop(Integer sid){
+        return baseClient.getShopInfoBySid(sid);
+    }
+
+    @RequestMapping("reg_test")
+    public JsonResult<?> regTest(String username ,String password, String type){
+        return baseClient.reg(username, password, type);
     }
 }

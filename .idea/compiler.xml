@@ -13,6 +13,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="mall" target="20" />
       <module name="mall (1)" target="20" />
     </bytecodeTargetLevel>
   </component>
