@@ -35,21 +35,21 @@ pipeline {
                  stage('构建base模块') {
                      steps {
                          dir('mall-backend/mall-base') {
-                             sh 'mvn clean package'
+                             sh label:'', script: 'mvn clean package'
                          }
                      }
                  }
                  stage('构建product模块') {
                      steps {
                          dir('mall-backend/product-service') {
-                             sh 'mvn clean package'
+                             sh label:'', script: 'mvn clean package'
                          }
                      }
                  }
                  stage('构建user模块') {
                      steps {
                          dir('mall-backend/user-service') {
-                             sh 'mvn clean package'
+                             sh label:'', script: 'mvn clean package'
                          }
                      }
                  }
