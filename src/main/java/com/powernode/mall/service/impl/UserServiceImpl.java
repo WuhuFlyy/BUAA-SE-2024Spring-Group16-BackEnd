@@ -192,7 +192,7 @@ public class UserServiceImpl implements IUserService
     @Override
     public void comment(UserComment userComment) {
 
-        TUser user = userMapper.selectByPrimaryKey(userComment.getId());
+        TUser user = userMapper.selectByUsername(userComment.getUserName());
         if(user == null || user.getIsDelete() == 1){
             throw new UserNotFoundException("用户不存在");
         }
