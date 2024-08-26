@@ -89,5 +89,8 @@
 
     </dependencies>
 
+    <build>
+        <finalName>product-service</finalName>
+    </build>
 
 </project>
