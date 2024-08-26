@@ -219,11 +219,11 @@ public class UserServiceImpl implements IUserService
         comment.setPid(userComment.getProductId());
         comment.setRate(userComment.getRate());
 
-        int rows = commentMapper.insert(comment);
+        baseClient.addComment(comment);
         int cid = comment.getCid();
-        if(rows != 1){
-            throw new InsertException("插入评论数据时发生数据库错误");
-        }
+//        if(rows != 1){
+//            throw new InsertException("插入评论数据时发生数据库错误");
+//        }
 
 
         System.out.println(cid);
