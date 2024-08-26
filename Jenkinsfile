@@ -60,8 +60,8 @@ pipeline {
             steps {
                 sh '''
                 mv ./mall-backend/mall-base/target/*.jar ./docker/
-                mv ./mall-backend/mall-/target/*.jar ./docker/
-                mv ./mall-backend/mall-base/target/*.jar ./docker/
+                mv ./mall-backend/product-service/target/*.jar ./docker/
+                mv ./mall-backend/user-service/target/*.jar ./docker/
                 docker build --build-arg JAR_FILE=mall-base.jar -f ./Dockerfile_base -t base:${version} ./docker/
                 docker build --build-arg JAR_FILE=product-service.jar -f ./Dockerfile_product -t product:${version} ./docker/
                 docker build --build-arg JAR_FILE=user-service.jar -f ./Dockerfile_user -t user:${version} ./docker/
