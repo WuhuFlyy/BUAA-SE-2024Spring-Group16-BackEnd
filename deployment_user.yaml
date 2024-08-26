@@ -1,0 +1,55 @@
+apiVersion: apps/v1  # API 版本
+kind: Deployment     # 资源类型
+metadata:
+  name: user-deployment  # 部署名称
+  labels:   # 标签，可以用于选择器匹配
+    app: user
+spec:
+  replicas: 1   # 副本数量，表示会启动1个Pod
+  selector:
+    matchLabels:
+      app: user  # 选择具有这个标签的Pod
+  template:  # Pod模板
+    metadata:
+      labels:
+        app: user  # Pod的标签
+    spec:
+      containers:
+        - name: user  # 容器名称
+          image: user:1.0.0  # 容器镜像
+          ports:
+            - containerPort: 8890  # 容器暴露的端口
+              name: user
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: user-service  # 服务的名称
+spec:
+  selector:
+    app: user      # 选择与标签匹配的 Pod
+  ports:
+    - protocol: TCP
+      port: 82           # 服务暴露的端口
+      targetPort: 8890
+
+  type: ClusterIP    # 服务类型 (可以是 ClusterIP, NodePort, LoadBalancer)
+
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: user-ingress
+spec:
+  rules:
+    - host: mall.user.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: user-service
+                port:
+                  number: 82

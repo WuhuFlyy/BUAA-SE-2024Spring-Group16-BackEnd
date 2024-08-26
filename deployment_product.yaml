@@ -1,0 +1,54 @@
+apiVersion: apps/v1  # API 版本
+kind: Deployment     # 资源类型
+metadata:
+  name: product-deployment  # 部署名称
+  labels:   # 标签，可以用于选择器匹配
+    app: product
+spec:
+  replicas: 1   # 副本数量，表示会启动1个Pod
+  selector:
+    matchLabels:
+      app: product  # 选择具有这个标签的Pod
+  template:  # Pod模板
+    metadata:
+      labels:
+        app: product  # Pod的标签
+    spec:
+      containers:
+      - name: product  # 容器名称
+        image: product:1.0.0  # 容器镜像
+        ports:
+        - containerPort: 8889 # 容器暴露的端口
+          name: product
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: product-service  # 服务的名称
+spec:
+  selector:
+    app: product      # 选择与标签匹配的 Pod
+  ports:
+  - protocol: TCP
+    port: 81           # 服务暴露的端口
+    targetPort: 8889
+  type: ClusterIP    # 服务类型 (可以是 ClusterIP, NodePort, LoadBalancer)
+  
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: product-ingress
+spec:
+  rules:
+    - host: mall.product.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: base-service
+                port:
+                  number: 81

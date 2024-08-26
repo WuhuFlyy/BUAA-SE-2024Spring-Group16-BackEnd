@@ -1,0 +1,5 @@
+FROM openjdk:21-jdk
+ARG JAR_FILE
+COPY ${JAR_FILE} user.jar
+EXPOSE 8890
+ENTRYPOINT ["java","-jar","/user.jar"]

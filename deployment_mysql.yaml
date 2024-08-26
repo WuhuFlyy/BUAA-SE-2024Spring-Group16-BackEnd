@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mall-mysql-deployment
+  
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mall-mysql
+  template:
+    metadata:
+      labels:
+        app: mall-mysql
+    spec:
+      containers:
+      - name: mysql
+        image: mall-mysql:${version}
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: "2857709015yzhzs"
+        ports:
+        - containerPort: 3306
+          name: mysql
+        volumeMounts:
+        - name: mysql-persistent-storage
+          mountPath: /var/lib/mysql
+      volumes:
+      - name: mysql-persistent-storage
+        persistentVolumeClaim:
+          claimName: mall-mysql-pv-claim
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mall-mysql-pv-claim
+  
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mall-mysql-service
+  
+spec:
+  
+  ports:
+    - port: 3306
+      targetPort: 3306
+  clusterIP: None
+  selector:
+    app: mall-mysql
