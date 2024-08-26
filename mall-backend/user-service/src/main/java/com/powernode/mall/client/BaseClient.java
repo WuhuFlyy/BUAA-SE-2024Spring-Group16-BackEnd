@@ -12,7 +12,7 @@ import org.springframework.cloud.openfeign.FeignClient;
 
 import java.util.List;
 
-@FeignClient(name = "shop-service", url = "http://localhost:8888")
+@FeignClient(name = "shop-service", url = "http://10.107.240.158:80")
 public interface BaseClient {
 
     @RequestMapping("/shop/insert_shop")

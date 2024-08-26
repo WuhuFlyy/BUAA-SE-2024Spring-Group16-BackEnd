@@ -33,23 +33,6 @@ spec:
   - protocol: TCP
     port: 80           # 服务暴露的端口
     targetPort: 8889
-    
-  type: ClusterIP    # 服务类型 (可以是 ClusterIP, NodePort, LoadBalancer)
-  
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: product-ingress
-spec:
-  rules:
-    - host: mall.product.com
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: product-service
-                port:
-                  number: 80
+    nodePort: 32000
+  type: NodePort
+
