@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.task.ThreadPoolTaskSchedulerBuilder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -82,8 +83,7 @@ public class UserServiceImpl implements IUserService
             shop.setCreatedTime(date);
             shop.setModifiedTime(date);
     //        shopMapper.insert(shop);
-
-            System.out.println(baseClient.getShopInfoBySid(1));
+            baseClient.insertShop(shop);
         }
 
     }

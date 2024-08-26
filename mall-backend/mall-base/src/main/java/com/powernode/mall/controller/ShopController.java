@@ -41,7 +41,7 @@ public class ShopController extends BaseController {
     }
 
     @RequestMapping("insert_shop")
-    public JsonResult<?> insertShop(@RequestParam("shop") TShop shop) {
+    public JsonResult<?> insertShop(@RequestBody TShop shop) {
         shopService.insertShop(shop);
         return new JsonResult<>(OK);
     }
