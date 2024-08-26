@@ -49,6 +49,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: base-service
+                name: product-service
                 port:
                   number: 81
