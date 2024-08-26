@@ -5,7 +5,7 @@ metadata:
   labels:   # 标签，可以用于选择器匹配
     app: base
 spec:
-  replicas: 1   # 副本数量，表示会启动1个Pod
+  replicas: 3   # 副本数量，表示会启动1个Pod
   selector:
     matchLabels:
       app: base  # 选择具有这个标签的Pod
@@ -17,6 +17,12 @@ spec:
       containers:
       - name: base  # 容器名称
         image: base:1.0.0  # 容器镜像
+        resources:
+          requests:
+            cpu: "100m"
+          limits:
+            cpu: "500m"
+
         ports:
         - containerPort: 8888  # 容器暴露的端口
           name: base
