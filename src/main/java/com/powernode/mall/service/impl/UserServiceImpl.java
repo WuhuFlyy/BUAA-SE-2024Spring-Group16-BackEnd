@@ -220,7 +220,7 @@ public class UserServiceImpl implements IUserService
         ArrayList<String> images = userComment.getImages();
         for(String image : images){
             TCommentImage commentImage = new TCommentImage();
-            commentImage.setUid(userComment.getId());
+            commentImage.setUid(user.getUid().intValue());
             commentImage.setCid(cid);
             commentImage.setImageSrc(image);
             int r = commentImageMapper.insert(commentImage);
