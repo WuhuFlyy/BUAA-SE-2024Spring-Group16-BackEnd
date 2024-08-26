@@ -31,8 +31,9 @@ spec:
     app: product      # 选择与标签匹配的 Pod
   ports:
   - protocol: TCP
-    port: 81           # 服务暴露的端口
+    port: 80           # 服务暴露的端口
     targetPort: 8889
+    
   type: ClusterIP    # 服务类型 (可以是 ClusterIP, NodePort, LoadBalancer)
   
 ---
@@ -51,4 +52,4 @@ spec:
               service:
                 name: product-service
                 port:
-                  number: 81
+                  number: 80

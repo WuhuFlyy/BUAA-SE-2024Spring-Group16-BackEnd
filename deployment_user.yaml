@@ -31,7 +31,7 @@ spec:
     app: user      # 选择与标签匹配的 Pod
   ports:
     - protocol: TCP
-      port: 82           # 服务暴露的端口
+      port: 80           # 服务暴露的端口
       targetPort: 8890
 
   type: ClusterIP    # 服务类型 (可以是 ClusterIP, NodePort, LoadBalancer)
@@ -52,4 +52,4 @@ spec:
               service:
                 name: user-service
                 port:
-                  number: 82
+                  number: 80
