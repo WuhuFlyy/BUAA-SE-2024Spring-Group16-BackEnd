@@ -104,10 +104,14 @@ public class ProductServiceImpl implements IProductService {
         List<TProduct> tProducts = productMapper.selectAll();
         List<ProductNoDetails> productNoDetails = new ArrayList<>();
         for (TProduct tProduct : tProducts) {
+            String src = null;
+            if(!imageMapper.selectByPid(tProduct.getPid()).isEmpty()) {
+                src = imageMapper.selectByPid(tProduct.getPid()).getFirst().getImageSrc();
+            }
             productNoDetails.add(new ProductNoDetails(
                     tProduct.getPid(),
                     tProduct.getProductName(),
-                    tProduct.getImage(),
+                    src,
                     tProduct.getPrice()
             ));
         }
