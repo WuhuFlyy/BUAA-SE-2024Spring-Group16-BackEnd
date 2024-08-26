@@ -1,5 +1,6 @@
 package com.powernode.mall.controller;
 
+import com.powernode.mall.client.ProductClient;
 import com.powernode.mall.dto.ProductDetails;
 import com.powernode.mall.dto.ProductNoDetails;
 import com.powernode.mall.dto.ShopItem;
@@ -18,37 +19,14 @@ import java.util.ArrayList;
 @RestController
 @RequestMapping("products")
 public class ProductController extends BaseController {
+
     @Autowired
-    private IProductService productService;
-
-    @RequestMapping("details")
-    public JsonResult<ProductDetails> getById(Integer id){
-        ProductDetails productDetails = productService.getProductDetailByProductId(id);
-        return new JsonResult<ProductDetails>(OK, productDetails);
-    }
-
-    @RequestMapping("all")
-    public JsonResult<List<ProductNoDetails>> getAllProducts() {
-        List<ProductNoDetails> products = productService.getAllProducts();
-        return new JsonResult<>(OK, products);
-    }
+    private ProductClient productClient;
 
 
-    @RequestMapping("search")
-    public JsonResult<?> search(String keywords){
-        ArrayList<ShopItem> shopItems = productService.getProductByKeywords(keywords);
-        return new JsonResult<>(OK, shopItems);
-    }
 
-    @RequestMapping("upload")
-    public JsonResult<Void> upload(@RequestBody ProductDetails productDetails){
-        productService.insertProduct(productDetails);
-        return new JsonResult<>(OK);
-    }
-
-    @RequestMapping("update")
-    public JsonResult<Void> update(@RequestBody ProductDetails productDetails){
-        productService.updateProduct(productDetails);
-        return new JsonResult<>(OK);
+    @RequestMapping("details_test")
+    public JsonResult<ProductDetails> detailsTest(int id){
+        return productClient.getProductById(id);
     }
 }
