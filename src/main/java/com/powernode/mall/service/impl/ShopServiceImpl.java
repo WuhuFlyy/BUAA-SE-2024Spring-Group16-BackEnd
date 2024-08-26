@@ -40,15 +40,17 @@ public class ShopServiceImpl implements IShopService {
         ArrayList<TProduct> products = productMapper.selectBySid(sid);
 
         for(TProduct product : products){
+            String src = null;
+            if(!imageMapper.selectByPid(product.getPid()).isEmpty()) {
+                src = imageMapper.selectByPid(product.getPid()).getFirst().getImageSrc();
+            }
             Product shopItem1 = new Product();
             shopItem1.setPid(product.getPid());
             shopItem1.setPrice(product.getPrice());
             shopItem1.setName(product.getProductName());
             shopItem1.setIsHot(false);
             if(product.getIsHot() == 1) shopItem1.setIsHot(true);
-            shopItem1.setImageSrc(
-                    imageMapper.selectByPid(product.getPid()).get(0).getImageSrc()
-            );
+            shopItem1.setImageSrc(src);
 
             shopItem1s.add(shopItem1);
         }
