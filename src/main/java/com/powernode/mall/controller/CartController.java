@@ -36,6 +36,12 @@ public class CartController extends BaseController {
         return new JsonResult<>(OK);
     }
 
+    @RequestMapping("delete")
+    public JsonResult<Void> delete(int cid) {
+        cartService.deleteCart(cid);
+        return new JsonResult<>(OK);
+    }
+
     @RequestMapping("list")
     public JsonResult<ArrayList<Cart>> list(String username) {
         ArrayList<Cart> carts = cartService.getCartByUsername(username);
