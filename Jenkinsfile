@@ -85,6 +85,12 @@ pipeline {
                    }
              }
         }
+
+        stage('清除空镜像'){
+            steps{
+                sh 'docker rmi $(docker images -q -f dangling=true) || true'
+            }
+        }
     }
 }
 
