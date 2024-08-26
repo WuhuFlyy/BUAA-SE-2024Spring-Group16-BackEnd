@@ -6,8 +6,6 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="product-service" />
-        <module name="user-service" />
         <module name="mall" />
       </profile>
     </annotationProcessing>
@@ -15,8 +13,8 @@
       <module name="mall (1)" target="20" />
       <module name="mall-backend" target="21" />
       <module name="mall-base" target="21" />
-      <module name="user-service (1)" target="17" />
-      <module name="user-service (2)" target="17" />
+      <module name="product-service" target="17" />
+      <module name="user-service" target="17" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
@@ -27,8 +25,6 @@
       <module name="mall-base" options="-parameters" />
       <module name="product-service" options="-parameters" />
       <module name="user-service" options="-parameters" />
-      <module name="user-service (1)" options="-parameters" />
-      <module name="user-service (2)" options="-parameters" />
     </option>
   </component>
 </project>
