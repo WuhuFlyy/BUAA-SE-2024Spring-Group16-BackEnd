@@ -9,6 +9,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @SpringBootApplication
 @EnableFeignClients
 @EnableHystrix
+
 public class ProductServiceApplication {
 
     public static void main(String[] args) {

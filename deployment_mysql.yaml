@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: mysql
-        image: mall-mysql:${version}
+        image: mall-mysql:1.0.0
         env:
         - name: MYSQL_ROOT_PASSWORD
           value: "2857709015yzhzs"

@@ -29,8 +29,9 @@ public class productServiceImpl implements IProductService {
         return productClient.getProductById(id).getData();
     }
 
-    public ProductDetails fallbackMethod() {
+    public ProductDetails fallbackMethod(int id) {
         ProductDetails productDetails = new ProductDetails();
+        productDetails.setProductId(id);
         productDetails.setName("等待");
         return productDetails;
     }
