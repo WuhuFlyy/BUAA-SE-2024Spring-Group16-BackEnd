@@ -137,16 +137,16 @@ public class ProductServiceImpl implements IProductService {
     public ArrayList<ShopItem> getProductByKeywords(String keywords) {
         ArrayList<ShopItem> shopItems = new ArrayList<>();
 
-        System.out.println(keywords);
+        //System.out.println(keywords);
         ArrayList<TProduct> tProducts = productMapper.selectByKeywords(keywords);
-
+        System.out.println((baseClient.getImageByPid(1)).getData().get(0));
         for (TProduct tProduct : tProducts) {
             shopItems.add(new ShopItem(
                     tProduct.getPid(),
                     tProduct.getProductName(),
                     tProduct.getPrice(),
                     //imageMapper.selectByPid(tProduct.getPid()).get(0).getImageSrc()
-                    ((TImage)(baseClient.getImageByPid(tProduct.getPid()).getData())).getImageSrc()
+                    (baseClient.getImageByPid(tProduct.getPid())).getData().get(0).getImageSrc()
             ));
         }
         return shopItems;

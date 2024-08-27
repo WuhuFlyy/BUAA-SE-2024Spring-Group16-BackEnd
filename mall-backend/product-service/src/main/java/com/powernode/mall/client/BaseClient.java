@@ -78,15 +78,15 @@ public interface BaseClient {
     public JsonResult<?> updateImage(TImage image);
 
     @RequestMapping("/image/get")
-    public JsonResult<?> getImage(Integer iid);
+    public JsonResult<TImage> getImage(@RequestParam Integer iid);
 
     @RequestMapping("/image/removeByPid")
-    public JsonResult<?> removeImageByPid(Integer pid);
+    public JsonResult<?> removeImageByPid(@RequestParam Integer pid);
 
     @RequestMapping("/image/getByPid")
-    public JsonResult<?> getImageByPid(Integer pid);
+    public JsonResult<ArrayList<TImage>> getImageByPid(@RequestParam Integer pid);
 
     @RequestMapping("/image/getBySid")
-    public JsonResult<?> getImageBySid(Integer sid);
+    public JsonResult<ArrayList<TImage>> getImageBySid(@RequestParam Integer sid);
 
 }

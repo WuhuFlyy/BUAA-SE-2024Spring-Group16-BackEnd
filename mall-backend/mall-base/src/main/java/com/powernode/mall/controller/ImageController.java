@@ -5,6 +5,7 @@ import com.powernode.mall.service.IImageService;
 import com.powernode.mall.util.JsonResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
@@ -16,43 +17,43 @@ public class ImageController extends BaseController{
     private IImageService imageService;
 
     @RequestMapping("add")
-    public JsonResult<?> addImage(TImage image){
+    public JsonResult<?> addImage(@RequestParam TImage image){
         imageService.addImage(image);
         return new JsonResult<>(OK);
     }
 
     @RequestMapping("remove")
-    public JsonResult<?> removeImage(Integer iid){
+    public JsonResult<?> removeImage(@RequestParam Integer iid){
         imageService.removeImage(iid);
         return new JsonResult<>(OK);
     }
 
     @RequestMapping("update")
-    public JsonResult<?> updateImage(TImage image){
+    public JsonResult<?> updateImage(@RequestParam TImage image){
         imageService.updateImage(image);
         return new JsonResult<>(OK);
     }
 
     @RequestMapping("get")
-    public JsonResult<?> getImage(Integer iid){
+    public JsonResult<TImage> getImage(@RequestParam Integer iid){
         TImage image = imageService.getImage(iid);
         return new JsonResult<>(OK, image);
     }
 
     @RequestMapping("removeByPid")
-    public JsonResult<?> removeImageByPid(Integer pid){
+    public JsonResult<?> removeImageByPid(@RequestParam Integer pid){
         imageService.removeImageByPid(pid);
         return new JsonResult<>(OK);
     }
 
     @RequestMapping("getByPid")
-    public JsonResult<?> getImageByPid(Integer pid){
+    public JsonResult<ArrayList<TImage>> getImageByPid(@RequestParam Integer pid){
         ArrayList<TImage> images = imageService.getImageByPid(pid);
         return new JsonResult<>(OK, images);
     }
 
     @RequestMapping("getBySid")
-    public JsonResult<?> getImageBySid(Integer sid){
+    public JsonResult<ArrayList<TImage>> getImageBySid(@RequestParam Integer sid){
         ArrayList<TImage> images = imageService.getImageByPid(sid);
         return new JsonResult<>(OK, images);
     }
