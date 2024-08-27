@@ -1,9 +1,7 @@
 package com.powernode.mall.client;
 
 
-import com.powernode.mall.po.TComment;
-import com.powernode.mall.po.TCommentImage;
-import com.powernode.mall.po.TShop;
+import com.powernode.mall.po.*;
 import com.powernode.mall.util.JsonResult;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -49,5 +47,44 @@ public interface BaseClient {
 
     @RequestMapping("/commentimage/get")
     public JsonResult<?> getCommentImage(@RequestParam Integer commentImageId);
+
+    @RequestMapping("/version/add")
+    public JsonResult<?> addVersion(@RequestParam TVersion version);
+
+    @RequestMapping("/version/remove")
+    public JsonResult<?> removeVersion(@RequestParam Integer vid);
+
+    @RequestMapping("/version/update")
+    public JsonResult<?> updateVersion(@RequestParam TVersion version);
+
+    @RequestMapping("/version/get")
+    public JsonResult<?> getVersion(@RequestParam Integer vid);
+
+    @RequestMapping("/version/getByPid")
+    public JsonResult<?> getVersionByPid(@RequestParam Integer pid);
+
+    @RequestMapping("/version/removeByPid")
+    public JsonResult<?> removeByPid(@RequestParam Integer pid);
+
+    @RequestMapping("/image/add")
+    public JsonResult<?> addImage(TImage image);
+
+    @RequestMapping("/image/remove")
+    public JsonResult<?> removeImage(Integer iid);
+
+    @RequestMapping("/image/update")
+    public JsonResult<?> updateImage(TImage image);
+
+    @RequestMapping("/image/get")
+    public JsonResult<?> getImage(Integer iid);
+
+    @RequestMapping("/image/removeByPid")
+    public JsonResult<?> removeImageByPid(Integer pid);
+
+    @RequestMapping("/image/getByPid")
+    public JsonResult<?> getImageByPid(Integer pid);
+
+    @RequestMapping("/image/getBySid")
+    public JsonResult<?> getImageBySid(Integer sid);
 
 }
