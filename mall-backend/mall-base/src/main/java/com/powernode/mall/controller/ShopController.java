@@ -46,9 +46,16 @@ public class ShopController extends BaseController {
         return new JsonResult<>(OK);
     }
 
-    @RequestMapping("get_shop_by_sid")
+    @RequestMapping("get_shop_info_by_sid")
     public JsonResult<?> getShopInfoBySid(@RequestParam("sid") Integer sid) {
         ShopInfo shopinfo = shopService.getShopInfoBySid(sid);
         return new JsonResult<>(OK, shopinfo);
     }
+
+    @RequestMapping("get_shop_by_sid")
+    public JsonResult<?> getShopBySid(@RequestParam("sid") Integer sid) {
+        TShop shop = shopService.getShopBySid(sid);
+        return new JsonResult<>(OK, shop);
+    }
+
 }

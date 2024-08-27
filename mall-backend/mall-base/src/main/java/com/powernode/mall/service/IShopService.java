@@ -35,4 +35,6 @@ public interface IShopService {
      * @param shop 商店信息
      */
     void insertShop(TShop shop);
+
+    TShop getShopBySid(Integer sid);
 }

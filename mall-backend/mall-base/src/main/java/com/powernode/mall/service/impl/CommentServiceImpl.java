@@ -6,6 +6,8 @@ import com.powernode.mall.service.ICommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+
 @Service
 public class CommentServiceImpl implements ICommentService {
 
@@ -34,4 +36,8 @@ public class CommentServiceImpl implements ICommentService {
         return commentMapper.selectByPrimaryKey(commentId);
     }
 
+    @Override
+    public ArrayList<TComment> getCommentByPid(Integer pid) {
+        return commentMapper.selectByPid(pid);
+    }
 }

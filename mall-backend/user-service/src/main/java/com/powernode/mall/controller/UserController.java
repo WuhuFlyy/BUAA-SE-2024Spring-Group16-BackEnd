@@ -104,9 +104,11 @@ public class UserController extends BaseController
         return new JsonResult<>(OK, user);
     }
 
+
+    // 这个应该没用
     @RequestMapping("get_shop")
     public JsonResult<?> getShop(Integer sid){
-        return baseClient.getShopInfoBySid(sid);
+        return baseClient.getShopBySid(sid);
     }
 
 

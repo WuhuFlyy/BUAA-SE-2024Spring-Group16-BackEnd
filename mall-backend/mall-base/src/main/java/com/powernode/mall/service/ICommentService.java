@@ -2,6 +2,8 @@ package com.powernode.mall.service;
 
 import com.powernode.mall.po.TComment;
 
+import java.util.ArrayList;
+
 public interface ICommentService {
 
     int addComment(TComment comment);
@@ -11,5 +13,7 @@ public interface ICommentService {
     void updateComment(TComment comment);
 
     TComment getComment(Integer commentId);
+
+    ArrayList<TComment> getCommentByPid(Integer pid);
 
 }

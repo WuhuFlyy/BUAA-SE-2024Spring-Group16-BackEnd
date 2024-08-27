@@ -7,13 +7,14 @@ import com.powernode.mall.util.JsonResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.powernode.mall.controller.BaseController.OK;
 
 @RestController
 @RequestMapping("comment")
-public class CommentController {
+public class CommentController extends BaseController{
     @Autowired
     private ICommentService commentService;
 
@@ -39,6 +40,12 @@ public class CommentController {
     public JsonResult<?> getComment(@RequestParam Integer commentId) {
         TComment comment = commentService.getComment(commentId);
         return new JsonResult<>(OK, comment);
+    }
+
+    @RequestMapping("getByPid")
+    public JsonResult<?> getCommentByPid(@RequestParam Integer pid) {
+        ArrayList<TComment> comments = commentService.getCommentByPid(pid);
+        return new JsonResult<>(OK, comments);
     }
 
 

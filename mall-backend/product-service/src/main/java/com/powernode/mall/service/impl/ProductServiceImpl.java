@@ -1,5 +1,7 @@
 package com.powernode.mall.service.impl;
 
+import com.powernode.mall.client.BaseClient;
+import com.powernode.mall.client.UserClient;
 import com.powernode.mall.dto.Comment;
 import com.powernode.mall.dto.ProductDetails;
 import com.powernode.mall.dto.ProductNoDetails;
@@ -22,6 +24,11 @@ import java.util.List;
 public class ProductServiceImpl implements IProductService {
     @Autowired
     private TProductMapper productMapper;
+
+    @Autowired
+    private BaseClient baseClient;
+    @Autowired
+    private UserClient userClient;
 
 //    @Autowired
 //    private TCommentMapper commentMapper;
@@ -60,10 +67,14 @@ public class ProductServiceImpl implements IProductService {
             throw new ProductNotFoundException("查询商品不存在");
         }
 
-        ArrayList<TComment> tComments = commentMapper.selectByPid(id);
+        //ArrayList<TComment> tComments = commentMapper.selectByPid(id);
+        ArrayList<TComment> tComments = (ArrayList<TComment>) baseClient.getCommentByPid(id).getData();
         ArrayList<TVersion> tVersions = versionMapper.selectByPid(id);
+
         ArrayList<TImage> tImages = imageMapper.selectByPid(id);
-        TShop tShop = shopMapper.selectByPrimaryKey(tProduct.getSid());
+
+        //TShop tShop = shopMapper.selectByPrimaryKey(tProduct.getSid());
+        TShop tShop = (TShop) baseClient.getShopBySid(tProduct.getSid()).getData();
         if (tShop == null) {
             throw new ProductNoMatchingShopException("商品无对应商店");
         }
@@ -76,7 +87,8 @@ public class ProductServiceImpl implements IProductService {
         if (tComments != null) {
             for (TComment tComment : tComments) {
                 comments.add(new Comment(
-                        userMapper.selectByPrimaryKey(tComment.getUid()).getUsername(),
+                        //userMapper.selectByPrimaryKey(tComment.getUid()).getUsername(),
+                        userClient.getByUid(tComment.getUid()).getData().getUsername(),
                         tComment.getContent(),
                         tComment.getRate())
                 );

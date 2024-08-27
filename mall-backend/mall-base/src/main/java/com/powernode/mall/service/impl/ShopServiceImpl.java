@@ -95,4 +95,9 @@ public class ShopServiceImpl implements IShopService {
     public void insertShop(TShop shop) {
         shopMapper.insert(shop);
     }
+
+    @Override
+    public TShop getShopBySid(Integer sid) {
+        return shopMapper.selectByPrimaryKey(sid);
+    }
 }
