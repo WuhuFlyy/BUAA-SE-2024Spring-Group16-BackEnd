@@ -207,7 +207,8 @@ public class UserServiceImpl implements IUserService
         //TProduct product = IProductService.selectByPrimaryKey(userComment.getProductId());
         //TProduct product = productclient.selectByPrimaryKey(userComment.getProductId());
         // product-service还未完成，先不调用
-        TProduct product = new TProduct();
+
+        TProduct product = (productClient.getByPid(userComment.getProductId()).getData());
 
         if(product == null){
             throw new ProductNotFoundException("商品不存在");

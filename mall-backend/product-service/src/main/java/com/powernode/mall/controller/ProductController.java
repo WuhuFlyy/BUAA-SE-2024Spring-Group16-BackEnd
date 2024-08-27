@@ -14,7 +14,7 @@ public class ProductController extends BaseController {
     IProductService productService;
 
     @RequestMapping("get_by_pid")
-    public JsonResult<?> getByPid(@RequestParam("pid") Integer pid){
+    public JsonResult<TProduct> getByPid(@RequestParam("pid") Integer pid){
         TProduct tProduct = productService.selectByPrimaryKey(pid);
         return new JsonResult<>(OK, tProduct);
     }

@@ -1,4 +1,4 @@
-package com.powernode.mall;
+package com.powernode.productservice;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

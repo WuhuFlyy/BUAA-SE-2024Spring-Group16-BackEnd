@@ -19,5 +19,5 @@ import java.util.List;
 public interface ProductClient {
 
     @RequestMapping("/products/get_by_pid")
-    TProduct getByPid(@RequestParam("pid") Integer pid);
+    public JsonResult<TProduct> getByPid(@RequestParam("pid") Integer pid);
 }
