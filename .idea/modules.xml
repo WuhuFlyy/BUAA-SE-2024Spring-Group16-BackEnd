@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/BUAA-SE-2024Spring-Group16-BackEnd-2.iml" filepath="$PROJECT_DIR$/BUAA-SE-2024Spring-Group16-BackEnd-2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mall.iml" filepath="$PROJECT_DIR$/mall.iml" />
     </modules>
   </component>
 </project>

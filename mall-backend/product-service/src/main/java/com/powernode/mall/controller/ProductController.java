@@ -23,10 +23,11 @@ public class ProductController extends BaseController {
     @Autowired
     private ProductClient productClient;
 
-
+    @Autowired
+    private IProductService productService;
 
     @RequestMapping("details_test")
     public JsonResult<ProductDetails> detailsTest(int id){
-        return productClient.getProductById(id);
+        return new JsonResult<>(OK,productService.get(id));
     }
 }
