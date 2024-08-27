@@ -69,10 +69,10 @@ public class ProductServiceImpl implements IProductService {
 
         //ArrayList<TComment> tComments = commentMapper.selectByPid(id);
         ArrayList<TComment> tComments = (ArrayList<TComment>) baseClient.getCommentByPid(id).getData();
-        ArrayList<TVersion> tVersions = versionMapper.selectByPid(id);
-
-        ArrayList<TImage> tImages = imageMapper.selectByPid(id);
-
+        //ArrayList<TVersion> tVersions = versionMapper.selectByPid(id);
+        ArrayList<TVersion> tVersions = (ArrayList<TVersion>) baseClient.getVersionByPid(id).getData();
+        //ArrayList<TImage> tImages = imageMapper.selectByPid(id);
+        ArrayList<TImage> tImages = (ArrayList<TImage>) baseClient.getImageByPid(id).getData();
         //TShop tShop = shopMapper.selectByPrimaryKey(tProduct.getSid());
         TShop tShop = (TShop) baseClient.getShopBySid(tProduct.getSid()).getData();
         if (tShop == null) {
@@ -145,7 +145,8 @@ public class ProductServiceImpl implements IProductService {
                     tProduct.getPid(),
                     tProduct.getProductName(),
                     tProduct.getPrice(),
-                    imageMapper.selectByPid(tProduct.getPid()).get(0).getImageSrc()
+                    //imageMapper.selectByPid(tProduct.getPid()).get(0).getImageSrc()
+                    ((TImage)(baseClient.getImageByPid(tProduct.getPid()).getData())).getImageSrc()
             ));
         }
         return shopItems;
@@ -155,7 +156,8 @@ public class ProductServiceImpl implements IProductService {
     public void insertProduct(ProductDetails product) {
         TProduct tProduct = new TProduct();
         Date date = new Date();
-        String username = shopMapper.selectByPrimaryKey(product.getShopId()).getUsername();
+        //String username = shopMapper.selectByPrimaryKey(product.getShopId()).getUsername();
+        String username = ((TShop)baseClient.getShopBySid(product.getShopId()).getData()).getUsername();
         ArrayList<String> versions = product.getVersion();
         ArrayList<String> images = product.getImageSrc();
 
@@ -180,14 +182,16 @@ public class ProductServiceImpl implements IProductService {
             TVersion tVersion = new TVersion();
             tVersion.setPid(pid);
             tVersion.setVersion(version);
-            versionMapper.insert(tVersion);
+            //versionMapper.insert(tVersion);
+            baseClient.addVersion(tVersion);
         }
 
         for(String image : images) {
             TImage tImage = new TImage();
             tImage.setPid(pid);
             tImage.setImageSrc(image);
-            imageMapper.insert(tImage);
+            //imageMapper.insert(tImage);
+            baseClient.addImage(tImage);
         }
 
     }
@@ -201,7 +205,8 @@ public class ProductServiceImpl implements IProductService {
 
         TProduct tProduct = new TProduct();
         Date date = new Date();
-        String username = shopMapper.selectByPrimaryKey(product.getShopId()).getUsername();
+        //String username = shopMapper.selectByPrimaryKey(product.getShopId()).getUsername();
+        String username = ((TShop)baseClient.getShopBySid(product.getShopId()).getData()).getUsername();
         ArrayList<String> versions = product.getVersion();
         ArrayList<String> images = product.getImageSrc();
 
@@ -222,21 +227,25 @@ public class ProductServiceImpl implements IProductService {
 
         int pid = tProduct.getPid();
 
-        versionMapper.deleteByPid(pid);
-        imageMapper.deleteByPid(pid);
+        //versionMapper.deleteByPid(pid);
+        baseClient.removeByPid(pid);
+        //imageMapper.deleteByPid(pid);
+        baseClient.removeImageByPid(pid);
 
         for(String version : versions) {
             TVersion tVersion = new TVersion();
             tVersion.setPid(pid);
             tVersion.setVersion(version);
-            versionMapper.insert(tVersion);
+            //versionMapper.insert(tVersion);
+            baseClient.addVersion(tVersion);
         }
 
         for(String image : images) {
             TImage tImage = new TImage();
             tImage.setPid(pid);
             tImage.setImageSrc(image);
-            imageMapper.insert(tImage);
+            //imageMapper.insert(tImage);
+            baseClient.addImage(tImage);
         }
 
     }
