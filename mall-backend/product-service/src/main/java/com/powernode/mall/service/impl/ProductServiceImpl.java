@@ -68,17 +68,17 @@ public class ProductServiceImpl implements IProductService {
         }
 
         //ArrayList<TComment> tComments = commentMapper.selectByPid(id);
-        ArrayList<TComment> tComments = (ArrayList<TComment>) baseClient.getCommentByPid(id).getData();
+        ArrayList<TComment> tComments = baseClient.getCommentByPid(id).getData();
         //ArrayList<TVersion> tVersions = versionMapper.selectByPid(id);
         ArrayList<TVersion> tVersions = (ArrayList<TVersion>) baseClient.getVersionByPid(id).getData();
         //ArrayList<TImage> tImages = imageMapper.selectByPid(id);
         ArrayList<TImage> tImages = (ArrayList<TImage>) baseClient.getImageByPid(id).getData();
         //TShop tShop = shopMapper.selectByPrimaryKey(tProduct.getSid());
-        TShop tShop = (TShop) baseClient.getShopBySid(tProduct.getSid()).getData();
+        TShop tShop =  baseClient.getShopBySid(tProduct.getSid()).getData();
         if (tShop == null) {
             throw new ProductNoMatchingShopException("商品无对应商店");
         }
-
+        //System.out.println(userClient.getByUid(1).getData());
         ProductDetails productDetails = new ProductDetails();
         ArrayList<Comment> comments = new ArrayList<>();
         ArrayList<String> images = new ArrayList<>();

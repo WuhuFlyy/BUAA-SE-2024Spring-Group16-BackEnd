@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.ArrayList;
+
 @FeignClient(name = "shop-service", url = "http://localhost:8888")
 public interface BaseClient {
 
@@ -15,7 +17,7 @@ public interface BaseClient {
     public JsonResult<?> insertShop(@RequestBody TShop shop);
 
     @RequestMapping("/shop/get_shop_by_sid")
-    public JsonResult<?> getShopBySid(@RequestParam("sid") Integer sid);
+    public JsonResult<TShop> getShopBySid(@RequestParam("sid") Integer sid);
 
 
 
@@ -29,10 +31,10 @@ public interface BaseClient {
     public JsonResult<Void> updateComment(@RequestBody TComment comment);
 
     @RequestMapping("/comment/get")
-    public JsonResult<?> getComment(@RequestParam Integer commentId);
+    public JsonResult<TComment> getComment(@RequestParam Integer commentId);
 
     @RequestMapping("/comment/getByPid")
-    public JsonResult<?> getCommentByPid(@RequestParam Integer pid);
+    public JsonResult<ArrayList<TComment>> getCommentByPid(@RequestParam Integer pid);
 
 
 

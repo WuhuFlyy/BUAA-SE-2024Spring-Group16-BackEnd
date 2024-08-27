@@ -19,7 +19,7 @@ public class CommentController extends BaseController{
     private ICommentService commentService;
 
     @RequestMapping("add")
-    public JsonResult<?> addComment(@RequestBody TComment comment) {
+    public JsonResult<Integer> addComment(@RequestBody TComment comment) {
         int cid = commentService.addComment(comment);
         return new JsonResult<>(OK,cid);
     }
@@ -37,13 +37,13 @@ public class CommentController extends BaseController{
     }
 
     @RequestMapping("get")
-    public JsonResult<?> getComment(@RequestParam Integer commentId) {
+    public JsonResult<TComment> getComment(@RequestParam Integer commentId) {
         TComment comment = commentService.getComment(commentId);
         return new JsonResult<>(OK, comment);
     }
 
     @RequestMapping("getByPid")
-    public JsonResult<?> getCommentByPid(@RequestParam Integer pid) {
+    public JsonResult<ArrayList<TComment>> getCommentByPid(@RequestParam Integer pid) {
         ArrayList<TComment> comments = commentService.getCommentByPid(pid);
         return new JsonResult<>(OK, comments);
     }
