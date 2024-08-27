@@ -109,8 +109,5 @@ public class UserController extends BaseController
         return baseClient.getShopInfoBySid(sid);
     }
 
-    @RequestMapping("reg_test")
-    public JsonResult<?> regTest(String username ,String password, String type){
-        return baseClient.reg(username, password, type);
-    }
+
 }

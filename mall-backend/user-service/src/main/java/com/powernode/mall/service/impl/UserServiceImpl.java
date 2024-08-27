@@ -218,15 +218,17 @@ public class UserServiceImpl implements IUserService
         comment.setContent(userComment.getContent());
         comment.setPid(userComment.getProductId());
         comment.setRate(userComment.getRate());
+// !!
 
-        baseClient.addComment(comment);
-        int cid = comment.getCid();
+        int cid = (int) baseClient.addComment(comment).getData();
+        //System.out.println(cid);
+        // 这行为什么报错？
+
 //        if(rows != 1){
 //            throw new InsertException("插入评论数据时发生数据库错误");
 //        }
 
 
-        System.out.println(cid);
 
         ArrayList<String> images = userComment.getImages();
         for(String image : images){
@@ -234,10 +236,11 @@ public class UserServiceImpl implements IUserService
             commentImage.setUid(userComment.getId());
             commentImage.setCid(cid);
             commentImage.setImageSrc(image);
-            int r = commentImageMapper.insert(commentImage);
-            if(r != 1){
-                throw new InsertException("插入评论图片数据时发生数据库错误");
-            }
+            // !!
+            baseClient.addCommentImage(commentImage);
+//            if(r != 1){
+//                throw new InsertException("插入评论图片数据时发生数据库错误");
+//            }
         }
     }
 }

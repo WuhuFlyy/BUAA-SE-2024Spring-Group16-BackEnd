@@ -4,7 +4,7 @@ import com.powernode.mall.po.TComment;
 
 public interface ICommentService {
 
-    void addComment(TComment comment);
+    int addComment(TComment comment);
 
     void removeComment(Integer commentId);
 

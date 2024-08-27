@@ -28,7 +28,7 @@ public interface BaseClient {
 
 
     @RequestMapping("/comment/add")
-    public JsonResult<Void> addComment(@RequestBody TComment comment);
+    public JsonResult<?> addComment(@RequestBody TComment comment);
 
     @RequestMapping("/comment/remove")
     public JsonResult<Void> removeComment(@RequestParam Integer commentId);

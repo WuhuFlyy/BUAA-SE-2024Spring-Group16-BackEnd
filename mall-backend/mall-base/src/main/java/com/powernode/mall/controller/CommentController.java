@@ -18,9 +18,9 @@ public class CommentController {
     private ICommentService commentService;
 
     @RequestMapping("add")
-    public JsonResult<Void> addComment(@RequestBody TComment comment) {
-        commentService.addComment(comment);
-        return new JsonResult<>(OK);
+    public JsonResult<?> addComment(@RequestBody TComment comment) {
+        int cid = commentService.addComment(comment);
+        return new JsonResult<>(OK,cid);
     }
 
     @RequestMapping("remove")

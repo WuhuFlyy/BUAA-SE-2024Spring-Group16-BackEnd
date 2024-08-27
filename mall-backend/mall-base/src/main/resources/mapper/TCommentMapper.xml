@@ -15,7 +15,7 @@
     where cid = #{cid,jdbcType=INTEGER}
   </delete>
 
-  <insert id="insert" parameterType="com.powernode.mall.po.TComment">
+  <insert id="insert" parameterType="com.powernode.mall.po.TComment" useGeneratedKeys="true" keyProperty="cid">
     <selectKey resultType="java.lang.Integer" keyProperty="cid" order="AFTER">
       select last_insert_id()
     </selectKey>

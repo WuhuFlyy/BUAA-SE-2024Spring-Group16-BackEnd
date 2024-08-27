@@ -14,8 +14,9 @@ public class CommentServiceImpl implements ICommentService {
 
 
     @Override
-    public void addComment(TComment comment) {
+    public int addComment(TComment comment) {
         commentMapper.insert(comment);
+        return comment.getCid();
     }
 
     @Override
