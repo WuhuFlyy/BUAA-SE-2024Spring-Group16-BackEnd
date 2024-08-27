@@ -25,8 +25,8 @@ public class productServiceImpl implements IProductService {
         @HystrixProperty(name = HystrixPropertiesManager.METRICS_ROLLING_STATS_TIME_IN_MILLISECONDS, value = "10000") // 统计时间窗
 
     })
-    public ProductDetails get(int id) {
-        return productClient.getProductById(id).getData();
+    public ProductDetails get(int id) throws Exception{
+        throw new Exception("aaaaaaaaaaaaa");
     }
 
     public ProductDetails fallbackMethod(int id) {
