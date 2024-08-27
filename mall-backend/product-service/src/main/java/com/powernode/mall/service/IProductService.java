@@ -14,5 +14,5 @@ import java.util.List;
 import java.util.ArrayList;
 
 public interface IProductService {
-   ProductDetails get(int id) throws Exception;
+   ProductDetails get(int id);
 }
