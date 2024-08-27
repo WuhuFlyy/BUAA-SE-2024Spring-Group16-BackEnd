@@ -30,11 +30,12 @@ public class ProductController extends BaseController {
     @HystrixCommand(fallbackMethod = "fallbackMethod")
     @RequestMapping("details_test")
     public JsonResult<ProductDetails> detailsTest(int id){
-        System.out.println("shjakljdkfhbsslkdhfbnmsughdjbasnbm!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+
         return productClient.getProductById(id);
     }
 
     public JsonResult<ProductDetails> fallbackMethod(int id) {
+        System.out.println("shjakljdkfhbsslkdhfbnmsughdjbasnbm!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         ProductDetails productDetails = new ProductDetails();
         productDetails.setProductId(id);
         productDetails.setName("等待");
