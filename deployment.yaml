@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: mall  # 容器名称
-        image: mall:${vserion}  # 容器镜像
+        image: mall:1.0.0  # 容器镜像
         ports:
         - containerPort: 8888  # 容器暴露的端口
           name: mall
