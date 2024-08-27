@@ -26,7 +26,7 @@ public class productServiceImpl implements IProductService {
 
     })
     public ProductDetails get(int id) {
-        return productClient.getProductById(id).getData();
+        throw new RuntimeException("Aaaaaaaaaaa");
     }
 
     public ProductDetails fallbackMethod(int id) {

@@ -1,5 +1,6 @@
 package com.powernode.mall.controller;
 
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.powernode.mall.client.ProductClient;
 import com.powernode.mall.dto.ProductDetails;
 import com.powernode.mall.dto.ProductNoDetails;
@@ -26,8 +27,16 @@ public class ProductController extends BaseController {
     @Autowired
     private IProductService productService;
 
+    @HystrixCommand(fallbackMethod = "fallbackMethod")
     @RequestMapping("details_test")
     public JsonResult<ProductDetails> detailsTest(int id){
-        return new JsonResult<>(OK,productService.get(id));
+        throw new RuntimeException("iusadjnamsdnaks");
+    }
+
+    public JsonResult<ProductDetails> fallbackMethod(int id) {
+        ProductDetails productDetails = new ProductDetails();
+        productDetails.setProductId(id);
+        productDetails.setName("等待");
+        return new JsonResult<>(OK,  productDetails);
     }
 }
