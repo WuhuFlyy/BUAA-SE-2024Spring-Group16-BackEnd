@@ -16,25 +16,25 @@ public class CommentImageController {
     @Autowired
     private ICommentImageService commentImageService;
 
-    @PostMapping("add")
+    @RequestMapping("add")
     public JsonResult<Void> addCommentImage(@RequestBody TCommentImage commentImage) {
         commentImageService.addCommentImage(commentImage);
         return new JsonResult<>(OK);
     }
 
-    @DeleteMapping("remove")
+    @RequestMapping("remove")
     public JsonResult<Void> removeCommentImage(@RequestParam Integer commentImageId) {
         commentImageService.removeCommentImage(commentImageId);
         return new JsonResult<>(OK);
     }
 
-    @PutMapping("update")
+    @RequestMapping("update")
     public JsonResult<Void> updateCommentImage(@RequestBody TCommentImage commentImage) {
         commentImageService.updateCommentImage(commentImage);
         return new JsonResult<>(OK);
     }
 
-    @GetMapping("get")
+    @RequestMapping("get")
     public JsonResult<TCommentImage> getCommentImage(@RequestParam Integer commentImageId) {
         TCommentImage commentImage = commentImageService.getCommentImage(commentImageId);
         return new JsonResult<>(OK, commentImage);

@@ -12,8 +12,7 @@
     where ciid = #{ciid,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.powernode.mall.po.TCommentImage">
-    insert into t_comment_image (ciid, uid, cid, 
-      image_src)
+    insert into t_comment_image (ciid, uid, cid, image_src)
     values (#{ciid,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, #{cid,jdbcType=INTEGER}, 
       #{imageSrc,jdbcType=VARCHAR})
   </insert>
