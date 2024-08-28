@@ -141,13 +141,17 @@ public class ProductServiceImpl implements IProductService {
         ArrayList<TProduct> tProducts = productMapper.selectByKeywords(keywords);
         //System.out.println((baseClient.getImageByPid(1)).getData().get(0).getImageSrc());
         for (TProduct tProduct : tProducts) {
+            String src = null;
+            if(!baseClient.getImageByPid(tProduct.getPid()).getData().isEmpty()) {
+                src = baseClient.getImageByPid(tProduct.getPid()).getData().get(0).getImageSrc();
+            }
             shopItems.add(new ShopItem(
                     tProduct.getPid(),
                     tProduct.getProductName(),
                     tProduct.getPrice(),
                     //imageMapper.selectByPid(tProduct.getPid()).get(0).getImageSrc()
                     // 要求这个产品必须有图片！
-                    (baseClient.getImageByPid(tProduct.getPid())).getData().get(0).getImageSrc()
+                    src
             ));
         }
         return shopItems;

@@ -45,16 +45,17 @@ public class ShopServiceImpl implements IShopService {
         //ArrayList<TProduct> products = productMapper.selectBySid(sid);
         ArrayList<TProduct> products = productClient.getByShopId(sid).getData();
         for(TProduct product : products){
+            String src = null;
+            if(!imageMapper.selectByPid(product.getPid()).isEmpty()) {
+                src = imageMapper.selectByPid(product.getPid()).getFirst().getImageSrc();
+            }
             Product shopItem1 = new Product();
             shopItem1.setPid(product.getPid());
             shopItem1.setPrice(product.getPrice());
             shopItem1.setName(product.getProductName());
             shopItem1.setIsHot(false);
             if(product.getIsHot() == 1) shopItem1.setIsHot(true);
-            shopItem1.setImageSrc(
-                    // 这里对应产品必须有图片！
-                    imageMapper.selectByPid(product.getPid()).getFirst().getImageSrc()
-            );
+            shopItem1.setImageSrc(src);
 
             shopItem1s.add(shopItem1);
         }

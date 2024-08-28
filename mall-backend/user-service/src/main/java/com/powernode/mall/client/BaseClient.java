@@ -1,6 +1,7 @@
 package com.powernode.mall.client;
 
 
+import com.powernode.mall.client.fallback.BaseClientFallback;
 import com.powernode.mall.po.TComment;
 import com.powernode.mall.po.TCommentImage;
 import com.powernode.mall.po.TShop;
@@ -16,7 +17,7 @@ import java.util.List;
 
 import static com.powernode.mall.controller.BaseController.OK;
 
-@FeignClient(name = "shop-service", url = "http://localhost:8888")
+@FeignClient(name = "shop-service", url = "http://localhost:8888", fallback = BaseClientFallback.class)
 public interface BaseClient {
 
     @RequestMapping("/shop/insert_shop")

@@ -18,7 +18,7 @@
         <spring-cloud.version>2023.0.3</spring-cloud.version>
     </properties>
 
-    <artifactId>user-service</artifactId>
+    <artifactId>product-service</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <dependencyManagement>
@@ -80,6 +80,10 @@
             <artifactId>spring-cloud-starter-openfeign</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-circuitbreaker-resilience4j</artifactId>
+        </dependency>
 
         <dependency>
             <groupId>org.springframework.cloud</groupId>
