@@ -42,7 +42,7 @@ public class VersionController extends BaseController{
     }
 
     @RequestMapping("getByPid")
-    public JsonResult<?> getVersionByPid(@RequestParam Integer pid){
+    public JsonResult<ArrayList<TVersion>> getVersionByPid(@RequestParam Integer pid){
         ArrayList<TVersion> versions = versionService.getVersionByPid(pid);
         return new JsonResult<>(OK, versions);
     }

@@ -85,7 +85,7 @@ public class BaseClientFallback implements BaseClient {
     }
 
     @Override
-    public JsonResult<?> getVersionByPid(Integer pid) {
+    public JsonResult<ArrayList<TVersion>> getVersionByPid(Integer pid) {
         return new JsonResult<>(200, new ArrayList<TVersion>());
     }
 

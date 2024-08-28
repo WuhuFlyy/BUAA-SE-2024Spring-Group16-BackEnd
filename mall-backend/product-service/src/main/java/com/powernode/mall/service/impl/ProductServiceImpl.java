@@ -70,7 +70,8 @@ public class ProductServiceImpl implements IProductService {
         //ArrayList<TComment> tComments = commentMapper.selectByPid(id);
         ArrayList<TComment> tComments = baseClient.getCommentByPid(id).getData();
         //ArrayList<TVersion> tVersions = versionMapper.selectByPid(id);
-        ArrayList<TVersion> tVersions = (ArrayList<TVersion>) baseClient.getVersionByPid(id).getData();
+        ArrayList<TVersion> tVersions = baseClient.getVersionByPid(id).getData();
+        System.out.println(tVersions.size());
         //ArrayList<TImage> tImages = imageMapper.selectByPid(id);
         ArrayList<TImage> tImages = (ArrayList<TImage>) baseClient.getImageByPid(id).getData();
         //TShop tShop = shopMapper.selectByPrimaryKey(tProduct.getSid());

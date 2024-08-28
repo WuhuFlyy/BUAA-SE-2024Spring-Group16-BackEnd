@@ -64,7 +64,7 @@ public interface BaseClient {
     public JsonResult<?> getVersion(@RequestParam Integer vid);
 
     @RequestMapping("/version/getByPid")
-    public JsonResult<?> getVersionByPid(@RequestParam Integer pid);
+    public JsonResult<ArrayList<TVersion>> getVersionByPid(@RequestParam Integer pid);
 
     @RequestMapping("/version/removeByPid")
     public JsonResult<?> removeByPid(@RequestParam Integer pid);
