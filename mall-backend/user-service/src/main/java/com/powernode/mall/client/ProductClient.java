@@ -1,6 +1,7 @@
 package com.powernode.mall.client;
 
 
+import com.powernode.mall.client.fallback.ProductFallback;
 import com.powernode.mall.po.TProduct;
 import com.powernode.mall.po.TShop;
 import com.powernode.mall.po.TUser;
@@ -15,7 +16,7 @@ import org.springframework.cloud.openfeign.FeignClient;
 
 import java.util.List;
 
-@FeignClient(name = "product-service", url = "http://localhost:8889", fallback = ProductClient.class)
+@FeignClient(name = "product-service", url = "http://localhost:8889", fallback = ProductFallback.class)
 public interface ProductClient {
 
     @RequestMapping("/products/get_by_pid")
