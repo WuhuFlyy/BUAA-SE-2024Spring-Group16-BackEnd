@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 
-@FeignClient(name = "product-service", url = "http://localhost:8889", fallback = ProductFallback.class)
+@FeignClient(name = "product-service", url = "http://product-service:80", fallback = ProductFallback.class)
 public interface ProductClient {
 
     @RequestMapping("/products/get_by_pid")

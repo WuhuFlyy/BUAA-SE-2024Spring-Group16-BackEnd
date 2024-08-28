@@ -15,7 +15,7 @@ import org.springframework.cloud.openfeign.FeignClient;
 
 import java.util.List;
 
-@FeignClient(name = "product-service", url = "http://localhost:8889", fallback = ProductClient.class)
+@FeignClient(name = "product-service", url = "http://product-service:80", fallback = ProductClient.class)
 public interface ProductClient {
 
     @RequestMapping("/products/get_by_pid")

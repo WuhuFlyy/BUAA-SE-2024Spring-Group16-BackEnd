@@ -17,7 +17,7 @@ import java.util.List;
 
 import static com.powernode.mall.controller.BaseController.OK;
 
-@FeignClient(name = "shop-service", url = "http://localhost:8888", fallback = BaseClientFallback.class)
+@FeignClient(name = "shop-service", url = "http://base-service:80", fallback = BaseClientFallback.class)
 public interface BaseClient {
 
     @RequestMapping("/shop/insert_shop")
