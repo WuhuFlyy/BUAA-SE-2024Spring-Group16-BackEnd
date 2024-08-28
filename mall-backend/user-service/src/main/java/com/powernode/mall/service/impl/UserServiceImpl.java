@@ -199,7 +199,7 @@ public class UserServiceImpl implements IUserService
     @Override
     public void comment(UserComment userComment) {
 
-        TUser user = userMapper.selectByPrimaryKey(userComment.getId());
+        TUser user = userMapper.selectByUsername(userComment.getUserName());
         if(user == null || user.getIsDelete() == 1){
             throw new UserNotFoundException("用户不存在");
         }
@@ -215,7 +215,7 @@ public class UserServiceImpl implements IUserService
         }
 
         TComment comment = new TComment();
-        comment.setUid(userComment.getId());
+        comment.setUid(user.getUid());
         comment.setContent(userComment.getContent());
         comment.setPid(userComment.getProductId());
         comment.setRate(userComment.getRate());
@@ -234,7 +234,7 @@ public class UserServiceImpl implements IUserService
         ArrayList<String> images = userComment.getImages();
         for(String image : images){
             TCommentImage commentImage = new TCommentImage();
-            commentImage.setUid(userComment.getId());
+            commentImage.setUid(user.getUid());
             commentImage.setCid(cid);
             commentImage.setImageSrc(image);
             // !!

@@ -2,6 +2,7 @@ package com.powernode.mall.service.impl;
 
 import com.powernode.mall.client.ProductClient;
 import com.powernode.mall.client.UserClient;
+import com.powernode.mall.dto.Cart;
 import com.powernode.mall.mapper.TCartMapper;
 import com.powernode.mall.mapper.TProductMapper;
 import com.powernode.mall.mapper.TUserMapper;
@@ -12,10 +13,7 @@ import com.powernode.mall.po.TUser;
 import com.powernode.mall.po.TVersion;
 import com.powernode.mall.service.ICartService;
 import com.powernode.mall.service.IUserService;
-import com.powernode.mall.service.ex.InsufficientStorageException;
-import com.powernode.mall.service.ex.ProductNotFoundException;
-import com.powernode.mall.service.ex.UserNotFoundException;
-import com.powernode.mall.service.ex.VersionNotFoundException;
+import com.powernode.mall.service.ex.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -44,7 +42,7 @@ public class CartServiceImpl implements ICartService {
     private ProductClient productClient;
 
     @Override
-    public Void addToCart(String username, Integer pid, String version, Integer quantity) {
+    public void addToCart(String username, Integer pid, String version, Integer quantity) {
         //TUser user = userMapper.selectByUsername(username);
         TUser user = userClient.getByUsername(username).getData();
         TCart cart = new TCart();
@@ -87,7 +85,48 @@ public class CartServiceImpl implements ICartService {
         cart.setUid(user.getUid());
 
         cartMapper.insert(cart);
+    }
 
-        return null;
+    @Override
+    public void addNum(int cid) {
+        cartMapper.addNumByCid(cid);
+    }
+
+    @Override
+    public void reduceNum(int cid) {
+        TCart cart = cartMapper.selectByPrimaryKey(cid);
+        if(cart.getQuantity() == 0){
+            throw new CannotReduceQuantityException("数量为0，不能减少数量");
+        }
+        cartMapper.reduceNumByCid(cid);
+    }
+
+    @Override
+    public void deleteCart(int cid) {
+        cartMapper.deleteByPrimaryKey(cid);
+    }
+
+    @Override
+    public ArrayList<Cart> getCartByUsername(String username) {
+        TUser user = userMapper.selectByUsername(username);
+        if(user == null) {
+            throw new UserNotFoundException("用户不存在");
+        }
+
+        ArrayList<Cart> carts = new ArrayList<>();
+        ArrayList<TCart> tCarts = cartMapper.selectByUid(user.getUid());
+        for(TCart tcart : tCarts) {
+            TProduct product = productMapper.selectByPrimaryKey(tcart.getPid());
+            Cart cart = new Cart();
+            cart.setCid(tcart.getCid());
+            cart.setProductId(tcart.getPid());
+            cart.setProductName(product.getProductName());
+            cart.setSalePrice(product.getPrice());
+            cart.setSelectedVersion(tcart.getVersion());
+            cart.setQuantity(tcart.getQuantity());
+            cart.setTotal(product.getPrice()*tcart.getQuantity());
+            carts.add(cart);
+        }
+        return carts;
     }
 }
