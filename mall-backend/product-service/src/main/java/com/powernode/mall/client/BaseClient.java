@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 
-@FeignClient(name = "shop-service", url = "http://localhost:8888", fallback = BaseClientFallback.class)
+@FeignClient(name = "base-service", url = "http://base-service:80", fallback = BaseClientFallback.class)
 public interface BaseClient {
 
     @RequestMapping("/shop/insert_shop")
