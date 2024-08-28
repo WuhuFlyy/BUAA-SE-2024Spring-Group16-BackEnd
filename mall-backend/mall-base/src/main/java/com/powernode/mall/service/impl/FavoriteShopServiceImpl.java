@@ -1,5 +1,7 @@
 package com.powernode.mall.service.impl;
 
+import com.powernode.mall.client.ProductClient;
+import com.powernode.mall.client.UserClient;
 import com.powernode.mall.mapper.TFavoriteShopMapper;
 import com.powernode.mall.mapper.TShopMapper;
 import com.powernode.mall.mapper.TUserMapper;
@@ -19,15 +21,19 @@ public class FavoriteShopServiceImpl implements IFavoriteShopService {
     @Autowired
     private TFavoriteShopMapper favoriteShopMapper;
 
-    @Autowired
-    private TUserMapper userMapper;
+//    @Autowired
+//    private TUserMapper userMapper;
 
     @Autowired
     private TShopMapper shopMapper;
 
+    @Autowired
+    private UserClient userClient;
+
     @Override
     public void addFavoriteShop(String username, Integer shopId) {
-        TUser user = userMapper.selectByUsername(username);
+        //TUser user = userMapper.selectByUsername(username);
+        TUser user = userClient.getByUsername(username).getData();
         if (user == null) {
             throw new UserNotFoundException("用户不存在");
         }
@@ -51,7 +57,8 @@ public class FavoriteShopServiceImpl implements IFavoriteShopService {
 
     @Override
     public void removeFavoriteShop(String username, Integer shopId) {
-        TUser user = userMapper.selectByUsername(username);
+        //TUser user = userMapper.selectByUsername(username);
+        TUser user = userClient.getByUsername(username).getData();
         if (user == null) {
             throw new UserNotFoundException("用户不存在");
         }
@@ -67,7 +74,8 @@ public class FavoriteShopServiceImpl implements IFavoriteShopService {
 
     @Override
     public boolean isFavoriteShop(String username, Integer sid) {
-        TUser user = userMapper.selectByUsername(username);
+        //TUser user = userMapper.selectByUsername(username);
+        TUser user = userClient.getByUsername(username).getData();
         if (user == null) {
             throw new UserNotFoundException("用户不存在");
         }

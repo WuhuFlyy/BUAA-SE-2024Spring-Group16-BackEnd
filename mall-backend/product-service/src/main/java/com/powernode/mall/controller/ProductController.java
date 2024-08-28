@@ -1,42 +1,63 @@
 package com.powernode.mall.controller;
 
-import com.powernode.mall.client.ProductClient;
 import com.powernode.mall.dto.ProductDetails;
 import com.powernode.mall.dto.ProductNoDetails;
 import com.powernode.mall.dto.ShopItem;
+import com.powernode.mall.po.TProduct;
 import com.powernode.mall.service.IProductService;
 import com.powernode.mall.util.JsonResult;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequestMapping("products")
 public class ProductController extends BaseController {
 
     @Autowired
-    private ProductClient productClient;
+    IProductService productService;
 
-    @Autowired
-    private IProductService productService;
-
-    @RequestMapping("details_test")
-    public JsonResult<ProductDetails> detailsTest(int id){
-
-        return productClient.getProductById(id);
+    @RequestMapping("get_by_pid")
+    public JsonResult<TProduct> getByPid(@RequestParam("pid") Integer pid){
+        TProduct tProduct = productService.selectByPrimaryKey(pid);
+        return new JsonResult<>(OK, tProduct);
     }
 
-    public JsonResult<ProductDetails> fallbackMethod(int id) {
-        System.out.println("降级方法");
-        ProductDetails productDetails = new ProductDetails();
-        productDetails.setProductId(id);
-        productDetails.setName("等待");
-        return new JsonResult<>(OK,  productDetails);
+    @RequestMapping("get_details_by_pid")
+    public JsonResult<ProductDetails> getDetailsByPid(@RequestParam("pid") Integer pid){
+        ProductDetails productDetails = productService.getProductDetailByProductId(pid);
+        return new JsonResult<>(OK, productDetails);
+    }
+
+    @RequestMapping("get_all_products")
+    public JsonResult<List<ProductNoDetails>> getAllProducts() {
+        List<ProductNoDetails> products = productService.getAllProducts();
+        return new JsonResult<>(OK, products);
+    }
+
+    @RequestMapping("get_product_by_keywords")
+    public JsonResult<ArrayList<ShopItem>> getProductByKeywords(@RequestParam("keywords") String keywords) {
+        ArrayList<ShopItem> products = productService.getProductByKeywords(keywords);
+        return new JsonResult<>(OK, products);
+    }
+
+    @PostMapping("insert_product")
+    public JsonResult<Void> insertProduct(@RequestBody ProductDetails product) {
+        productService.insertProduct(product);
+        return new JsonResult<>(OK);
+    }
+
+    @PostMapping("update_product")
+    public JsonResult<Void> updateProduct(@RequestBody ProductDetails product) {
+        productService.updateProduct(product);
+        return new JsonResult<>(OK);
+    }
+
+    @RequestMapping("get_by_shop_id")
+    public JsonResult<ArrayList<TProduct>> getByShopId(@RequestParam("sid") Integer sid) {
+        ArrayList<TProduct> products = productService.getByShopId(sid);
+        return new JsonResult<>(OK, products);
     }
 }

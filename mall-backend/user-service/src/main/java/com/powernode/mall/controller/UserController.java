@@ -77,12 +77,12 @@ public class UserController extends BaseController
         return new JsonResult<Void>(OK);
     }
 
-    @GetMapping("get_by_uid")
-    public JsonResult<TUser> getByUid(HttpSession session){
-        Integer uid = getUidFromSession(session);
-        TUser user = userService.getByUid(uid);
-        return new JsonResult<TUser>(OK, user);
-    }
+//    @GetMapping("get_by_uid")
+//    public JsonResult<TUser> getByUid(HttpSession session){
+//        Integer uid = getUidFromSession(session);
+//        TUser user = userService.getByUid(uid);
+//        return new JsonResult<TUser>(OK, user);
+//    }
 
     @RequestMapping("change_info")
     public JsonResult<Void> changeInfo(@RequestBody TUser user, HttpSession session){
@@ -104,13 +104,18 @@ public class UserController extends BaseController
         return new JsonResult<>(OK, user);
     }
 
-    @RequestMapping("get_shop")
-    public JsonResult<?> getShop(Integer sid){
-        return baseClient.getShopInfoBySid(sid);
+    @RequestMapping("get_by_username")
+    public JsonResult<TUser> getByUsername(String username){
+        TUser user = userService.getByUsername(username);
+        return new JsonResult<>(OK, user);
     }
 
-    @RequestMapping("reg_test")
-    public JsonResult<?> regTest(String username ,String password, String type){
-        return baseClient.reg(username, password, type);
+
+    // 这个应该没用
+    @RequestMapping("get_shop")
+    public JsonResult<?> getShop(Integer sid){
+        return baseClient.getShopBySid(sid);
     }
+
+
 }

@@ -1,5 +1,7 @@
 package com.powernode.mall.service.impl;
 
+import com.powernode.mall.client.ProductClient;
+import com.powernode.mall.client.UserClient;
 import com.powernode.mall.dto.Shop;
 import com.powernode.mall.dto.ShopInfo;
 import com.powernode.mall.dto.ShopItem;
@@ -19,14 +21,17 @@ import java.util.ArrayList;
 @Service
 public class ShopServiceImpl implements IShopService {
 
-    @Autowired
-    private TProductMapper productMapper;
+//    @Autowired
+//    private TProductMapper productMapper;
 
     @Autowired
     private TShopMapper shopMapper;
 
     @Autowired
     private TImageMapper imageMapper;
+
+    @Autowired
+    private ProductClient productClient;
 
     @Override
     public ArrayList<Product> getAllProducts(Integer sid) {
@@ -37,18 +42,20 @@ public class ShopServiceImpl implements IShopService {
         }
 
         ArrayList<Product> shopItem1s = new ArrayList<>();
-        ArrayList<TProduct> products = productMapper.selectBySid(sid);
-
+        //ArrayList<TProduct> products = productMapper.selectBySid(sid);
+        ArrayList<TProduct> products = productClient.getByShopId(sid).getData();
         for(TProduct product : products){
+            String src = null;
+            if(!imageMapper.selectByPid(product.getPid()).isEmpty()) {
+                src = imageMapper.selectByPid(product.getPid()).getFirst().getImageSrc();
+            }
             Product shopItem1 = new Product();
             shopItem1.setPid(product.getPid());
             shopItem1.setPrice(product.getPrice());
             shopItem1.setName(product.getProductName());
             shopItem1.setIsHot(false);
             if(product.getIsHot() == 1) shopItem1.setIsHot(true);
-            shopItem1.setImageSrc(
-                    imageMapper.selectByPid(product.getPid()).get(0).getImageSrc()
-            );
+            shopItem1.setImageSrc(src);
 
             shopItem1s.add(shopItem1);
         }
@@ -94,5 +101,10 @@ public class ShopServiceImpl implements IShopService {
     @Override
     public void insertShop(TShop shop) {
         shopMapper.insert(shop);
+    }
+
+    @Override
+    public TShop getShopBySid(Integer sid) {
+        return shopMapper.selectByPrimaryKey(sid);
     }
 }

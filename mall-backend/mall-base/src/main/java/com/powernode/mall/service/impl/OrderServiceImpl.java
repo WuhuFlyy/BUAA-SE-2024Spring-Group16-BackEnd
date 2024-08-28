@@ -1,5 +1,7 @@
 package com.powernode.mall.service.impl;
 
+import com.powernode.mall.client.ProductClient;
+import com.powernode.mall.client.UserClient;
 import com.powernode.mall.mapper.*;
 import com.powernode.mall.po.*;
 import com.powernode.mall.service.IOrderService;
@@ -16,26 +18,34 @@ import java.util.Date;
 @Service
 public class OrderServiceImpl implements IOrderService {
 
-    @Autowired
-    TUserMapper userMapper;
+//    @Autowired
+//    TUserMapper userMapper;
 
     @Autowired
     TOrderMapper orderMapper;
 
-    @Autowired
-    TProductMapper productMapper;
+//    @Autowired
+//    TProductMapper productMapper;
 
     @Autowired
     TVersionMapper versionMapper;
 
+    @Autowired
+    private UserClient userClient;
+
+    @Autowired
+    private ProductClient productClient;
+
     @Override
     public Integer submitOrder(String username, Integer pid, String version, Integer quantity, Integer aid) {
 
-        TUser user = userMapper.selectByUsername(username);
+        //TUser user = userMapper.selectByUsername(username);
+        TUser user = userClient.getByUsername(username).getData();
 
         Date date = new Date();
         TOrder order = new TOrder();
-        TProduct product = productMapper.selectByPrimaryKey(pid);
+        //TProduct product = productMapper.selectByPrimaryKey(pid);
+        TProduct product = productClient.getByPid(pid).getData();
         ArrayList<TVersion> versions = versionMapper.selectByPid(pid);
         int tag = 0;
 
@@ -68,7 +78,8 @@ public class OrderServiceImpl implements IOrderService {
         order.setCreatedTime(date);
         order.setModifiedUser(username);
         order.setModifiedTime(date);
-        order.setUid(userMapper.selectByUsername(username).getUid());
+        //order.setUid(userMapper.selectByUsername(username).getUid());
+        order.setUid(userClient.getByUsername(username).getData().getUid());
         order.setPayTime(date);
         order.setQuantity(quantity);
         order.setVersion(version);

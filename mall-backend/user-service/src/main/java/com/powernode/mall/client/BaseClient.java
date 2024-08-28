@@ -1,6 +1,9 @@
 package com.powernode.mall.client;
 
 
+import com.powernode.mall.client.fallback.BaseClientFallback;
+import com.powernode.mall.po.TComment;
+import com.powernode.mall.po.TCommentImage;
 import com.powernode.mall.po.TShop;
 import com.powernode.mall.po.TUser;
 import com.powernode.mall.util.JsonResult;
@@ -12,15 +15,46 @@ import org.springframework.cloud.openfeign.FeignClient;
 
 import java.util.List;
 
-@FeignClient(name = "shop-service", url = "http://base-service:80")
+import static com.powernode.mall.controller.BaseController.OK;
+
+@FeignClient(name = "shop-service", url = "http://localhost:8888", fallback = BaseClientFallback.class)
 public interface BaseClient {
 
     @RequestMapping("/shop/insert_shop")
     public JsonResult<?> insertShop(@RequestBody TShop shop);
 
     @RequestMapping("/shop/get_shop_by_sid")
-    public JsonResult<?> getShopInfoBySid(@RequestParam("sid") Integer sid);
+    public JsonResult<?> getShopBySid(@RequestParam("sid") Integer sid);
 
-    @RequestMapping("/users/reg")
-    public JsonResult<?> reg(@RequestParam("username") String username, @RequestParam("password") String password, @RequestParam("type") String type);
+
+
+    @RequestMapping("/comment/add")
+    public JsonResult<?> addComment(@RequestBody TComment comment);
+
+    @RequestMapping("/comment/remove")
+    public JsonResult<Void> removeComment(@RequestParam Integer commentId);
+
+    @RequestMapping("/comment/update")
+    public JsonResult<Void> updateComment(@RequestBody TComment comment);
+
+    @RequestMapping("/comment/get")
+    public JsonResult<?> getComment(@RequestParam Integer commentId);
+
+    @RequestMapping("/comment/getByPid")
+    public JsonResult<?> getCommentByPid(@RequestParam Integer pid);
+
+
+
+    @RequestMapping("/commentimage/add")
+    public JsonResult<Void> addCommentImage(@RequestBody TCommentImage commentImage);
+
+    @RequestMapping("/commentimage/remove")
+    public JsonResult<Void> removeCommentImage(@RequestParam Integer commentImageId);
+
+    @RequestMapping("/commentimage/update")
+    public JsonResult<Void> updateCommentImage(@RequestBody TCommentImage commentImage);
+
+    @RequestMapping("/commentimage/get")
+    public JsonResult<?> getCommentImage(@RequestParam Integer commentImageId);
+
 }
