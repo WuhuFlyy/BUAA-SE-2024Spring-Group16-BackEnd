@@ -78,7 +78,7 @@ public class ProductServiceImpl implements IProductService {
         if (tShop == null) {
             throw new ProductNoMatchingShopException("商品无对应商店");
         }
-        //System.out.println(userClient.getByUid(1).getData());
+
         ProductDetails productDetails = new ProductDetails();
         ArrayList<Comment> comments = new ArrayList<>();
         ArrayList<String> images = new ArrayList<>();
@@ -139,13 +139,14 @@ public class ProductServiceImpl implements IProductService {
 
         //System.out.println(keywords);
         ArrayList<TProduct> tProducts = productMapper.selectByKeywords(keywords);
-        System.out.println((baseClient.getImageByPid(1)).getData().get(0));
+        //System.out.println((baseClient.getImageByPid(1)).getData().get(0).getImageSrc());
         for (TProduct tProduct : tProducts) {
             shopItems.add(new ShopItem(
                     tProduct.getPid(),
                     tProduct.getProductName(),
                     tProduct.getPrice(),
                     //imageMapper.selectByPid(tProduct.getPid()).get(0).getImageSrc()
+                    // 要求这个产品必须有图片！
                     (baseClient.getImageByPid(tProduct.getPid())).getData().get(0).getImageSrc()
             ));
         }
