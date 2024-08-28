@@ -27,7 +27,6 @@ public class ProductController extends BaseController {
     @Autowired
     private IProductService productService;
 
-    @HystrixCommand(fallbackMethod = "fallbackMethod")
     @RequestMapping("details_test")
     public JsonResult<ProductDetails> detailsTest(int id){
 
@@ -35,7 +34,7 @@ public class ProductController extends BaseController {
     }
 
     public JsonResult<ProductDetails> fallbackMethod(int id) {
-        System.out.println("shjakljdkfhbsslkdhfbnmsughdjbasnbm!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        System.out.println("降级方法");
         ProductDetails productDetails = new ProductDetails();
         productDetails.setProductId(id);
         productDetails.setName("等待");
