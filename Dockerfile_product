@@ -1,0 +1,5 @@
+FROM openjdk:21-jdk
+ARG JAR_FILE
+COPY ${JAR_FILE} product.jar
+EXPOSE 8889
+ENTRYPOINT ["java","-jar","/product.jar"]

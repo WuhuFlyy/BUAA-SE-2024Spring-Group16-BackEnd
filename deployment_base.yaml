@@ -1,0 +1,43 @@
+apiVersion: apps/v1  # API 版本
+kind: Deployment     # 资源类型
+metadata:
+  name: base-deployment  # 部署名称
+  labels:   # 标签，可以用于选择器匹配
+    app: base
+spec:
+  replicas: 3   # 副本数量，表示会启动1个Pod
+  selector:
+    matchLabels:
+      app: base  # 选择具有这个标签的Pod
+  template:  # Pod模板
+    metadata:
+      labels:
+        app: base  # Pod的标签
+    spec:
+      containers:
+      - name: base  # 容器名称
+        image: base:1.0.0  # 容器镜像
+        resources:
+          requests:
+            cpu: "100m"
+          limits:
+            cpu: "500m"
+
+        ports:
+        - containerPort: 8888  # 容器暴露的端口
+          name: base
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: base-service  # 服务的名称
+spec:
+  selector:
+    app: base      # 选择与标签匹配的 Pod
+  ports:
+  - protocol: TCP
+    port: 80           # 服务暴露的端口
+    targetPort: 8888
+    nodePort: 31000
+  type: NodePort
