@@ -4,6 +4,7 @@ import com.powernode.mall.po.TImage;
 import com.powernode.mall.service.IImageService;
 import com.powernode.mall.util.JsonResult;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,7 +18,7 @@ public class ImageController extends BaseController{
     private IImageService imageService;
 
     @RequestMapping("add")
-    public JsonResult<?> addImage(@RequestParam TImage image){
+    public JsonResult<?> addImage(@RequestBody TImage image){
         imageService.addImage(image);
         return new JsonResult<>(OK);
     }
@@ -29,7 +30,7 @@ public class ImageController extends BaseController{
     }
 
     @RequestMapping("update")
-    public JsonResult<?> updateImage(@RequestParam TImage image){
+    public JsonResult<?> updateImage(@RequestBody TImage image){
         imageService.updateImage(image);
         return new JsonResult<>(OK);
     }

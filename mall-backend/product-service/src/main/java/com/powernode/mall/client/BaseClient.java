@@ -51,7 +51,7 @@ public interface BaseClient {
     public JsonResult<?> getCommentImage(@RequestParam Integer commentImageId);
 
     @RequestMapping("/version/add")
-    public JsonResult<?> addVersion(@RequestParam TVersion version);
+    public JsonResult<?> addVersion(@RequestBody TVersion version);
 
     @RequestMapping("/version/remove")
     public JsonResult<?> removeVersion(@RequestParam Integer vid);

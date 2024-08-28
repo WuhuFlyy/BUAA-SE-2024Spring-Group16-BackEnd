@@ -4,6 +4,7 @@ import com.powernode.mall.po.TVersion;
 import com.powernode.mall.service.IVerisonService;
 import com.powernode.mall.util.JsonResult;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,7 +18,7 @@ public class VersionController extends BaseController{
     private IVerisonService versionService;
 
     @RequestMapping("add")
-    public JsonResult<?> addVersion(@RequestParam TVersion version){
+    public JsonResult<?> addVersion(@RequestBody TVersion version){
         versionService.addVersion(version);
         return new JsonResult<>(OK);
     }
