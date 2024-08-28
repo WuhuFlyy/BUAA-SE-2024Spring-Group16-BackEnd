@@ -1,6 +1,5 @@
 package com.powernode.mall.controller;
 
-import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.powernode.mall.client.ProductClient;
 import com.powernode.mall.dto.ProductDetails;
 import com.powernode.mall.dto.ProductNoDetails;
