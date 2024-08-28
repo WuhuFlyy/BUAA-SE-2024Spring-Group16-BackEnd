@@ -10,7 +10,6 @@
 	</parent>
 	<groupId>com.powernode</groupId>
 	<artifactId>mall-base</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
 	<name>mall-base</name>
 	<description>mall</description>
 	<url/>

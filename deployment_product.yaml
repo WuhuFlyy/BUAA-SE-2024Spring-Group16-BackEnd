@@ -5,7 +5,7 @@ metadata:
   labels:   # 标签，可以用于选择器匹配
     app: product
 spec:
-  replicas: 3   # 副本数量，表示会启动1个Pod
+  replicas: 1   # 副本数量，表示会启动1个Pod
   selector:
     matchLabels:
       app: product  # 选择具有这个标签的Pod
