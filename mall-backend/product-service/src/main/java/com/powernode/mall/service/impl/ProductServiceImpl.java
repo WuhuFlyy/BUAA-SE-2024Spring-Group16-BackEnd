@@ -250,4 +250,9 @@ public class ProductServiceImpl implements IProductService {
         }
 
     }
+
+    @Override
+    public ArrayList<TProduct> getByShopId(Integer sid) {
+        return productMapper.selectBySid(sid);
+    }
 }

@@ -244,4 +244,14 @@ public class UserServiceImpl implements IUserService
 //            }
         }
     }
+
+    @Override
+    public TUser getByUsername(String username) {
+        TUser user = userMapper.selectByUsername(username);
+        if(user == null || user.getIsDelete() == 1){
+            throw new UserNotFoundException("用户不存在");
+        }
+
+        return user;
+    }
 }

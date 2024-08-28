@@ -1,5 +1,7 @@
 package com.powernode.mall.service.impl;
 
+import com.powernode.mall.client.ProductClient;
+import com.powernode.mall.client.UserClient;
 import com.powernode.mall.mapper.TCartMapper;
 import com.powernode.mall.mapper.TProductMapper;
 import com.powernode.mall.mapper.TUserMapper;
@@ -35,12 +37,20 @@ public class CartServiceImpl implements ICartService {
     @Autowired
     TVersionMapper versionMapper;
 
+    @Autowired
+    private UserClient userClient;
+
+    @Autowired
+    private ProductClient productClient;
+
     @Override
     public Void addToCart(String username, Integer pid, String version, Integer quantity) {
-        TUser user = userMapper.selectByUsername(username);
+        //TUser user = userMapper.selectByUsername(username);
+        TUser user = userClient.getByUsername(username).getData();
         TCart cart = new TCart();
         Date date = new Date();
-        TProduct product = productMapper.selectByPrimaryKey(pid);
+        //TProduct product = productMapper.selectByPrimaryKey(pid);
+        TProduct product = productClient.getByPid(pid).getData();
         ArrayList<TVersion> versions = versionMapper.selectByPid(pid);
         int tag = 0;
 

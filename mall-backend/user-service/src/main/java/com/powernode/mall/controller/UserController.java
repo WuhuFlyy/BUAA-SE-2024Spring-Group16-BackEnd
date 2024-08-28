@@ -104,6 +104,12 @@ public class UserController extends BaseController
         return new JsonResult<>(OK, user);
     }
 
+    @RequestMapping("get_by_username")
+    public JsonResult<TUser> getByUsername(String username){
+        TUser user = userService.getByUsername(username);
+        return new JsonResult<>(OK, user);
+    }
+
 
     // 这个应该没用
     @RequestMapping("get_shop")

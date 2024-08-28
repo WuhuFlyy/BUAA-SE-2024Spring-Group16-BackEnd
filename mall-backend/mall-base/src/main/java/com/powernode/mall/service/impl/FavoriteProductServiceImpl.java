@@ -1,5 +1,7 @@
 package com.powernode.mall.service.impl;
 
+import com.powernode.mall.client.ProductClient;
+import com.powernode.mall.client.UserClient;
 import com.powernode.mall.mapper.TFavoriteProductMapper;
 import com.powernode.mall.mapper.TProductMapper;
 import com.powernode.mall.mapper.TUserMapper;
@@ -19,20 +21,28 @@ public class FavoriteProductServiceImpl implements IFavoriteProductService {
     @Autowired
     private TFavoriteProductMapper favoriteProductMapper;
 
-    @Autowired
-    private TUserMapper userMapper;
+//    @Autowired
+//    private TUserMapper userMapper;
+//
+//    @Autowired
+//    private TProductMapper productMapper;
 
     @Autowired
-    private TProductMapper productMapper;
+    private UserClient userClient;
+
+    @Autowired
+    private ProductClient productClient;
 
     @Override
     public void addFavoriteProduct(String username, Integer pid) {
-        TUser user = userMapper.selectByUsername(username);
+        //TUser user = userMapper.selectByUsername(username);
+        TUser user = userClient.getByUsername(username).getData();
         if (user == null) {
             throw new UserNotFoundException("用户不存在");
         }
 
-        TProduct product = productMapper.selectByPrimaryKey(pid);
+        //TProduct product = productMapper.selectByPrimaryKey(pid);
+        TProduct product = productClient.getByPid(pid).getData();
         if (product == null) {
             throw new ProductNotFoundException("商品不存在");
         }
@@ -49,7 +59,8 @@ public class FavoriteProductServiceImpl implements IFavoriteProductService {
 
     @Override
     public void removeFavoriteProduct(String username, Integer pid) {
-        TUser user = userMapper.selectByUsername(username);
+        //TUser user = userMapper.selectByUsername(username);
+        TUser user = userClient.getByUsername(username).getData();
         if (user == null) {
             throw new UserNotFoundException("用户不存在");
         }
@@ -59,7 +70,8 @@ public class FavoriteProductServiceImpl implements IFavoriteProductService {
 
     @Override
     public boolean isFavoriteProduct(String username, Integer pid) {
-        TUser user = userMapper.selectByUsername(username);
+        //TUser user = userMapper.selectByUsername(username);
+        TUser user = userClient.getByUsername(username).getData();
         if (user == null) {
             throw new UserNotFoundException("用户不存在");
         }

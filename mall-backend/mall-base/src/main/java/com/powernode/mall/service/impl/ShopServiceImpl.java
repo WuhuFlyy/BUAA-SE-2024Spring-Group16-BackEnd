@@ -1,5 +1,7 @@
 package com.powernode.mall.service.impl;
 
+import com.powernode.mall.client.ProductClient;
+import com.powernode.mall.client.UserClient;
 import com.powernode.mall.dto.Shop;
 import com.powernode.mall.dto.ShopInfo;
 import com.powernode.mall.dto.ShopItem;
@@ -19,14 +21,17 @@ import java.util.ArrayList;
 @Service
 public class ShopServiceImpl implements IShopService {
 
-    @Autowired
-    private TProductMapper productMapper;
+//    @Autowired
+//    private TProductMapper productMapper;
 
     @Autowired
     private TShopMapper shopMapper;
 
     @Autowired
     private TImageMapper imageMapper;
+
+    @Autowired
+    private ProductClient productClient;
 
     @Override
     public ArrayList<Product> getAllProducts(Integer sid) {
@@ -37,8 +42,8 @@ public class ShopServiceImpl implements IShopService {
         }
 
         ArrayList<Product> shopItem1s = new ArrayList<>();
-        ArrayList<TProduct> products = productMapper.selectBySid(sid);
-
+        //ArrayList<TProduct> products = productMapper.selectBySid(sid);
+        ArrayList<TProduct> products = productClient.getByShopId(sid).getData();
         for(TProduct product : products){
             Product shopItem1 = new Product();
             shopItem1.setPid(product.getPid());
@@ -47,7 +52,8 @@ public class ShopServiceImpl implements IShopService {
             shopItem1.setIsHot(false);
             if(product.getIsHot() == 1) shopItem1.setIsHot(true);
             shopItem1.setImageSrc(
-                    imageMapper.selectByPid(product.getPid()).get(0).getImageSrc()
+                    // 这里对应产品必须有图片！
+                    imageMapper.selectByPid(product.getPid()).getFirst().getImageSrc()
             );
 
             shopItem1s.add(shopItem1);

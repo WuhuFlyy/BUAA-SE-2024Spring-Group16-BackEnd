@@ -10,4 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public interface UserClient {
     @RequestMapping("/users/get_by_uid")
     JsonResult<TUser> getByUid(@RequestParam Integer uid);
+
+    @RequestMapping("/users/get_by_username")
+    public JsonResult<TUser> getByUsername(@RequestParam String username);
 }

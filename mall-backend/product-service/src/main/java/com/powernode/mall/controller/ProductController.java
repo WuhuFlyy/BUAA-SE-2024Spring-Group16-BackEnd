@@ -54,4 +54,10 @@ public class ProductController extends BaseController {
         productService.updateProduct(product);
         return new JsonResult<>(OK);
     }
+
+    @RequestMapping("get_by_shop_id")
+    public JsonResult<ArrayList<TProduct>> getByShopId(@RequestParam("sid") Integer sid) {
+        ArrayList<TProduct> products = productService.getByShopId(sid);
+        return new JsonResult<>(OK, products);
+    }
 }

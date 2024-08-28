@@ -48,4 +48,11 @@ public interface IUserService
      * @param userComment 评价内容
      */
     void comment(UserComment userComment);
+
+    /**
+     * 根据用户名获取用户信息
+     * @param username 用户名
+     * @return 用户信息
+     */
+    TUser getByUsername(String username);
 }

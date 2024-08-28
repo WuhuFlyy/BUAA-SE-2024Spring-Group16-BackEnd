@@ -49,4 +49,6 @@ public interface IProductService {
 
 
     void updateProduct(ProductDetails product);
+
+    ArrayList<TProduct> getByShopId(Integer sid);
 }
