@@ -91,6 +91,12 @@ pipeline {
                 sh 'docker rmi $(docker images -q -f dangling=true) || true'
             }
         }
+
+        stage('集成测试'){
+            steps{
+                sh 'newman run se-summer.postman_collection.json'
+            }
+        }
     }
 }
 
