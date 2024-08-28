@@ -1,6 +1,7 @@
 package com.powernode.mall.client;
 
 
+import com.powernode.mall.client.fallback.BaseClientFallback;
 import com.powernode.mall.po.*;
 import com.powernode.mall.util.JsonResult;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -10,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 
-@FeignClient(name = "shop-service", url = "http://localhost:8888")
+@FeignClient(name = "shop-service", url = "http://localhost:8888", fallback = BaseClientFallback.class)
 public interface BaseClient {
 
     @RequestMapping("/shop/insert_shop")

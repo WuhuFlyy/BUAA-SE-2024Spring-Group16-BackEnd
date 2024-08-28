@@ -1,6 +1,7 @@
 package com.powernode.mall.client;
 
 
+import com.powernode.mall.client.fallback.ProductFallback;
 import com.powernode.mall.po.TProduct;
 import com.powernode.mall.util.JsonResult;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -9,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 
-@FeignClient(name = "product-service", url = "http://localhost:8889")
+@FeignClient(name = "product-service", url = "http://localhost:8889", fallback = ProductFallback.class)
 public interface ProductClient {
 
     @RequestMapping("/products/get_by_pid")
