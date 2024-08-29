@@ -58,6 +58,6 @@ public interface BaseClient {
     public JsonResult<?> getCommentImage(@RequestParam Integer commentImageId);
 
     @RequestMapping("/user/reg")
-    public JsonResult<?> reg(@RequestBody String username, String password, String type);
+    public JsonResult<?> reg(@RequestParam String username, @RequestParam String password, @RequestParam String type);
 
 }

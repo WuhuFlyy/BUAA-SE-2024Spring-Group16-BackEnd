@@ -4,6 +4,7 @@ import com.powernode.mall.client.BaseClient;
 import com.powernode.mall.po.*;
 import com.powernode.mall.util.JsonResult;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 
@@ -65,7 +66,7 @@ public class BaseClientFallback implements BaseClient {
     }
 
     @Override
-    public JsonResult<?> reg(String username, String password, String type) {
+    public JsonResult<?> reg(@RequestParam String username, @RequestParam String password, @RequestParam String type) {
         return new JsonResult<>(200);
     }
 }
