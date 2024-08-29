@@ -75,7 +75,7 @@
     from t_shop
   </select>
 
-  <select id="get_sid_by_username" parameterType="java.lang.String" resultMap="BaseResultMap">
+  <select id="get_sid_by_username" parameterType="java.lang.String" resultType="integer">
     select sid
     from t_shop
     where username = #{username, jdbcType=VARCHAR}
