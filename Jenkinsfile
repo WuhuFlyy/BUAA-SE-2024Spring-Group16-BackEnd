@@ -97,6 +97,7 @@ pipeline {
                 echo '等待容器启动'
                 sleep 30
                 sh 'newman run se-summer.postman_collection.json || true'
+                sh 'newman run MallUnit.postman_collection.json || true'
             }
         }
     }
