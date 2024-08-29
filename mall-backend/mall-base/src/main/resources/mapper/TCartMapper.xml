@@ -65,6 +65,12 @@
     where uid = #{uid,jdbcType=INTEGER}
   </select>
 
+  <select id="selectByUsername" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select cid, uid, pid, quantity, version, created_user, created_time, modified_user, modified_time
+    from t_cart
+    where created_user = #{username,jdbcType=VARCHAR}
+  </select>
+
   <select id="selectAll" resultMap="BaseResultMap">
     select cid, uid, pid, quantity, version, created_user, created_time, modified_user, modified_time
     from t_cart

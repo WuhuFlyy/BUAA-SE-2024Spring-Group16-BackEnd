@@ -22,5 +22,7 @@ public interface TCartMapper {
 
     ArrayList<TCart> selectByUid(int uid);
 
+    ArrayList<TCart> selectByUsername(String username);
+
     int updateByPrimaryKey(TCart row);
 }

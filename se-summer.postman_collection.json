@@ -376,7 +376,7 @@
 						"method": "POST",
 						"header": [],
 						"url": {
-							"raw": "{{BASE_URL}}:{{BASE_PORT}}/cart/add_to_cart?username=plu&pid=2&version={{selectedVersion}}&quantity=1",
+							"raw": "{{BASE_URL}}:{{BASE_PORT}}/cart/add_to_cart?username=userTest&pid=2&version={{selectedVersion}}&quantity=1",
 							"host": [
 								"{{BASE_URL}}"
 							],
@@ -388,7 +388,7 @@
 							"query": [
 								{
 									"key": "username",
-									"value": "plu"
+									"value": "userTest"
 								},
 								{
 									"key": "pid",

@@ -108,13 +108,9 @@ public class CartServiceImpl implements ICartService {
 
     @Override
     public ArrayList<Cart> getCartByUsername(String username) {
-        TUser user = userMapper.selectByUsername(username);
-        if(user == null) {
-            throw new UserNotFoundException("用户不存在");
-        }
-
         ArrayList<Cart> carts = new ArrayList<>();
-        ArrayList<TCart> tCarts = cartMapper.selectByUid(user.getUid());
+        ArrayList<TCart> tCarts = cartMapper.selectByUsername(username);
+        System.out.println(tCarts);
         for(TCart tcart : tCarts) {
             TProduct product = productMapper.selectByPrimaryKey(tcart.getPid());
             Cart cart = new Cart();
