@@ -1,0 +1,1289 @@
+{
+	"info": {
+		"_postman_id": "7082f40f-db8d-46b2-a842-1de3885bd01c",
+		"name": "Mall",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "34628501"
+	},
+	"item": [
+		{
+			"name": "ProductControllerTest",
+			"item": [
+				{
+					"name": "getDetailsTest",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"status is 200\", function(){",
+									"    pm.expect(pm.response.to.have.status(200));",
+									"}",
+									")"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}:{{PRODUCT_PORT}}/products/details?id=2",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"port": "{{PRODUCT_PORT}}",
+							"path": [
+								"products",
+								"details"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "searchTest",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"status is 200\", function(){",
+									"    pm.expect(pm.response.to.have.status(200));",
+									"}",
+									")"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}:{{PRODUCT_PORT}}/products/search?keywords=12",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"port": "{{PRODUCT_PORT}}",
+							"path": [
+								"products",
+								"search"
+							],
+							"query": [
+								{
+									"key": "keywords",
+									"value": "12"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "uploadTest",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"status is 200\", function(){",
+									"    pm.expect(pm.response.to.have.status(200));",
+									"}",
+									")"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"测试商品名称\",\r\n    \"storage\":20,\r\n    \"version\":[\"S\", \"M\", \"L\", \"XL\", \"XXL\", \"custom\"],\r\n    \"price\":100.01,\r\n    \"imageSrc\":[\"https://sc01.alicdn.com/kf/a.png\"],\r\n    \"details\":\"This is a test product\",\r\n    \"shopName\":\"shop_user0\",\r\n    \"shopId\":1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{BASE_URL}}:{{PRODUCT_PORT}}/products/upload"
+					},
+					"response": []
+				},
+				{
+					"name": "updateTest",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"status is 200\", function(){",
+									"    pm.expect(pm.response.to.have.status(200));",
+									"}",
+									")"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"productId\":22,\r\n    \"name\":\"测试商品名称!!!!!!!!!\",\r\n    \"storage\":200,\r\n    \"version\":[\"XXXx\", \"MMMMMM\"],\r\n    \"price\":100.01,\r\n    \"imageSrc\":[\"https://sc01.ali\"],\r\n    \"details\":\"This is a test product!!!!!!!!!!!!\",\r\n    \"shopName\":\"shop_user0\",\r\n    \"shopId\":1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{BASE_URL}}:{{PRODUCT_PORT}}/products/update"
+					},
+					"response": []
+				},
+				{
+					"name": "allTest",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"status is 200\", function(){",
+									"    pm.expect(pm.response.to.have.status(200));",
+									"}",
+									")"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": "{{BASE_URL}}:{{PRODUCT_PORT}}/products/all"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ShopControllerTest",
+			"item": [
+				{
+					"name": "getAllProductsTest",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"status is 200\", function(){",
+									"    pm.expect(pm.response.to.have.status(200));",
+									"}",
+									")"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}:{{BASE_PORT}}/shop/get_products?sid=2",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"port": "{{BASE_PORT}}",
+							"path": [
+								"shop",
+								"get_products"
+							],
+							"query": [
+								{
+									"key": "sid",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "searchTest",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"status is 200\", function(){",
+									"    pm.expect(pm.response.to.have.status(200));",
+									"}",
+									")"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}:{{BASE_PORT}}/shop/search?keywords=1",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"port": "{{BASE_PORT}}",
+							"path": [
+								"shop",
+								"search"
+							],
+							"query": [
+								{
+									"key": "keywords",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getShopInfoTest",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"status is 200\", function(){",
+									"    pm.expect(pm.response.to.have.status(200));",
+									"}",
+									")"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}:{{BASE_PORT}}/shop/shop_info?sid=4",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"port": "{{BASE_PORT}}",
+							"path": [
+								"shop",
+								"shop_info"
+							],
+							"query": [
+								{
+									"key": "sid",
+									"value": "4"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getSidTest",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}:{{BASE_PORT}}/shop/get_sid?username=shop_user1",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"port": "{{BASE_PORT}}",
+							"path": [
+								"shop",
+								"get_sid"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "shop_user1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "CartControllerTest",
+			"item": [
+				{
+					"name": "addToCartTest",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"status is 200\", function(){",
+									"    pm.expect(pm.response.to.have.status(200));",
+									"}",
+									")"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}:{{BASE_PORT}}/cart/add_to_cart?username=小明&pid=13&version=version_7&quantity=20",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"port": "{{BASE_PORT}}",
+							"path": [
+								"cart",
+								"add_to_cart"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "小明"
+								},
+								{
+									"key": "pid",
+									"value": "13"
+								},
+								{
+									"key": "version",
+									"value": "version_7"
+								},
+								{
+									"key": "quantity",
+									"value": "20"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addNumTest",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}:{{BASE_PORT}}/cart/add_num?cid=1",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"port": "{{BASE_PORT}}",
+							"path": [
+								"cart",
+								"add_num"
+							],
+							"query": [
+								{
+									"key": "cid",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "reduceNumTest",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}:{{BASE_PORT}}/cart/reduce_num?cid=1",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"port": "{{BASE_PORT}}",
+							"path": [
+								"cart",
+								"reduce_num"
+							],
+							"query": [
+								{
+									"key": "cid",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "listTest",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}:{{BASE_PORT}}/cart/list?username=user3",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"port": "{{BASE_PORT}}",
+							"path": [
+								"cart",
+								"list"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "user3"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "OrderControllerTest",
+			"item": [
+				{
+					"name": "submitTest",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"status is 200\", function(){",
+									"    pm.expect(pm.response.to.have.status(200));",
+									"}",
+									")"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}:{{BASE_PORT}}/order/submit?username=小明&pid=10&version=version_1&quantity=3&aid=4",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"port": "{{BASE_PORT}}",
+							"path": [
+								"order",
+								"submit"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "小明"
+								},
+								{
+									"key": "pid",
+									"value": "10"
+								},
+								{
+									"key": "version",
+									"value": "version_1"
+								},
+								{
+									"key": "quantity",
+									"value": "3"
+								},
+								{
+									"key": "aid",
+									"value": "4"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "UserControllerTest",
+			"item": [
+				{
+					"name": "loginTest",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"status is 200\", function(){",
+									"    pm.expect(pm.response.to.have.status(200));",
+									"}",
+									")"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}:{{USER_PORT}}/users/login?username=小明&password=123456&type=buyer",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"port": "{{USER_PORT}}",
+							"path": [
+								"users",
+								"login"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "小明"
+								},
+								{
+									"key": "password",
+									"value": "123456"
+								},
+								{
+									"key": "type",
+									"value": "buyer"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "changeInfoTest",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"status is 200\", function(){",
+									"    pm.expect(pm.response.to.have.status(200));",
+									"}",
+									")"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"12345@qq.com\",\r\n    \"phone\":\"12311112222\",\r\n    \"gender\":\"1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{BASE_URL}}:{{USER_PORT}}/users/change_info"
+					},
+					"response": []
+				},
+				{
+					"name": "regTest",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"status is 200\", function(){",
+									"    pm.expect(pm.response.to.have.status(200));",
+									"}",
+									")"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}:{{USER_PORT}}/users/reg?username=小明&password=123456&type=buyer",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"port": "{{USER_PORT}}",
+							"path": [
+								"users",
+								"reg"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "小明"
+								},
+								{
+									"key": "password",
+									"value": "123456"
+								},
+								{
+									"key": "type",
+									"value": "buyer"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "changePasswordTest",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"status is 200\", function(){",
+									"    pm.expect(pm.response.to.have.status(200));",
+									"}",
+									")"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{BASE_URL}}:{{USER_PORT}}/users/change_password?oldPassword=654321&newPassword=654321",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"port": "{{USER_PORT}}",
+							"path": [
+								"users",
+								"change_password"
+							],
+							"query": [
+								{
+									"key": "oldPassword",
+									"value": "654321"
+								},
+								{
+									"key": "newPassword",
+									"value": "654321"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "commentTest",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"status is 200\", function(){",
+									"    pm.expect(pm.response.to.have.status(200));",
+									"}",
+									")"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\":2,\r\n    \"userName\": \"user0\",\r\n    \"rate\":4.5,\r\n    \"content\":\"this is a great product\",\r\n    \"images\":[\r\n        \"../../upload/i1.jpg\",\r\n        \"../../upload/i2.jpg\"\r\n    ],\r\n    \"productId\":1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{BASE_URL}}:{{USER_PORT}}/users/comment"
+					},
+					"response": []
+				},
+				{
+					"name": "shopRegTest",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"status is 200\", function(){",
+									"    pm.expect(pm.response.to.have.status(200));",
+									"}",
+									")"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}:{{USER_PORT}}/users/reg?username=店1&password=123456&type=seller",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"port": "{{USER_PORT}}",
+							"path": [
+								"users",
+								"reg"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "店1"
+								},
+								{
+									"key": "password",
+									"value": "123456"
+								},
+								{
+									"key": "type",
+									"value": "seller"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "FavoriteProductControllerTest",
+			"item": [
+				{
+					"name": "isFavoriteTest",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"status is 200\", function(){",
+									"    pm.expect(pm.response.to.have.status(200));",
+									"}",
+									")"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}:{{BASE_PORT}}/favorite/isFavorite?username=小明&pid=3",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"port": "{{BASE_PORT}}",
+							"path": [
+								"favorite",
+								"isFavorite"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "小明"
+								},
+								{
+									"key": "pid",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"status is 200\", function(){",
+									"    pm.expect(pm.response.to.have.status(200));",
+									"}",
+									")"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}:{{BASE_PORT}}/favorite/add?username=小明&pid=3",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"port": "{{BASE_PORT}}",
+							"path": [
+								"favorite",
+								"add"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "小明"
+								},
+								{
+									"key": "pid",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "removeTest",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"status is 200\", function(){",
+									"    pm.expect(pm.response.to.have.status(200));",
+									"}",
+									")"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}:{{BASE_PORT}}/favorite/remove?username=小明&pid=3",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"port": "{{BASE_PORT}}",
+							"path": [
+								"favorite",
+								"remove"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "小明"
+								},
+								{
+									"key": "pid",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "FavoriteShopController",
+			"item": [
+				{
+					"name": "isFavoriteTest Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"status is 200\", function(){",
+									"    pm.expect(pm.response.to.have.status(200));",
+									"}",
+									")"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}:{{BASE_PORT}}/favorite_shop/isFavorite?username=小明&sid=3",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"port": "{{BASE_PORT}}",
+							"path": [
+								"favorite_shop",
+								"isFavorite"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "小明"
+								},
+								{
+									"key": "sid",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"status is 200\", function(){",
+									"    pm.expect(pm.response.to.have.status(200));",
+									"}",
+									")"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}:{{BASE_PORT}}/favorite_shop/add?username=小明&sid=3",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"port": "{{BASE_PORT}}",
+							"path": [
+								"favorite_shop",
+								"add"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "小明"
+								},
+								{
+									"key": "sid",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "removeTest Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"status is 200\", function(){",
+									"    pm.expect(pm.response.to.have.status(200));",
+									"}",
+									")"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}:{{BASE_PORT}}/favorite_shop/remove?username=小明&sid=3",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"port": "{{BASE_PORT}}",
+							"path": [
+								"favorite_shop",
+								"remove"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "小明"
+								},
+								{
+									"key": "sid",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "AddressControllerTest",
+			"item": [
+				{
+					"name": "addTest",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"status is 200\", function(){\r",
+									"    pm.expect(pm.response.to.have.status(200));\r",
+									"}\r",
+									")"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}:{{BASE_PORT}}/address/add?username=user0&name=小明&address=学院路&phone=18888888888",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"port": "{{BASE_PORT}}",
+							"path": [
+								"address",
+								"add"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "user0"
+								},
+								{
+									"key": "name",
+									"value": "小明"
+								},
+								{
+									"key": "address",
+									"value": "学院路"
+								},
+								{
+									"key": "phone",
+									"value": "18888888888"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "listTest",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"status is 200\", function(){\r",
+									"    pm.expect(pm.response.to.have.status(200));\r",
+									"}\r",
+									")"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}:{{BASE_PORT}}/address/list?username=user0",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"port": "{{BASE_PORT}}",
+							"path": [
+								"address",
+								"list"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "user0"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteTest",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"status is 200\", function(){\r",
+									"    pm.expect(pm.response.to.have.status(200));\r",
+									"}\r",
+									")"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}:{{BASE_PORT}}/address/delete?id=11",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"port": "{{BASE_PORT}}",
+							"path": [
+								"address",
+								"delete"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "11"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "BASE_URL",
+			"value": "http://localhost",
+			"type": "string"
+		},
+		{
+			"key": "USER_PORT",
+			"value": "32500",
+			"type": "string"
+		},
+		{
+			"key": "PRODUCT_PORT",
+			"value": "32000",
+			"type": "string"
+		},
+		{
+			"key": "BASE_PORT",
+			"value": "31000",
+			"type": "string"
+		}
+	]
+}

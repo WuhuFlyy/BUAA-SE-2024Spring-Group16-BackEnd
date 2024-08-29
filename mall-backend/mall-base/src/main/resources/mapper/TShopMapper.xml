@@ -83,7 +83,7 @@
 
   <select id="getSaleCountBySid" parameterType="java.lang.Integer" resultType="integer">
     select ifnull(sum(tp.sale_volume), 0)
-    from t_shop join mall.t_product tp on t_shop.sid = tp.sid
+    from t_shop join t_product tp on t_shop.sid = tp.sid
     where t_shop.sid = #{sid,jdbcType=INTEGER}
   </select>
 
