@@ -94,6 +94,8 @@ pipeline {
 
         stage('集成测试'){
             steps{
+                echo '等待容器启动'
+                sleep 30
                 sh 'newman run se-summer.postman_collection.json'
             }
         }
