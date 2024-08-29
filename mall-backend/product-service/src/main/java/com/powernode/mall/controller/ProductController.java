@@ -31,8 +31,8 @@ public class ProductController extends BaseController {
     }
 
     @RequestMapping("details")
-    public JsonResult<ProductDetails> getDetailsByPid(@RequestParam("pid") Integer pid){
-        ProductDetails productDetails = productService.getProductDetailByProductId(pid);
+    public JsonResult<ProductDetails> getDetailsByPid(@RequestParam("id") Integer id){
+        ProductDetails productDetails = productService.getProductDetailByProductId(id);
         return new JsonResult<>(OK, productDetails);
     }
 

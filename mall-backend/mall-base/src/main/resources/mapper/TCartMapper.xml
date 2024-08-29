@@ -43,13 +43,13 @@
 
   <update id="addNumByCid" parameterType="java.lang.Integer">
     update t_cart
-    set num = num+1
+    set quantity = quantity+1
     where cid = #{cid,jdbcType=INTEGER}
   </update>
 
   <update id="reduceNumByCid" parameterType="java.lang.Integer">
     update t_cart
-    set num = num-1
+    set quantity = quantity-1
     where cid = #{cid,jdbcType=INTEGER}
   </update>
 
@@ -60,7 +60,7 @@
   </select>
 
   <select id="selectByUid" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select cid, uid, pid, num, version, created_user, created_time, modified_user, modified_time
+    select cid, uid, pid, quantity, version, created_user, created_time, modified_user, modified_time
     from t_cart
     where uid = #{uid,jdbcType=INTEGER}
   </select>
