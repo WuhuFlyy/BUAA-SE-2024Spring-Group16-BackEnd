@@ -25,31 +25,31 @@ public class ProductController extends BaseController {
         return new JsonResult<>(OK, tProduct);
     }
 
-    @RequestMapping("get_details_by_pid")
+    @RequestMapping("details")
     public JsonResult<ProductDetails> getDetailsByPid(@RequestParam("pid") Integer pid){
         ProductDetails productDetails = productService.getProductDetailByProductId(pid);
         return new JsonResult<>(OK, productDetails);
     }
 
-    @RequestMapping("get_all_products")
+    @RequestMapping("all")
     public JsonResult<List<ProductNoDetails>> getAllProducts() {
         List<ProductNoDetails> products = productService.getAllProducts();
         return new JsonResult<>(OK, products);
     }
 
-    @RequestMapping("get_product_by_keywords")
+    @RequestMapping("search")
     public JsonResult<ArrayList<ShopItem>> getProductByKeywords(@RequestParam("keywords") String keywords) {
         ArrayList<ShopItem> products = productService.getProductByKeywords(keywords);
         return new JsonResult<>(OK, products);
     }
 
-    @PostMapping("insert_product")
+    @PostMapping("upload")
     public JsonResult<Void> insertProduct(@RequestBody ProductDetails product) {
         productService.insertProduct(product);
         return new JsonResult<>(OK);
     }
 
-    @PostMapping("update_product")
+    @PostMapping("update")
     public JsonResult<Void> updateProduct(@RequestBody ProductDetails product) {
         productService.updateProduct(product);
         return new JsonResult<>(OK);
