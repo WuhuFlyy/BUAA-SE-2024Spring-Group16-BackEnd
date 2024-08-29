@@ -25,4 +25,6 @@ public interface TShopMapper {
     void incrementFansNumber(Integer shopId);
 
     void decrementFansNumber(Integer shopId);
+
+    int get_sid_by_username(String username);
 }

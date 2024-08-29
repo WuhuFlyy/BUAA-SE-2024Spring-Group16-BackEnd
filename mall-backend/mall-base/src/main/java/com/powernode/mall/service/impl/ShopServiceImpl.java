@@ -107,4 +107,9 @@ public class ShopServiceImpl implements IShopService {
     public TShop getShopBySid(Integer sid) {
         return shopMapper.selectByPrimaryKey(sid);
     }
+
+    @Override
+    public int getSidByUsername(String username) {
+        return shopMapper.get_sid_by_username(username);
+    }
 }

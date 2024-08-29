@@ -58,4 +58,10 @@ public class ShopController extends BaseController {
         return new JsonResult<>(OK, shop);
     }
 
+    @RequestMapping("get_sid")
+    public JsonResult<?> getSid(String username) {
+        int sid = shopService.getSidByUsername(username);
+        return new JsonResult<>(OK, sid);
+    }
+
 }

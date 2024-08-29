@@ -75,6 +75,12 @@
     from t_shop
   </select>
 
+  <select id="get_sid_by_username" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select sid
+    from t_shop
+    where username = #{username, jdbcType=VARCHAR}
+  </select>
+
   <select id="getSaleCountBySid" parameterType="java.lang.Integer" resultType="integer">
     select ifnull(sum(tp.sale_volume), 0)
     from t_shop join mall.t_product tp on t_shop.sid = tp.sid

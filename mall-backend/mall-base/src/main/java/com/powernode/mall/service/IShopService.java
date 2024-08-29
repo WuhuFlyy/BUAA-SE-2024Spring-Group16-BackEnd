@@ -37,4 +37,6 @@ public interface IShopService {
     void insertShop(TShop shop);
 
     TShop getShopBySid(Integer sid);
+
+    int getSidByUsername(String username);
 }
