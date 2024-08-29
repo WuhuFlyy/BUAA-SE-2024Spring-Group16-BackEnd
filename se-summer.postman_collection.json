@@ -1,0 +1,1017 @@
+{
+	"info": {
+		"_postman_id": "d71f8eda-a968-4469-ae41-3da0d11043a1",
+		"name": "se-summer",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "34628501"
+	},
+	"item": [
+		{
+			"name": "Buyer",
+			"item": [
+				{
+					"name": "Register",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}:{{USER_PORT}}/users/reg?username=userTest&password=123&type=buyer",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"port": "{{USER_PORT}}",
+							"path": [
+								"users",
+								"reg"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "userTest"
+								},
+								{
+									"key": "password",
+									"value": "123"
+								},
+								{
+									"key": "type",
+									"value": "buyer"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check state code is 200\", function () {\r",
+									"    pm.expect(pm.response.json().stateCode).to.eql(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}:{{USER_PORT}}/users/login?username=userTest&password=123&type=buyer",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"port": "{{USER_PORT}}",
+							"path": [
+								"users",
+								"login"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "userTest"
+								},
+								{
+									"key": "password",
+									"value": "123"
+								},
+								{
+									"key": "type",
+									"value": "buyer"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Product",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"All items have id and imageUrl\", function () {\r",
+									"    var jsonData = pm.response.json().data;\r",
+									"    jsonData.forEach(function(item) {\r",
+									"        pm.expect(item).to.have.property('productID');\r",
+									"        pm.expect(item).to.have.property('productImageBig');\r",
+									"    });\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{BASE_URL}}:{{PRODUCT_PORT}}/products/all"
+					},
+					"response": []
+				},
+				{
+					"name": "Add Adress",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check state code is 200\", function () {\r",
+									"    pm.expect(pm.response.json().stateCode).to.eql(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}:{{BASE_PORT}}/address/add?username=userTest&name=PLUTO&phone=15180724888&address=Gensoukyo",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"port": "{{BASE_PORT}}",
+							"path": [
+								"address",
+								"add"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "userTest"
+								},
+								{
+									"key": "name",
+									"value": "PLUTO"
+								},
+								{
+									"key": "phone",
+									"value": "15180724888"
+								},
+								{
+									"key": "address",
+									"value": "Gensoukyo"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List Address",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"// Updated test to check for the presence of the 'aid' property in the response data\r",
+									"pm.test(\"Data includes aid\", function() {\r",
+									"    const jsonData = pm.response.json().data;\r",
+									"    jsonData.forEach(function(item) {\r",
+									"        pm.expect(item).to.have.property('aid');\r",
+									"    });\r",
+									"});\r",
+									"pm.collectionVariables.set(\"aid\", pm.response.json().data[0].aid);\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}:{{BASE_PORT}}/address/list?username=userTest",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"port": "{{BASE_PORT}}",
+							"path": [
+								"address",
+								"list"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "userTest"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Product(id=2) details",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Detail has productId and version property\", function () {\r",
+									"    var responseData = pm.response.json();\r",
+									"    pm.expect(responseData).to.be.an('object');\r",
+									"    pm.expect(responseData.data).to.have.property('productId');\r",
+									"    pm.expect(responseData.data).to.have.property('version');\r",
+									"    pm.collectionVariables.set(\"selectedVersion\", responseData.data.version[1]);\r",
+									"\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}:{{PRODUCT_PORT}}/products/details?id=2",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"port": "{{PRODUCT_PORT}}",
+							"path": [
+								"products",
+								"details"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buy Immediately(id=2)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check state code is 200\", function () {\r",
+									"    pm.expect(pm.response.json().stateCode).to.eql(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}:{{BASE_PORT}}/order/submit?username=userTest&pid=2&version={{selectedVersion}}&quantity=1&aid={{aid}}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"port": "{{BASE_PORT}}",
+							"path": [
+								"order",
+								"submit"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "userTest"
+								},
+								{
+									"key": "pid",
+									"value": "2"
+								},
+								{
+									"key": "version",
+									"value": "{{selectedVersion}}"
+								},
+								{
+									"key": "quantity",
+									"value": "1"
+								},
+								{
+									"key": "aid",
+									"value": "{{aid}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add to Cart(id=2)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check state code is 200\", function () {\r",
+									"    pm.expect(pm.response.json().stateCode).to.eql(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}:{{BASE_PORT}}/cart/add_to_cart?username=plu&pid=2&version={{selectedVersion}}&quantity=1",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"port": "{{BASE_PORT}}",
+							"path": [
+								"cart",
+								"add_to_cart"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "plu"
+								},
+								{
+									"key": "pid",
+									"value": "2"
+								},
+								{
+									"key": "version",
+									"value": "{{selectedVersion}}"
+								},
+								{
+									"key": "quantity",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Cart List",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check all items have property cid\", function () {\r",
+									"    var jsonData = pm.response.json().data;\r",
+									"    jsonData.forEach(function(item) {\r",
+									"        pm.expect(item).to.have.property('cid');    \r",
+									"    });\r",
+									"    pm.collectionVariables.set(\"cid\", jsonData[0].cid);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}:{{BASE_PORT}}/cart/list?username=userTest",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"port": "{{BASE_PORT}}",
+							"path": [
+								"cart",
+								"list"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "userTest"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Quantity of Cart Item",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check state code is 200\", function () {\r",
+									"    pm.expect(pm.response.json().stateCode).to.eql(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}:{{BASE_PORT}}/cart/add_num?cid={{cid}}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"port": "{{BASE_PORT}}",
+							"path": [
+								"cart",
+								"add_num"
+							],
+							"query": [
+								{
+									"key": "cid",
+									"value": "{{cid}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Submit Order of Cart",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check state code is 200\", function () {\r",
+									"    pm.expect(pm.response.json().stateCode).to.eql(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}:{{BASE_PORT}}/order/submit?username=userTest&pid=2&version={{selectedVersion}}&quantity=2&aid={{aid}}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"port": "{{BASE_PORT}}",
+							"path": [
+								"order",
+								"submit"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "userTest"
+								},
+								{
+									"key": "pid",
+									"value": "2"
+								},
+								{
+									"key": "version",
+									"value": "{{selectedVersion}}"
+								},
+								{
+									"key": "quantity",
+									"value": "2"
+								},
+								{
+									"key": "aid",
+									"value": "{{aid}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Send Comment",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check state code is 200\", function () {\r",
+									"    pm.expect(pm.response.json().stateCode).to.eql(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"0\",\r\n    \"userName\": \"userTest\",\r\n    \"rate\": \"4.5\",\r\n    \"content\": \"I love it\",\r\n    \"images\": [\"\"],\r\n    \"productId\": \"2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{BASE_URL}}:{{USER_PORT}}/users/comment"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Address",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check state code is 200\", function () {\r",
+									"    pm.expect(pm.response.json().stateCode).to.eql(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}:{{BASE_PORT}}/address/delete?id={{aid}}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"port": "{{BASE_PORT}}",
+							"path": [
+								"address",
+								"delete"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "{{aid}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Seller",
+			"item": [
+				{
+					"name": "Register Seller",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}:{{USER_PORT}}/users/reg?username=userTestSeller&password=123&type=seller",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"port": "{{USER_PORT}}",
+							"path": [
+								"users",
+								"reg"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "userTestSeller"
+								},
+								{
+									"key": "password",
+									"value": "123"
+								},
+								{
+									"key": "type",
+									"value": "seller"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login Seller",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check state code is 200\", function () {\r",
+									"    pm.expect(pm.response.json().stateCode).to.eql(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}:{{USER_PORT}}/users/login?username=userTestSeller&password=123&type=seller",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"port": "{{USER_PORT}}",
+							"path": [
+								"users",
+								"login"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "userTestSeller"
+								},
+								{
+									"key": "password",
+									"value": "123"
+								},
+								{
+									"key": "type",
+									"value": "seller"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get ShopId",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check state code is 200 and set CollectionVariable 'sid'\", function () {\r",
+									"    pm.expect(pm.response.json().stateCode).to.eql(200);\r",
+									"    pm.collectionVariables.set(\"sid\", pm.response.json().data);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}:{{BASE_PORT}}/shop/get_sid?username=userTestSeller",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"port": "{{BASE_PORT}}",
+							"path": [
+								"shop",
+								"get_sid"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "userTestSeller"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Upload Product",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check state code is 200\", function () {\r",
+									"    pm.expect(pm.response.json().stateCode).to.eql(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"ITest Product\",\r\n    \"storage\": 50,\r\n    \"version\": [\"v0\", \"v1\", \"v2\"],\r\n    \"price\": 20,\r\n    \"imageSrc\": [\"https://sc01.alicdn.com/kf/HTB1Cic9HFXXXXbZXpXXq6xXFXXX3/200006212/HTB1Cic9HFXXXXbZXpXXq6xXFXXX3.jpg\"],\r\n    \"details\": \"Description\",\r\n    \"shopName\": \"userTestSeller\",\r\n    \"shopId\": \"{{sid}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{BASE_URL}}:{{PRODUCT_PORT}}/products/upload"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Product List",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"All items have pid and imageSrc\", function () {\r",
+									"    var jsonData = pm.response.json().data;\r",
+									"    jsonData.forEach(function(item) {\r",
+									"        pm.expect(item).to.have.property('pid');\r",
+									"        pm.expect(item).to.have.property('imageSrc');\r",
+									"        pm.collectionVariables.set(\"pid\", jsonData[1].pid);\r",
+									"    });\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}:{{BASE_PORT}}/shop/get_products?sid={{sid}}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"port": "{{BASE_PORT}}",
+							"path": [
+								"shop",
+								"get_products"
+							],
+							"query": [
+								{
+									"key": "sid",
+									"value": "{{sid}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Product",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check state code is 200\", function () {\r",
+									"    pm.expect(pm.response.json().stateCode).to.eql(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"productId\": \"{{pid}}\",\r\n    \"name\": \"ITest Product Modified\",\r\n    \"storage\": 50,\r\n    \"version\": [\"v0\", \"v1\", \"v2\"],\r\n    \"price\": 20,\r\n    \"imageSrc\": [\"https://sc01.alicdn.com/kf/HTB1Cic9HFXXXXbZXpXXq6xXFXXX3/200006212/HTB1Cic9HFXXXXbZXpXXq6xXFXXX3.jpg\"],\r\n    \"details\": \"Description\",\r\n    \"shopName\": \"userTestSeller\",\r\n    \"shopId\": \"{{sid}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{BASE_URL}}:{{PRODUCT_PORT}}/products/update"
+					},
+					"response": []
+				},
+				{
+					"name": "Modified Details check",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check product name is 'ITest Product Modified'\", function () {\r",
+									"    const jsonData = pm.response.json().data;\r",
+									"    pm.expect(jsonData.name).to.eql(\"ITest Product Modified\");\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}:{{PRODUCT_PORT}}/products/details?id={{pid}}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"port": "{{PRODUCT_PORT}}",
+							"path": [
+								"products",
+								"details"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "{{pid}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "BASE_URL",
+			"value": "http://localhost",
+			"type": "string"
+		},
+		{
+			"key": "PRODUCT_PORT",
+			"value": "32000",
+			"type": "string"
+		},
+		{
+			"key": "USER_PORT",
+			"value": "32500",
+			"type": "string"
+		},
+		{
+			"key": "BASE_PORT",
+			"value": "31000",
+			"type": "string"
+		},
+		{
+			"key": "aid",
+			"value": ""
+		},
+		{
+			"key": "selectedVersion",
+			"value": ""
+		},
+		{
+			"key": "cid",
+			"value": ""
+		},
+		{
+			"key": "sid",
+			"value": ""
+		},
+		{
+			"key": "pid",
+			"value": ""
+		}
+	]
+}
