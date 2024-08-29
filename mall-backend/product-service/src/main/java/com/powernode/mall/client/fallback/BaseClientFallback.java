@@ -1,6 +1,7 @@
 package com.powernode.mall.client.fallback;
 
 import com.powernode.mall.client.BaseClient;
+import com.powernode.mall.dto.ProductDetails;
 import com.powernode.mall.po.*;
 import com.powernode.mall.util.JsonResult;
 import org.springframework.stereotype.Component;
@@ -127,5 +128,15 @@ public class BaseClientFallback implements BaseClient {
     @Override
     public JsonResult<ArrayList<TImage>> getImageBySid(Integer sid) {
         return new JsonResult<>(200, new ArrayList<TImage>());
+    }
+
+    @Override
+    public JsonResult<Void> upload(ProductDetails productDetails) {
+        return new JsonResult<>(200);
+    }
+
+    @Override
+    public JsonResult<Void> update(ProductDetails productDetails) {
+        return new JsonResult<>(200);
     }
 }

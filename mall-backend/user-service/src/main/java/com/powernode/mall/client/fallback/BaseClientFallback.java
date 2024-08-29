@@ -64,4 +64,8 @@ public class BaseClientFallback implements BaseClient {
         return new JsonResult<>(200, new TCommentImage());
     }
 
+    @Override
+    public JsonResult<?> reg(String username, String password, String type) {
+        return new JsonResult<>(200);
+    }
 }

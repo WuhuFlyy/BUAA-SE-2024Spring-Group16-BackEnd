@@ -32,6 +32,7 @@ public class UserController extends BaseController
     {
         // 创建响应结果对象
         JsonResult<Void> result = new JsonResult<>();
+        baseClient.reg(username, password, type);
         try
         {
             TUser user = new TUser();

@@ -2,6 +2,7 @@ package com.powernode.mall.client;
 
 
 import com.powernode.mall.client.fallback.BaseClientFallback;
+import com.powernode.mall.dto.ProductDetails;
 import com.powernode.mall.po.*;
 import com.powernode.mall.util.JsonResult;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -90,4 +91,9 @@ public interface BaseClient {
     @RequestMapping("/image/getBySid")
     public JsonResult<ArrayList<TImage>> getImageBySid(@RequestParam Integer sid);
 
+    @RequestMapping("upload")
+    public JsonResult<Void> upload(@RequestBody ProductDetails productDetails);
+
+    @RequestMapping("update")
+    public JsonResult<Void> update(@RequestBody ProductDetails productDetails);
 }
